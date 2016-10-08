@@ -42,7 +42,7 @@ public class AddParser {
 	 * This method checks if the input arguments satisfy the requirements to be a Event.
 	 * @return
 	 */
-	private static Boolean isEvents(String args){
+	public static Boolean isEvents(String args){
 		return false;
 	}
 	
@@ -50,7 +50,7 @@ public class AddParser {
 	 * This method checks if the input arguments satisfy the requirements to be a Floating Task.
 	 * @return
 	 */
-	private static Boolean isFloatingTask(String args){
+	public static Boolean isFloatingTask(String args){
 		return false;
 	}
 }
