@@ -11,7 +11,7 @@ public class AddParserTest {
 	@Test
 	public void checkIsTask_returnsTrue() {
 
-		String arguments = "by: 10-08-16 1900";
+		String arguments = "by: 10-08-2016 1900";
 
 		assertTrue(AddParser.isTask(arguments));
 
