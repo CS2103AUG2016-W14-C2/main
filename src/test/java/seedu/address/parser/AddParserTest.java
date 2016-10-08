@@ -45,14 +45,6 @@ public class AddParserTest {
 	
 	
 	@Test
-	public void checkIsFloatingTask_returnsTrue(){
-		
-		String arguments = " ";
-		
-		assertTrue(AddParser.isFloatingTask(arguments));
-	}
-	
-	@Test
 	public void checkTypeOfActivity_returnsTask(){
 		
 		String arguments = "by: 10-08-2016 1900";
