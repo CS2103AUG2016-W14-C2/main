@@ -45,9 +45,7 @@ public class AddParser {
 		
 		if (isEvents(args)){
 			parsedArguments.add(EVENTS);
-			matcher = REGULAR_TASK_REGEX.matcher(args);
-			parsedArguments.add(matcher.group(1));
-			
+			inputEventArguments();	
 		}
 		
 		
@@ -61,6 +59,13 @@ public class AddParser {
 		
 	}
 	
+	public static void inputEventArguments(){
+		
+		for (int i = 1 ; i < 5 ; i++){
+			parsedArguments.add(matcher.group(i));
+		}
+		
+	}
 	
 	/**
 	 * This method checks if the input arguments satisfy the requirements to be a Task.
