@@ -25,5 +25,13 @@ public class AddParserTest {
 		assertTrue(AddParser.isEvents(arguments));
 	}
 	
+	@Test
+	public void checkIsFloatingTask_returnsTrue(){
+		
+		String arguments = " ";
+		
+		assertTrue(AddParser.isFloatingTask(arguments));
+	}
+	
 	
 }
