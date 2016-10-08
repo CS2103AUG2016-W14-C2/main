@@ -43,11 +43,13 @@ public class AddParser {
 	
 	public static void checkActivityType(String args){
 		
-		
-		
 		if (isEvents(args)){
 			parsedArguments.add(EVENTS);
+			matcher = REGULAR_TASK_REGEX.matcher(args);
+			parsedArguments.add(matcher.group(1));
+			
 		}
+		
 		
 		else if (isTask(args)){
 			parsedArguments.add(REGULAR_TASK);
