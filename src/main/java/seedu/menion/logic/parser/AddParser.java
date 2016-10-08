@@ -40,6 +40,10 @@ public class AddParser {
 		return parsedArguments;
 	}
 	
+	/**
+	 * This method checks the type of activity based on its arguments and sets the arguments into an array list.
+	 * @param args
+	 */
 	public static void checkActivityType(String args){
 		
 		if (isEvents(args)){
