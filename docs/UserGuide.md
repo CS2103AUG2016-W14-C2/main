@@ -1,14 +1,16 @@
+<center><h1>  Welcome to Menion </h1> </center>
+
+
+(introduction by brehmer)
+
 # Table of Contents
 
-* [Introduction](#introduction)
 * [Quick Start](#quick-start)
 * [Features](#features)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
 
-## Introduction
-(to be done by brehmer)
 
 ## Quick Start
 
@@ -35,28 +37,26 @@
 
 ## Features
 
-> **Command Format**
-> * Words in `UPPER_CASE` are the parameters.
-> * Items in `SQUARE_BRACKETS` are optional.
-> * Items with `...` after them can have multiple instances.
-> * The order of parameters is fixed.
+> **Command Format**<br>
+> Words in `UPPER_CASE` are the parameters.<br>
+> Items in `[SQUARE_BRACKETS]` are optional.<br>
+> Items with `...` after them can have multiple instances.<br>
+> The order of parameters is fixed.
 
-#### Viewing help : `help`
-Format : `help`
-
-> Help is also shown if you enter an incorrect command e.g. `abcd`
  
 #### Adding a person : `add`
-Adds a person to the Menion<br>
-Format : `add TASK_NAME d/TASK_DEADLINE r/TASK_REMINDER p/PRIORITY n/NOTES…` <br>
-        `add EVENT_NAME d/EVENT_DATE t/xxxx-yyyy r/EVENT_REMINDER p/PRIORITY n/NOTES` 
+Adds a person to Menion<br>
+Format : <br>
+`add TASK_NAME by TASK_DEADLINE [n:NOTES...]` <br>
+`add EVENT_NAME from EVENT_START_TIME EVENT_START_DATE to EVENT_END_TIME EVENT_END_DATE [n:NOTES...]`<br>
+`add FLOATING_TASK_NAME [n:NOTES...]`<br> 
 
 > Task and event are differentiated by the input of time tag. Each activity can have any number of notes (including 0). Each note is limited to 140 characters.
 
 
 Examples: 
-* `add Upload CS3230 Programming Assignment 2 d/16-10-16 r/false p/low n/Upload it onto Coursemology Portal`
-* `add Dinner With Family d/21-11-16 t/1800-2000 r/true p/high n/Wear formal`
+`add Upload CS3230 Programming Assignment 2 d/16-10-16 r/false p/low n/Upload it onto Coursemology Portal`
+`add Dinner With Family d/21-11-16 t/1800-2000 r/true p/high n/Wear formal`
 
 #### Listing all events and tasks : `list all`
 Shows a list of all persons in the Menion.<br>
@@ -158,6 +158,11 @@ Format : `modify storage path STORAGE_LOCATION`
 #### Exiting the program : `exit`
 Exits the program.
 Format : `exit`
+
+#### Viewing help : `help`
+Format : `help`
+
+> Help is also shown if you enter an incorrect command e.g. `abcd`
 
 #### Saving the data 
 Menion data are saved in the hard disk automatically after any command that changes the data.
