@@ -1,5 +1,6 @@
 package seedu.menion.logic.parser;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +25,7 @@ public class AddParser {
 	private static final String FLOATING_TASK = "floatingTask";
 	
 	private static Matcher matcher;
-	private static String[] parsedArguments;
+	private static ArrayList<String> parsedArguments;
 	
 	
 	/**
@@ -32,8 +33,9 @@ public class AddParser {
 	 * @param args
 	 * @return An array of parsed commands
 	 */
-	public static String[] parseCommand(String args){
+	public static ArrayList<String> parseCommand(String args){
 		
+		parsedArguments = new ArrayList<String>();
 		checkActivityType(args);
 		
 		return parsedArguments;
@@ -42,18 +44,19 @@ public class AddParser {
 	public static void checkActivityType(String args){
 		
 		if (isTask(args)){
-			parsedArguments[0] = REGULAR_TASK;
+			parsedArguments.add(REGULAR_TASK);
 		}
 		
 		else if (isEvents(args)){
-			parsedArguments[0] = EVENTS;
+			parsedArguments.add(EVENTS);
 		}
 		
 		else {
-			parsedArguments[0] = FLOATING_TASK;
+			parsedArguments.add(FLOATING_TASK);
 		}
 		
 	}
+	
 	
 	/**
 	 * This method checks if the input arguments satisfy the requirements to be a Task.
