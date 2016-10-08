@@ -59,6 +59,14 @@ public class AddParser {
 		
 	}
 	
+	public static void inputTaskArguments(){
+		
+		for (int i = 1 ; i < 3 ; i++){
+			
+			
+		}
+	}
+	
 	public static void inputEventArguments(){
 		
 		for (int i = 1 ; i < 5 ; i++){
