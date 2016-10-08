@@ -43,12 +43,14 @@ public class AddParser {
 	
 	public static void checkActivityType(String args){
 		
-		if (isTask(args)){
-			parsedArguments.add(REGULAR_TASK);
+		
+		
+		if (isEvents(args)){
+			parsedArguments.add(EVENTS);
 		}
 		
-		else if (isEvents(args)){
-			parsedArguments.add(EVENTS);
+		else if (isTask(args)){
+			parsedArguments.add(REGULAR_TASK);
 		}
 		
 		else {
