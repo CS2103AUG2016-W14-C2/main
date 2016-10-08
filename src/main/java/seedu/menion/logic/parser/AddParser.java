@@ -72,7 +72,14 @@ public class AddParser {
 	 * @return
 	 */
 	public static Boolean isEvents(String args){
+		matcher = EVENTS_REGEX.matcher(args);
+		
+		if (matcher.find()){
+			return true;
+		}
+		
 		return false;
+	
 	}
 	
 	/**
