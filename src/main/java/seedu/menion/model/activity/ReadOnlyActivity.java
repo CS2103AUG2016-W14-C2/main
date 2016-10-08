@@ -1,4 +1,4 @@
-package seedu.menion.model.task;
+package seedu.menion.model.activity;
 
 import seedu.menion.model.tag.UniqueTagList;
 
@@ -6,7 +6,7 @@ import seedu.menion.model.tag.UniqueTagList;
  * A read-only immutable interface for a Task in the task manager.
  * Implementations should guarantee: details are present and not null, field values are validated.
  */
-public interface ReadOnlyTask {
+public interface ReadOnlyActivity {
 
     Name getName();
     Deadline getDeadline();
@@ -22,7 +22,7 @@ public interface ReadOnlyTask {
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
-    default boolean isSameStateAs(ReadOnlyTask other) {
+    default boolean isSameStateAs(ReadOnlyActivity other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
@@ -32,7 +32,7 @@ public interface ReadOnlyTask {
     }
 
     /**
-     * Formats the task as text, showing all task details.
+     * Formats the activity as text, showing all activity details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
@@ -49,7 +49,7 @@ public interface ReadOnlyTask {
     }
 
     /**
-     * Returns a string representation of this Task's tags
+     * Returns a string representation of this Activity's tags
      */
     default String tagsString() {
         final StringBuffer buffer = new StringBuffer();
