@@ -1,5 +1,6 @@
 package seedu.menion.logic.parser;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -13,8 +14,14 @@ public class AddParser {
 	
 	public AddParser(){};
 	
-	private static final Pattern REGULAR_TASK = Pattern.compile("by:");
-	private static final Pattern EVENTS = Pattern.compile("from: ");
+	private static final Pattern REGULAR_TASK_REGEX = Pattern.compile("by: (.+)");
+	private static final Pattern EVENTS_REGEX = Pattern.compile("from: (.+) to: (.+)");
+	private static final String REGULAR_TASK = "task";
+	private static final String EVENTS = "event";
+	private static final String FLOATING_TASK = "floatingTask";
+	
+	private static Matcher matcher;
+	private static String[] parsedArguments;
 	
 	
 	/**
@@ -24,10 +31,25 @@ public class AddParser {
 	 */
 	public static String[] parseCommand(String args){
 		
+		checkActivityType(args);
 		
+		return parsedArguments;
+	}
+	
+	public static void checkActivityType(String args){
 		
+		if (isTask(args)){
+			parsedArguments[0] = REGULAR_TASK;
+		}
 		
-		return null;	
+		else if (isEvents(args)){
+			parsedArguments[0] = EVENTS;
+		}
+		
+		else {
+			parsedArguments[0] = FLOATING_TASK;
+		}
+		
 	}
 	
 	/**
@@ -35,7 +57,14 @@ public class AddParser {
 	 * @return
 	 */
 	public static Boolean isTask(String args){
+		matcher = REGULAR_TASK_REGEX.matcher(args);
+		
+		if (matcher.find()){
+			return true;
+		}
+		
 		return false;
+		
 	}
 
 	/**
