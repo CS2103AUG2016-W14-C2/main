@@ -16,4 +16,14 @@ public class AddParserTest {
 		assertTrue(AddParser.isTask(arguments));
 
 	}
+	
+	@Test
+	public void checkIsEvent_returnsTrue(){
+		
+		String arguments = "from 10-08-16 1900 to 11-08-16 1900";
+		
+		assertTrue(AddParser.isEvents(arguments));
+	}
+	
+	
 }
