@@ -51,6 +51,7 @@ public class AddParser {
 		
 		else if (isTask(args)){
 			parsedArguments.add(REGULAR_TASK);
+			inputTaskArguments();
 		}
 		
 		else {
@@ -62,7 +63,7 @@ public class AddParser {
 	public static void inputTaskArguments(){
 		
 		for (int i = 1 ; i < 3 ; i++){
-			
+			parsedArguments.add(matcher.group(i));
 			
 		}
 	}
