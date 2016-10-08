@@ -34,6 +34,15 @@ public class AddParserTest {
 		assertTrue(AddParser.isEvents(arguments));
 	}
 	
+	@Test
+	public void checkIsEvent_returnsFalse(){
+		
+		String arguments = "from: 10-08-2016 1900 by: 11-08-2016 1900";
+	
+		assertFalse(AddParser.isEvents(arguments));
+	
+	}
+	
 	
 	@Test
 	public void checkIsFloatingTask_returnsTrue(){
