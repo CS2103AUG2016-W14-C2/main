@@ -247,13 +247,19 @@ public class ActivityParser {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-        Integer index = Integer.valueOf(activityType.get(1));
-        if(index == null){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String indexArray[] = activityType.get(0).split(" ");
+        
+        //Integer index = Integer.valueOf(activityType.get(1));
+        
+        for (String index: indexArray){
+            if(index == null){
+                return new IncorrectCommand(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
         }
+        
 
-        return new DeleteCommand(activityType.get(0), index);
+        return new DeleteCommand(indexArray[0], indexArray);
     }
     
 

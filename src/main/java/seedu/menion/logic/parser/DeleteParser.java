@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 //@@author A0146752B
 public class DeleteParser {
 
-    private static final Pattern REGULAR_TASK_REGEX = Pattern.compile("(.+) (.+)"); 
+    private static final Pattern REGULAR_TASK_REGEX = Pattern.compile("(.+)"); 
 
     private static Matcher matcher;
 
@@ -22,9 +22,11 @@ public class DeleteParser {
         parsedArguments = new ArrayList<String>();
         if (matcher.find()) {
             String arg1 = matcher.group(1);
-            String arg2 = matcher.group(2);
-            parsedArguments.add(arg1);
-            parsedArguments.add(arg2);
+            //System.out.println("arg1  = " + arg1);
+            //String arg2 = matcher.group(2);
+            //System.out.println("arg2  = " + arg2);
+            parsedArguments.add(arg1.trim());
+            //parsedArguments.add(arg2);
         }
         return parsedArguments;
     }

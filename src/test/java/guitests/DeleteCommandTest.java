@@ -20,15 +20,15 @@ public class DeleteCommandTest extends ActivityManagerGuiTest {
         assertDeleteSuccess(targetIndex, currentList);
         
 
-        /*delete the last in the list
-        currentList = td.getTypicalActivity();
+        //delete the last in the list
+        currentList = td.getTypicalFloatingTask();
         currentList = TestUtil.removeActivityFromList(currentList, targetIndex);
         targetIndex = currentList.length;
         System.out.println("targetIndex: "+  targetIndex);
         assertDeleteSuccess(targetIndex, currentList);
 
         
-        //delete from the middle of the list
+        /*delete from the middle of the list
         currentList = td.getTypicalActivity();
         currentList = TestUtil.removeActivityFromList(currentList, targetIndex);
         targetIndex = currentList.length/2;
