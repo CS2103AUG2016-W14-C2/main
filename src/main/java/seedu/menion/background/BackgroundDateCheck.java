@@ -47,9 +47,9 @@ public class BackgroundDateCheck extends ComponentManager{
 		
 		for (int i = 0 ; i < taskList.size(); i++){	 
 			ReadOnlyActivity taskToCheck = taskList.get(i);
-			
+
 			// Yet to send email due to no internet connection. But task deadline has passed
-			if (!taskToCheck.isEmailSent() && taskToCheck.isTimePassed() && taskToCheck.getActivityStatus().equals(Completed.UNCOMPLETED_ACTIVITY)){
+			if (!taskToCheck.isEmailSent() && taskToCheck.isTimePassed() && taskToCheck.getActivityStatus().toString().equals(Completed.UNCOMPLETED_ACTIVITY)){
 			    SendEmail sender = new SendEmail();
 				try {
                     sender.send(taskToCheck);
@@ -72,13 +72,13 @@ public class BackgroundDateCheck extends ComponentManager{
 	                try {
 	                    sender.send(taskToCheck);
 	                    taskToCheck.setEmailSent(true);
-						raise(new ActivityManagerChangedEventNoUI(activityManager));
 	                    
 	                } catch (FileNotFoundException e) {
 	                	
 	                } catch (MessagingException e) {
 	                    
 	                }
+					raise(new ActivityManagerChangedEventNoUI(activityManager));
 				}	
 			}
 		}
@@ -109,8 +109,6 @@ public class BackgroundDateCheck extends ComponentManager{
 					eventToCheck.setEventOngoing(true);
 					raise(new ActivityManagerChangedEventNoUI(activityManager));
 				}
-
-				
 			}
 		}
 	}

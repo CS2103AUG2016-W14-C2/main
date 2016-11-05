@@ -123,14 +123,17 @@ public interface Model {
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
-    void updateFilteredTaskList(Set<String> keywords);
+    /** Updates the filter of the filtered task list to filter by the given keywords
+     * @param parameterToSearch TODO*/
+    void updateFilteredTaskList(Set<String> keywords, String parameterToSearch);
     
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
-    void updateFilteredFloatingTaskList(Set<String> keywords);
+    /** Updates the filter of the filtered task list to filter by the given keywords
+     * @param parameterToSearch TODO*/
+    void updateFilteredFloatingTaskList(Set<String> keywords, String parameterToSearch);
     
-    /** Updates the filter of the filtered task list to filter by the given keywords*/
-    void updateFilteredEventList(Set<String> keywords);
+    /** Updates the filter of the filtered task list to filter by the given keywords
+     * @param parameterToSearch TODO*/
+    void updateFilteredEventList(Set<String> keywords, String parameterToSearch);
 
 
 }

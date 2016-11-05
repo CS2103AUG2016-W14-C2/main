@@ -79,7 +79,6 @@ public class AddParser {
 		else {
 			throw new IllegalValueException(AddCommand.MESSAGE_USAGE);
 		}
-
 	}
 	
 
@@ -167,7 +166,6 @@ public class AddParser {
 			parsedArguments.add(5, dateTimeList.get(0));
 			parsedArguments.add(6, dateTimeList.get(1));
 		}
-		
 	}
 
 	public static Boolean isFloatingTask(String args){
