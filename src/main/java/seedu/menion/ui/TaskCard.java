@@ -55,6 +55,7 @@ public class TaskCard extends UiPart{
         }
         else if (task.isTimePassed()) {
             completionStatus.setImage(new Image("/images/overdue.png"));
+           // WEIJIE -> DISPLAY Overdue.png here!
         }
         else {
             // Do nothing -> Uncompleted activities have no image

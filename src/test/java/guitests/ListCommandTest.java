@@ -99,11 +99,23 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 		expectedKeywordTaskList1[0] = testTask1;
 		TestActivity[] expectedKeywordFloatingList1 = new TestActivity[1];
 		expectedKeywordFloatingList1[0] = testFloating1;
+		
 		commandBox.runCommand("list cs2103t");
 		assertResultMessage(ListCommand.MESSAGE_SUCCESS_LIST_KEYWORDS + "cs2103t");
 		assertTrue(activityListPanel.isTaskListMatching(expectedKeywordTaskList1));
 		assertTrue(activityListPanel.isEventListMatching());
 		assertTrue(activityListPanel.isFloatingTaskListMatching(testFloating1));
+		
+		commandBox.runCommand("list all");
+		commandBox.runCommand("complete task 1");
+		commandBox.runCommand("list completed");
+		TestActivity[] expectedKeywordTaskListCompleted = new TestActivity[1];
+		expectedKeywordTaskListCompleted[0] = testTask1;
+		assertResultMessage(ListCommand.MESSAGE_SUCCESS_LIST_COMPLETE_INITIAL + " " + 1 + " " + ListCommand.MESSAGE_SUCCESS_LIST_COMPLETE_FINAL);
+		assertTrue(activityListPanel.isTaskListMatching(expectedKeywordTaskListCompleted));
+		assertTrue(activityListPanel.isEventListMatching());
+		assertTrue(activityListPanel.isFloatingTaskListMatching());
+		
 	}
 
 	private void generateActivitiesForList(ActivityManager testActivityManager) {

@@ -45,16 +45,20 @@ public class BackgroundTest {
 		
 		List<ReadOnlyActivity> taskList = menion.getTaskList();
 		ReadOnlyActivity testOldTask = taskList.get(0);
-		ReadOnlyActivity testNewTask = taskList.get(1);		
+		ReadOnlyActivity testNewTask = taskList.get(2);	
+		ReadOnlyActivity testOldTaskNoTime = taskList.get(1);
 		
 		assertTrue(testOldTask.isTimePassed());
+		assertTrue(testOldTaskNoTime.isTimePassed());
 		assertFalse(testNewTask.isTimePassed());
 		
 		List<ReadOnlyActivity> eventList = menion.getEventList();
-		ReadOnlyActivity testOldEvent = eventList.get(0);
-		ReadOnlyActivity testNewEvent = eventList.get(1);
+		ReadOnlyActivity testOldEvent = eventList.get(1);
+		ReadOnlyActivity testNewEvent = eventList.get(2);
+		ReadOnlyActivity testOldEventNoTime = eventList.get(0);
 		
 		assertTrue(testOldEvent.isTimePassed());
+		assertTrue(testOldEventNoTime.isTimePassed());
 		assertFalse(testNewEvent.isTimePassed());
 		
 	}
@@ -85,6 +89,11 @@ public class BackgroundTest {
 					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
 			model.addTask(testNewActivity);
 			
+			Activity testOldActivityNoTime = new Activity(Activity.TASK_TYPE, new ActivityName("Test Past Task No Time"),
+					new Note(null), new ActivityDate("09-09-1999"), new ActivityTime(ActivityTime.INFERRED_TIME),
+					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
+			model.addTask(testOldActivityNoTime);
+			
 			Activity testOldEvent = new Activity(Activity.EVENT_TYPE, new ActivityName("Test Past Event"),
 					new Note("Hope this works too"), new ActivityDate("09-09-1999"), new ActivityTime("0001"),
 					new ActivityDate("09-11-1999"), new ActivityTime("0001"),
@@ -96,6 +105,12 @@ public class BackgroundTest {
 					new ActivityDate("09-11-2050"), new ActivityTime("0001"),
 					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
 			model.addEvent(testNewEvent);	
+			
+			Activity testOldEventNoTime = new Activity(Activity.EVENT_TYPE, new ActivityName("Test Past Event No Time"),
+					new Note(null), new ActivityDate("09-09-1999"), new ActivityTime(ActivityTime.INFERRED_TIME),
+					new ActivityDate("09-11-1999"), new ActivityTime(ActivityTime.INFERRED_TIME),
+					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
+			model.addEvent(testOldEventNoTime);
 			
 		} catch (IllegalValueException e) {
 			

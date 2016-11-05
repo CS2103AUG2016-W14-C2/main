@@ -75,7 +75,7 @@ public class XmlActivityManagerStorageTest {
 
         //Modify data, overwrite exiting file, and read back
        
-        original.addTask(new Activity(TypicalTestActivities.task2));
+        original.addTask(new Activity(TypicalTestActivities.task6));
         original.removeTask(new Activity(TypicalTestActivities.task));
 
         xmlActivityManagerStorage.saveActivityManager(original, filePath);

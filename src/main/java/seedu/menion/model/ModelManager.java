@@ -32,6 +32,12 @@ public class ModelManager extends ComponentManager implements Model {
     private Stack<ReadOnlyActivityManager> activityManagerRedoStack;
     private ReadOnlyActivity mostRecentUpdatedActivity;
     
+    public final static String listDate = "date";
+    public final static String listMonth = "month";
+    public final static String listKeyword = "keyword";
+    public final static String listCompleted = "completed";
+    public final static String listOverdue = "overdue";
+    
     /**
      * Initializes a ModelManager with the given Activity Manager
      * ActivityManager and its variables should not be null
@@ -304,8 +310,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredTaskList(Set<String> keywords) {
-        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredTaskList(Set<String> keywords, String parameterToSearch) {
+        updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords, parameterToSearch)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
@@ -313,8 +319,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateFilteredFloatingTaskList(Set<String> keywords) {
-        updateFilteredFloatingTaskList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredFloatingTaskList(Set<String> keywords, String parameterToSearch) {
+        updateFilteredFloatingTaskList(new PredicateExpression(new NameQualifier(keywords, parameterToSearch)));
     }
 
     private void updateFilteredFloatingTaskList(Expression expression) {
@@ -322,8 +328,8 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     @Override
-    public void updateFilteredEventList(Set<String> keywords) {
-        updateFilteredEventList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredEventList(Set<String> keywords, String parameterToSearch) {
+        updateFilteredEventList(new PredicateExpression(new NameQualifier(keywords, parameterToSearch)));
     }
 
     private void updateFilteredEventList(Expression expression) {
@@ -342,6 +348,7 @@ public class ModelManager extends ComponentManager implements Model {
     private class PredicateExpression implements Expression {
 
         private final Qualifier qualifier;
+        private String parameterToSearch;
 
         PredicateExpression(Qualifier qualifier) {
             this.qualifier = qualifier;
@@ -351,6 +358,7 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean satisfies(ReadOnlyActivity activity) {
             return qualifier.run(activity);
         }
+
 
         @Override
         public String toString() {
@@ -366,9 +374,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     private class NameQualifier implements Qualifier {
         private Set<String> nameKeyWords;
-
-        NameQualifier(Set<String> nameKeyWords) {
+        private String parameterToSearch;
+        
+        NameQualifier(Set<String> nameKeyWords, String parameterToSearch) {
             this.nameKeyWords = nameKeyWords;
+            this.parameterToSearch = parameterToSearch;
         }
 
         //@@author A0139277U
@@ -376,19 +386,60 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyActivity activity) {
         	String activityKeyWords;
         	
-        	if (activity.getActivityType().equals(Activity.TASK_TYPE)){
-        		activityKeyWords = activity.getActivityName().fullName + " " + activity.getActivityStartDate().toString() +
-        				" " + activity.getActivityStartDate().getMonth() + " " + activity.getActivityStatus().toString();
-        	}
-        	else if (activity.getActivityType().equals(Activity.EVENT_TYPE)){
-        		activityKeyWords = activity.getActivityName().fullName + " " + activity.getActivityStartDate().toString() + 
-        				" " + activity.getActivityEndDate() + " " + activity.getActivityStartDate().getMonth() + " " + 
-        				activity.getActivityEndDate().getMonth() + " " + activity.getActivityStatus().toString(); 
-        	}
-        	else {
-        		activityKeyWords = activity.getActivityName().fullName + " " + activity.getActivityStatus().toString();
-        	}
-        	
+        	switch (this.parameterToSearch) {
+            	
+            	case ModelManager.listDate:
+            		if (activity.getActivityType().equals(Activity.TASK_TYPE)){
+            			activityKeyWords = activity.getActivityStartDate().toString();
+            		}
+            		else if (activity.getActivityType().equals(Activity.EVENT_TYPE)) {
+            			activityKeyWords = activity.getActivityStartDate().toString() + " " + 
+            					activity.getActivityEndDate().toString();
+            		}
+            		else if (activity.getActivityType().equals(Activity.FLOATING_TASK_TYPE)){
+            			activityKeyWords = "";
+            		}
+            		else {
+            			activityKeyWords = "";
+            		}
+            		break;
+            	case ModelManager.listMonth:
+            		if (activity.getActivityType().equals(Activity.EVENT_TYPE)){
+            			activityKeyWords = activity.getActivityStartDate().getMonth() + " " +  
+            					activity.getActivityEndDate().getMonth();
+            		}
+            		else if (activity.getActivityType().equals(Activity.TASK_TYPE)){
+            			activityKeyWords = activity.getActivityStartDate().getMonth();
+            		}
+            		else if (activity.getActivityType().equals(Activity.FLOATING_TASK_TYPE)){
+            			activityKeyWords = "";
+            		}
+            		else {
+            			activityKeyWords = "";
+            		}
+            		break;
+            	case ModelManager.listKeyword:
+            		if (activity.getActivityType().equals(Activity.TASK_TYPE)){
+                		activityKeyWords = activity.getActivityName().fullName  + " " + activity.getNote().toString();
+                	}
+                	else if (activity.getActivityType().equals(Activity.EVENT_TYPE)){
+                		activityKeyWords = activity.getActivityName().fullName + " " + activity.getNote().toString();
+                	}
+                	else {
+                		activityKeyWords = activity.getActivityName().fullName + " " + activity.getNote().toString();
+                	}
+            		break;
+            	case ModelManager.listCompleted:
+            		activityKeyWords = activity.getActivityStatus().toString();
+            		break;
+            	case ModelManager.listOverdue:
+            		activityKeyWords = activity.isTimePassed().toString();
+            		break;
+            	default:
+            		activityKeyWords = "";
+            		break;
+            	}     	
+     
             return nameKeyWords.stream()
                     .filter(keyword -> StringUtil.containsIgnoreCase(activityKeyWords, keyword)).findAny()
                     .isPresent();
