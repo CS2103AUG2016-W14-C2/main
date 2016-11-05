@@ -242,12 +242,12 @@ public class ActivityParser {
      */
     private Command prepareDelete(String args) {
 
-        ArrayList<String> activityType = DeleteParser.parseArguments(args);
+        String activityType = args.trim();
         if(activityType.isEmpty()){
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-        String indexArray[] = activityType.get(0).split(" ");
+        String indexArray[] = activityType.split(" ");
         
         //Integer index = Integer.valueOf(activityType.get(1));
         
