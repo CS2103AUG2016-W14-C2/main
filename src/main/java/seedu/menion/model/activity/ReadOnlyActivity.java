@@ -106,15 +106,15 @@ public interface ReadOnlyActivity {
         
         if (getNote().equals(null)){
         	builder.append(getActivityName())
-        			.append(" Completion status: ")
+        			.append("\nCompletion status: ")
         			.append(getActivityStatus().toString());
         	return builder.toString();
         }
 		else {
 			builder.append(getActivityName())
-					.append(" Note: ")
+					.append("\nNote: ")
 					.append(getNote())
-					.append(" Completion status: ")
+					.append("\nCompletion status: ")
 					.append(getActivityStatus().toString());
 			return builder.toString();
 		}
@@ -127,17 +127,17 @@ public interface ReadOnlyActivity {
     default String getTaskAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getActivityName())
-                .append(" by: ")
+                .append("\nDeadline: ")
                 .append(getActivityStartDate());
-        if (!getActivityStartTime().toString().equals(null)){
-        	builder.append(" at:")
+        if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
+        	builder.append("\nat:")
         			.append(getActivityStartTime());
         }
         if (getNote().toString() != null){
-        	builder.append(" Note: ")
+        	builder.append("\nNote: ")
         			.append(getNote());
         }
-       builder.append(" Completion status: ")
+       builder.append("\nCompletion status: ")
        			.append(getActivityStatus().toString());
 
         return builder.toString();
@@ -155,24 +155,24 @@ public interface ReadOnlyActivity {
         		.append(getActivityStartDate());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
-        	builder.append(" at: ")
+        	builder.append("\nat: ")
 			.append(getActivityStartTime());
         }
         
-        builder.append(" Ending at: ")
+        builder.append("\nEnding at: ")
         		.append(getActivityEndDate());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
-        	builder.append(" at: ")
+        	builder.append("\nat: ")
 			.append(getActivityEndTime());
         }
         
         if (getNote().toString() != null){
-        	builder.append(" Note: ")
+        	builder.append("\nNote: ")
         			.append(getNote());
         }
         
-        builder.append(" Completion status: ")
+        builder.append("\nCompletion status: ")
         		.append(getActivityStatus().toString());
         
         return builder.toString();

@@ -169,7 +169,12 @@ public class BackgroundDateCheck extends ComponentManager{
 		}
 		else {
 			activityDateString = activityToCheck.getActivityStartDate().toString();
-			activityTimeString = activityToCheck.getActivityStartTime().toString();
+			if (activityToCheck.getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
+				activityTimeString = "2359";
+			}
+			else {
+				activityTimeString = activityToCheck.getActivityStartTime().toString();
+			}
 		}
 		
 		int [] dateValues = new int[3];
