@@ -205,7 +205,7 @@ public class BackgroundDateCheck extends ComponentManager{
 	 */
 	private static void extractTimeValues(String time, int[] timeValues){
 		// Makes sure that the date is in the correct HHMM format.
-		assert(time.length() == 4);
+		assert(time.length() == ActivityTime.INFERRED_TIME.length() || time.length() == 4);
 		
 		if (time.equals(ActivityTime.INFERRED_TIME)){
 			timeValues[0] = -1;
