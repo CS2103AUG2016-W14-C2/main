@@ -203,6 +203,7 @@ public class EditCommand extends Command {
         }
         return build.toString();
     }
+    
     //@@author A0139515A
     /**
      * Edit command will store previous activity manager to support undo command
