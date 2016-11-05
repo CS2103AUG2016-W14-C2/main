@@ -128,7 +128,7 @@ public interface ReadOnlyActivity {
         final StringBuilder builder = new StringBuilder();
         builder.append(getActivityName())
                 .append("\nDeadline: ")
-                .append(getActivityStartDate());
+                .append(getActivityStartDate().toFormattedDateString());
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
         	builder.append("\nat:")
         			.append(getActivityStartTime());
@@ -152,7 +152,7 @@ public interface ReadOnlyActivity {
         
         builder.append(getActivityName())
         		.append(" Starting at: ")
-        		.append(getActivityStartDate());
+        		.append(getActivityStartDate().toFormattedDateString());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
         	builder.append("\nat: ")
@@ -160,7 +160,7 @@ public interface ReadOnlyActivity {
         }
         
         builder.append("\nEnding at: ")
-        		.append(getActivityEndDate());
+        		.append(getActivityEndDate().toFormattedDateString());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
         	builder.append("\nat: ")
