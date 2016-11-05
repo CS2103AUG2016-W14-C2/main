@@ -28,17 +28,14 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + Activity.EVENT_TYPE + " 3";
 
     public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
-
+    
     public final String[] targetIndex;
     public final String targetType;
-    
-    private Activity toBeDeleted;
     
     public DeleteCommand(String targetType, String[] targetIndexArray) {
         this.targetIndex = targetIndexArray;
         this.targetType = targetType.trim();
     }
-
 
     @Override
     public CommandResult execute() {
@@ -49,7 +46,7 @@ public class DeleteCommand extends Command {
     	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         StringBuilder feedbackString = new StringBuilder();  
-        ArrayList<Activity> activitiesToBeDeleted = new ArrayList();
+        ArrayList<Activity> activitiesToBeDeleted = new ArrayList<Activity>();
         
         if (targetType.equals(Activity.TASK_TYPE)) {
             lastShownList = model.getFilteredTaskList();
@@ -63,27 +60,35 @@ public class DeleteCommand extends Command {
         else {
             lastShownList = null;
             indicateAttemptToExecuteIncorrectCommand();
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
         
-        for (int Index = 1; Index < targetIndex.length; Index++){
+        //Delete command has to contain at least one activity index
+        if (targetIndex.length == 1){
+            indicateAttemptToExecuteIncorrectCommand();
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+        
+        //retrieves a list of activities based on the index provided
+        for (int Index = 1; Index < targetIndex.length; Index++) {
             try {
-                System.out.println("value = " + targetIndex[Index]);
                 Integer newTargetIndex = Integer.valueOf(targetIndex[Index]);
                 
-                if (lastShownList.size() < newTargetIndex) {
+                if (!isValidTargetIndex(lastShownList, newTargetIndex)){
                     indicateAttemptToExecuteIncorrectCommand();
                     return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
                 }
-
+                
                 ReadOnlyActivity activityToDelete = lastShownList.get(newTargetIndex - 1);
-                toBeDeleted = (Activity)activityToDelete;
-                activitiesToBeDeleted.add(toBeDeleted);
+                activitiesToBeDeleted.add((Activity)activityToDelete);
+                
             }catch (NumberFormatException error) {
-                return new CommandResult(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+                indicateAttemptToExecuteIncorrectCommand();
+                return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
             }
-            
         }
         
+        //deletes each activity in the activitiesToBeDeleted list
         for (int i = 0; i < activitiesToBeDeleted.size(); i++) {
             ReadOnlyActivity activityToDelete = activitiesToBeDeleted.get(i);
             try {
@@ -93,7 +98,7 @@ public class DeleteCommand extends Command {
                 else if (targetType.equals(Activity.EVENT_TYPE)){
                     model.deleteEvent(activityToDelete);
                 }
-                else {
+                else if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                     model.deleteFloatingTask(activityToDelete);
                 }
             } catch (ActivityNotFoundException pnfe) {
@@ -101,36 +106,30 @@ public class DeleteCommand extends Command {
             }
             
             feedbackString.append(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
+            //last line of console message should not have new line
+            if (i == activitiesToBeDeleted.size() - 1) {
+                break;
+            }
             feedbackString.append("\n");
-            //return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
-        } 
+        }
         return new CommandResult(feedbackString.toString());
-
-        /*
-        if (lastShownList.size() < targetIndex) {
-            indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+    }
+    
+    /**
+     * Checks if targetIndex provided is within the range of lastShownList
+     *
+     */
+    private boolean isValidTargetIndex(UnmodifiableObservableList<ReadOnlyActivity> lastShownList,
+            Integer newTargetIndex) {
+        if (lastShownList.size() < newTargetIndex) {
+            return false;
         }
-
-        ReadOnlyActivity activityToDelete = lastShownList.get(targetIndex - 1);
-        toBeDeleted = (Activity)activityToDelete;
-    	
-        try {
-            if (targetType.equals(Activity.TASK_TYPE)){
-                model.deleteTask(activityToDelete);
-            }
-            else if (targetType.equals(Activity.EVENT_TYPE)){
-                model.deleteEvent(activityToDelete);
-            }
-            else {
-                model.deleteFloatingTask(activityToDelete);
-            }
-        } catch (ActivityNotFoundException pnfe) {
-            assert false : "The target activity cannot be missing";
+        else if (newTargetIndex < 0) {
+            return false;
         }
-
-        return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
-        */
+        else {
+            return true;
+        }
     }
 
     //@@author A0139515A
@@ -145,4 +144,5 @@ public class DeleteCommand extends Command {
     	model.addStateToUndoStack(beforeState);
     }
     //@@author
+    
 }
