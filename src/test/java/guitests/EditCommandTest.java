@@ -99,7 +99,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertFloatingTaskMatching(floating, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, floating));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, floating));
     }
 
     private void assertFloatingEditNoteSuccess(TestActivity floating, int index, String changes) {
@@ -109,7 +109,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertFloatingTaskMatching(floating, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, floating));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, floating));
     }
     
     /*
@@ -122,7 +122,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertTaskMatching(task, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, task));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, task));
     }
 
     private void assertTaskEditNoteSuccess(TestActivity task, int index, String changes) {
@@ -132,7 +132,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertTaskMatching(task, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, task));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, task));
     }
 
     private void assertTaskEditDateTimeSuccess(TestActivity task, int index, String changes) {
@@ -142,7 +142,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertTaskMatching(task, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, task));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, task));
     }
     
     private void assertTaskEditBothDateTimeSuccess(TestActivity task, int index, String changes) {
@@ -152,7 +152,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertTaskMatching(task, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, task));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, task));
     }
     
     /**
@@ -165,7 +165,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertEventMatching(event, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, event));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, event));
     }
     
     private void assertEventEditNoteSuccess(TestActivity event, int index, String changes) {
@@ -175,7 +175,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertEventMatching(event, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, event));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, event));
     }
     
     
@@ -186,7 +186,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertEventMatching(event, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, event));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, event));
     }
     
     private void assertEventEditToDateTimeSuccess(TestActivity event, int index, String changes) {
@@ -196,7 +196,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertEventMatching(event, editedCard);
         
         // Confirms the result message is correct
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDITTED_ACTIVITY_SUCCESS, event));
+        assertResultMessage(String.format(EditCommand.MESSAGE_EDITED_ACTIVITY_SUCCESS, event));
     }
     
     /*

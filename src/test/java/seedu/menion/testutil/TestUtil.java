@@ -267,8 +267,21 @@ public class TestUtil {
         listOfActivities.removeAll(asList(activitiesToRemove));
         return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
     }
-
-
+    
+    //@@author A0146752B
+    /**
+     * Removes a subset from the list of activities.
+     * @param activities The list of activities
+     * @param activitiesToRemove The array containing subset of activities.
+     * @return The modified activities after removal of the subset from activities.
+     */
+    public static TestActivity[] removeMultipleActivitiesFromList(final TestActivity[] activities, TestActivity[] activitiesToRemove) {
+        List<TestActivity> listOfActivities = asList(activities);
+        listOfActivities.removeAll(asList(activitiesToRemove));
+        return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
+    }
+    //@@author
+    
     /**
      * Returns a copy of the list with the activity at specified index removed.
      * @param list original list to copy from
@@ -277,7 +290,22 @@ public class TestUtil {
     public static TestActivity[] removeActivityFromList(final TestActivity[] list, int targetIndexInOneIndexedFormat) {
         return removeActivitiesFromList(list, list[targetIndexInOneIndexedFormat-1]);
     }
-
+    
+    //@@author A0146752B
+    /**
+     * Returns a copy of the list with the activity at specified indexes removed.
+     * @param list original list to copy from
+     * @param targetIndexInOneIndexedString e.g. if the element indexed at 1,3,5 is to be removed, {"1","3","5"} should be given as the string array.
+     */
+    public static TestActivity[] removeMultipleActivityFromList(final TestActivity[] list, String[] targetIndexInOneIndexedString) {
+        TestActivity[] testActivityArray = new TestActivity[targetIndexInOneIndexedString.length];
+        for (int i = 0; i < targetIndexInOneIndexedString.length; i++){
+            testActivityArray[i] = list[Integer.valueOf(targetIndexInOneIndexedString[i]) - 1];
+        }
+        return removeMultipleActivitiesFromList(list, testActivityArray);
+    }
+    //@@author A0146752B
+    
     /**
      * Replaces activities[i] with a activity.
      * @param activities The array of activities.
@@ -285,6 +313,8 @@ public class TestUtil {
      * @param index The index of the activity to be replaced.
      * @return
      */
+    
+    
     public static TestActivity[] replacePersonFromList(TestActivity[] activities, TestActivity activity, int index) {
         activities[index] = activity;
         return activities;

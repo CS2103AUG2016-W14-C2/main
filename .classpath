@@ -35,5 +35,6 @@
 	<classpathentry exported="true" kind="lib" path="/Users/lowjiansheng/Documents/Menion/src/main/resources/dependencies/javax.mail.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/lowjiansheng/Documents/Menion/src/main/resources/dependencies/gunit-3.5.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/lowjiansheng/Documents/Menion/src/main/resources/dependencies/antlr-runtime-3.5.2.jar"/>
+
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
