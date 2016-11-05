@@ -249,8 +249,6 @@ public class ActivityParser {
         }
         String indexArray[] = activityType.split(" ");
         
-        //Integer index = Integer.valueOf(activityType.get(1));
-        
         for (String index: indexArray){
             if(index == null){
                 return new IncorrectCommand(
@@ -258,7 +256,6 @@ public class ActivityParser {
             }
         }
         
-
         return new DeleteCommand(indexArray[0], indexArray);
     }
     
