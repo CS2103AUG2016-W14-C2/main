@@ -267,7 +267,8 @@ public class TestUtil {
         listOfActivities.removeAll(asList(activitiesToRemove));
         return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
     }
-
+    
+    //@@author A0146752B
     /**
      * Removes a subset from the list of activities.
      * @param activities The list of activities
@@ -279,7 +280,8 @@ public class TestUtil {
         listOfActivities.removeAll(asList(activitiesToRemove));
         return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
     }
-
+    //@@author
+    
     /**
      * Returns a copy of the list with the activity at specified index removed.
      * @param list original list to copy from
@@ -289,6 +291,7 @@ public class TestUtil {
         return removeActivitiesFromList(list, list[targetIndexInOneIndexedFormat-1]);
     }
     
+    //@@author A0146752B
     /**
      * Returns a copy of the list with the activity at specified indexes removed.
      * @param list original list to copy from
@@ -301,6 +304,7 @@ public class TestUtil {
         }
         return removeMultipleActivitiesFromList(list, testActivityArray);
     }
+    //@@author A0146752B
     
     /**
      * Replaces activities[i] with a activity.
