@@ -18,7 +18,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_EDITTED_ACTIVITY_SUCCESS = "Menion editted your Activity to: %1$s";
+    public static final String MESSAGE_EDITED_ACTIVITY_SUCCESS = "Menion edited your Activity to: %1$s";
     public static final String NAME_PARAM = "name";
     public static final String NOTE_PARAM = "n:";
     public static final String TASK_DEADLINE_PARAM = "by:";
@@ -89,7 +89,7 @@ public class EditCommand extends Command {
 
         model.updateRecentChangedActivity(activityToEdit);
         
-        return new CommandResult(String.format(MESSAGE_EDITTED_ACTIVITY_SUCCESS, activityToEdit));
+        return new CommandResult(String.format(MESSAGE_EDITED_ACTIVITY_SUCCESS, activityToEdit));
     }
 
     private void floatingTaskEdit(ReadOnlyActivity floatingTaskToEdit, String paramToChange) throws IllegalValueException, ActivityNotFoundException{
