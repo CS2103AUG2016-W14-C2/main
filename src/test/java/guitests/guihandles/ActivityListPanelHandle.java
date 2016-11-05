@@ -45,14 +45,14 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
     
     /**
-     * @author BrehmerChan (A046752B)
+     * @@author A0146752B
      */
     public ListView<ReadOnlyActivity> getFloatingTaskListView() {
         return (ListView<ReadOnlyActivity>) getNode(FLOATING_LIST_VIEW_ID);
     }
 
     /**
-     * @author BrehmerChan (A046752B)
+     * @@author A0146752B
      */
     public ListView<ReadOnlyActivity> getEventListView() {
         return (ListView<ReadOnlyActivity>) getNode(EVENT_LIST_VIEW_ID);
