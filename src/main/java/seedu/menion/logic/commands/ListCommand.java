@@ -41,7 +41,6 @@ public class ListCommand extends Command {
     
     private static Matcher matcher;
     
-    
     public ListCommand(String args){
         argumentsToList = new HashSet<String>();
         this.listArgument = args;  
@@ -84,9 +83,7 @@ public class ListCommand extends Command {
     		this.argumentsToList.add(args);
     		this.keywordToList = args;
     		return LIST_KEYWORDS;
-    	}
-    			
-    	
+    	}	
     }
     
     /**
@@ -123,8 +120,7 @@ public class ListCommand extends Command {
     			this.monthToList = monthString;
     			return true;
     		}
-    	}
-    	
+    	}	
     	return false;
     }
     
@@ -194,6 +190,5 @@ public class ListCommand extends Command {
 			return new CommandResult(WRONG_ARGUMENT);
 
 		}
-
 	}
 }

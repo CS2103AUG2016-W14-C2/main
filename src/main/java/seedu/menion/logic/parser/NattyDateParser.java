@@ -43,7 +43,6 @@ public class NattyDateParser {
 		else {
 			dateTimeList.add(1, formatTime(calendar));
 		}
-			
 	}
 	
 	/**
@@ -75,7 +74,6 @@ public class NattyDateParser {
 		else {
 			dayString = Integer.toString(day);
 		}
-		
 		return (dayString + "-" + monthString + "-" + Integer.toString(year));
 	}
 		
@@ -104,8 +102,6 @@ public class NattyDateParser {
 		else {
 			minString = Integer.toString(min);
 		}
-		
-		return hourString + minString;
-		
+		return hourString + minString;	
 	}
 }
