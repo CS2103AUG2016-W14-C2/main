@@ -117,7 +117,7 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * This method checks if the event specified is ongoing.
 	 * @param currentTime
 	 * @param activityToCheck
-	 * @return
+	 * @return true: the Event has started
 	 */
 	private static boolean isEventStarted(Calendar currentTime, ReadOnlyActivity activityToCheck){
 		assert(activityToCheck.getActivityType().equals(Activity.EVENT_TYPE));
