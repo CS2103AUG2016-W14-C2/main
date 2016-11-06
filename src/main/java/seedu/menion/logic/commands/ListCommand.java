@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.menion.commons.exceptions.IllegalValueException;
+import seedu.menion.model.ModelManager;
+import seedu.menion.model.activity.Completed;
 
 /**
  * Lists all tasks in the task manager to the user.
@@ -18,8 +20,8 @@ public class ListCommand extends Command {
 
     public static final String LIST_BLANK = "";
     public static final String LIST_ALL = "all";
-    public static final String LIST_COMPLETED = "Completed";
-    public static final String LIST_UNCOMPLETED = "Uncompleted";
+    public static final String LIST_COMPLETED = "completed";
+    public static final String LIST_UNCOMPLETED = "uncompleted";
     public static final String LIST_MONTH = "month";
     public static final String LIST_DATE = "date";
     public static final String LIST_KEYWORDS = "keywords";
@@ -30,7 +32,10 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_ALL = "Listed all activities";
     public static final String MESSAGE_SUCCESS_DATE_MONTH = "Menion lists all activities that falls on ";
     public static final String MESSAGE_SUCCESS_LIST_KEYWORDS = "Menion has found these activities with the keyword : ";
-    public static final String MESSAGE_SUCCESS_LIST_COMPLETE = "Menion lists all completed activities : ";
+    public static final String MESSAGE_SUCCESS_LIST_UNCOMPLETE_INITIAL = "You still have";
+    public static final String MESSAGE_SUCCESS_LIST_UNCOMPLETE_FINAL = "uncompleted activities. Boo :(";
+    public static final String MESSAGE_SUCCESS_LIST_COMPLETE_INITIAL = "You have";
+    public static final String MESSAGE_SUCCESS_LIST_COMPLETE_FINAL = "completed activities. Yay!";
     
     private String listArgument;
     private String listType;
@@ -40,7 +45,6 @@ public class ListCommand extends Command {
     private Set<String> argumentsToList;
     
     private static Matcher matcher;
-    
     
     public ListCommand(String args){
         argumentsToList = new HashSet<String>();
@@ -73,10 +77,12 @@ public class ListCommand extends Command {
     	}
     	
     	else if (args.equals(LIST_COMPLETED)){
+    		this.argumentsToList.add(Completed.COMPLETED_ACTIVITY);
     		return LIST_COMPLETED;
     	}
     	
     	else if (args.equals(LIST_UNCOMPLETED)){
+    		this.argumentsToList.add(Completed.UNCOMPLETED_ACTIVITY);
     		return LIST_UNCOMPLETED;
     	}
     		// Find by keywords
@@ -84,9 +90,7 @@ public class ListCommand extends Command {
     		this.argumentsToList.add(args);
     		this.keywordToList = args;
     		return LIST_KEYWORDS;
-    	}
-    			
-    	
+    	}	
     }
     
     /**
@@ -123,8 +127,7 @@ public class ListCommand extends Command {
     			this.monthToList = monthString;
     			return true;
     		}
-    	}
-    	
+    	}	
     	return false;
     }
     
@@ -157,43 +160,46 @@ public class ListCommand extends Command {
 			
 		case LIST_DATE:
 
-			model.updateFilteredTaskList(this.argumentsToList);
-			model.updateFilteredEventList(this.argumentsToList);
-			model.updateFilteredFloatingTaskList(this.argumentsToList);
+			model.updateFilteredTaskList(this.argumentsToList, ModelManager.listDate);
+			model.updateFilteredEventList(this.argumentsToList, ModelManager.listDate);
+			model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listDate);
 			return new CommandResult(MESSAGE_SUCCESS_DATE_MONTH + this.dateToList);
 
 		case LIST_MONTH:
 
-			model.updateFilteredTaskList(this.argumentsToList);
-			model.updateFilteredEventList(this.argumentsToList);
-			model.updateFilteredFloatingTaskList(this.argumentsToList);
+			model.updateFilteredTaskList(this.argumentsToList, ModelManager.listMonth);
+			model.updateFilteredEventList(this.argumentsToList, ModelManager.listMonth);
+			model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listMonth);
 			return new CommandResult(MESSAGE_SUCCESS_DATE_MONTH + this.monthToList);
 
 		case LIST_KEYWORDS:
 			
-			model.updateFilteredTaskList(this.argumentsToList);
-			model.updateFilteredEventList(this.argumentsToList);
-			model.updateFilteredFloatingTaskList(this.argumentsToList);
+			model.updateFilteredTaskList(this.argumentsToList, ModelManager.listKeyword);
+			model.updateFilteredEventList(this.argumentsToList, ModelManager.listKeyword);
+			model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listKeyword);
 			return new CommandResult(MESSAGE_SUCCESS_LIST_KEYWORDS + this.keywordToList); 
 			
 		case LIST_COMPLETED:
 			
-		    model.updateFilteredTaskList(this.argumentsToList);
-            model.updateFilteredEventList(this.argumentsToList);
-            model.updateFilteredFloatingTaskList(this.argumentsToList);
-            return new CommandResult(MESSAGE_SUCCESS_LIST_COMPLETE + this.keywordToList); 
+		    model.updateFilteredTaskList(this.argumentsToList, ModelManager.listCompleted);
+            model.updateFilteredEventList(this.argumentsToList, ModelManager.listCompleted);
+            model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listCompleted);
+            return new CommandResult(MESSAGE_SUCCESS_LIST_COMPLETE_INITIAL + " " + (model.getFilteredEventList().size() + 
+            							model.getFilteredFloatingTaskList().size() + model.getFilteredTaskList().size())
+            							+ " " + MESSAGE_SUCCESS_LIST_COMPLETE_FINAL); 
             
 		case LIST_UNCOMPLETED:
             
-            model.updateFilteredTaskList(this.argumentsToList);
-            model.updateFilteredEventList(this.argumentsToList);
-            model.updateFilteredFloatingTaskList(this.argumentsToList);
-            return new CommandResult(MESSAGE_SUCCESS_LIST_COMPLETE + this.keywordToList);
+            model.updateFilteredTaskList(this.argumentsToList, ModelManager.listCompleted);
+            model.updateFilteredEventList(this.argumentsToList, ModelManager.listCompleted);
+            model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listCompleted);
+            return new CommandResult(MESSAGE_SUCCESS_LIST_UNCOMPLETE_INITIAL + " " + (model.getFilteredEventList().size() + 
+					model.getFilteredFloatingTaskList().size() + model.getFilteredTaskList().size()) + " " +
+            		MESSAGE_SUCCESS_LIST_UNCOMPLETE_FINAL);
             
 		default:
 			return new CommandResult(WRONG_ARGUMENT);
 
 		}
-
 	}
 }

@@ -242,18 +242,21 @@ public class ActivityParser {
      */
     private Command prepareDelete(String args) {
 
-        ArrayList<String> activityType = DeleteParser.parseArguments(args);
+        String activityType = args.trim();
         if(activityType.isEmpty()){
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-        Integer index = Integer.valueOf(activityType.get(1));
-        if(index == null){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String indexArray[] = activityType.split(" ");
+        
+        for (String index: indexArray){
+            if(index == null){
+                return new IncorrectCommand(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
         }
-
-        return new DeleteCommand(activityType.get(0), index);
+        
+        return new DeleteCommand(indexArray[0], indexArray);
     }
     
 

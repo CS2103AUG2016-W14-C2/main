@@ -40,7 +40,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
     	
         //add one activity
         TestActivity[] originalList = td.getTypicalTask();
-        TestActivity activityToAdd = td.task2;
+        TestActivity activityToAdd = td.task6;
         
         assertAddSuccess(activityToAdd, originalList);
         TestActivity[] currentList = TestUtil.addActivitiesToList(originalList, activityToAdd);
@@ -60,7 +60,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         //testing undo command for deleting of task
         TestActivity[] beforeDeleteList = currentList;
        
-        commandBox.runCommand("delete task 2");
+        commandBox.runCommand("delete task 6");
         assertTrue(activityListPanel.isTaskListMatching(originalList));
         
         commandBox.runCommand("undo n");
