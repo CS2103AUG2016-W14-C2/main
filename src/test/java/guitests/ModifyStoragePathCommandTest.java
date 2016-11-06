@@ -40,7 +40,7 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
 		
 		Config config;
 		String filePath;
-		saveOriginalConfig();
+		//saveOriginalConfig();
     	
 		//testing for correct filepath
 		filePath = ModifyStoragePathCommand.TEST_STORAGE_PATH;			
@@ -61,7 +61,7 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand("undo modify"); 
         commandBox.runCommand("undo modify"); 
         commandBox.runCommand("undo modify");
-        restoreOriginalConfig();
+        //restoreOriginalConfig();
 	}
 	
 	private void restoreOriginalConfig() throws IOException, FileNotFoundException, JAXBException {

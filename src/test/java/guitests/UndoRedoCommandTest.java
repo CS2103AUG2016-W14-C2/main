@@ -36,7 +36,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
     @Test
     public void undoRedo() throws DataConversionException, JAXBException, IOException {
  
-    	saveOriginalConfig();
+    	//saveOriginalConfig();
     	
         //add one activity
         TestActivity[] originalList = td.getTypicalTask();
@@ -127,7 +127,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand("redo");
         assertResultMessage(RedoCommand.MESSAGE_FAILURE);
         
-        restoreOriginalConfig();
+        //restoreOriginalConfig();
     }
 
     private void assertAddSuccess(TestActivity activityToAdd, TestActivity... currentList) {
