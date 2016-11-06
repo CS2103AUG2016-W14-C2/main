@@ -176,15 +176,24 @@ Figure 8 is the Sequence Diagram for interactions within the `Logic` component f
 Under logic command, there are several commands that make use of `Model` for execution.
 `UndoCommand` and `RedoCommand` make use of two stacks in `Model` which stores different states of `ReadOnlyActivityManager`. When there is a command that causes modification to `ReadOnlyActivityManager`, a copy of the state of `ReadOnlyActivityManager` before the modification will be pushed into the undo stack. Calling `UndoCommand` will cause a pop from the undo stack and the state will be pushed into the redo stack. Similarly, calling `RedoCommand` will cause a pop from redo stack and the state will be pushed back into the undo stack. This allows the application to jump around different states of `ReadOnlyActivityManager`.
 
-### BackgroundLogic Component
+[//]: # (@@A0139277U)
+### BackgroundCheck Component
+<img src="images/BackgroundCheck.png" width="800"><br>
+> Figure 9: BackgroundCheck component<br>
 
+API: `BackgroundCheck.java`
+
+The `BackgroundCheck` component
+
+* Constantly checks the model for any activities which may have their date passed. 
+* Updates the model if any activities has passed and stores the updated information into `Storage`.
 
 [//]: # (@@author)
 
 ### Model component
 
 <img src="images/ModelClassDiagram.png" width="800"><br>
-> Figure 9: Model component<br>
+> Figure 10: Model component<br>
 
 *API* : [`Model.java`](../src/main/java/seedu/menion/model/Model.java)
 
