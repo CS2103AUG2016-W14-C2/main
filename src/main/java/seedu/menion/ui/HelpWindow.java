@@ -50,18 +50,16 @@ public class HelpWindow extends UiPart {
     //@@author A0139515A
     private void configure(){
         Scene scene = new Scene(mainPane);
-        
         Image image = AppUtil.getImage(USERGUIDE_FILEPATH);
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setHeight(image.getHeight());
-        dialogStage.setWidth(image.getWidth());
+        dialogStage.setHeight(image.getHeight() + 45);
+        dialogStage.setWidth(image.getWidth() + 20);
         setIcon(dialogStage, ICON);
         
         ImageView imageView = new ImageView(image);
         FxViewUtil.applyAnchorBoundaryParameters(imageView, 0.0, 0.0, 0.0, 0.0);
         mainPane.getChildren().add(imageView);
-
     }
     //@@author
 
