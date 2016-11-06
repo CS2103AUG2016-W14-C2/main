@@ -36,6 +36,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
     @Test
     public void undoRedo() throws DataConversionException, JAXBException, IOException {
  
+    	/* Comment this line when running test on travis */
     	//saveOriginalConfig();
     	
         //add one activity
@@ -127,6 +128,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand("redo");
         assertResultMessage(RedoCommand.MESSAGE_FAILURE);
         
+        /* Comment this line when running test on travis */
         //restoreOriginalConfig();
     }
 

@@ -40,6 +40,8 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
 		
 		Config config;
 		String filePath;
+		
+		/* Comment this line when running test on travis */
 		//saveOriginalConfig();
     	
 		//testing for correct filepath
@@ -61,6 +63,8 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand("undo modify"); 
         commandBox.runCommand("undo modify"); 
         commandBox.runCommand("undo modify");
+        
+        /* Comment this line when running test on travis */
         //restoreOriginalConfig();
 	}
 	
