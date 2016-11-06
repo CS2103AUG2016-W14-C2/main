@@ -65,6 +65,7 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isFloatingTaskSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getActivityName().equals(this.getActivityName())); // state checks here onwards
@@ -76,6 +77,7 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isTaskSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getActivityName().equals(this.getActivityName()) // state checks here onwards
@@ -89,6 +91,7 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isEventSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getActivityName().equals(this.getActivityName()) // state checks here onwards
@@ -103,8 +106,8 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getFloatingTaskAsText() {
-        final StringBuilder builder = new StringBuilder();
         
+        final StringBuilder builder = new StringBuilder();
         if (getNote().equals(null)){
         	builder.append(getActivityName())
         			.append("\nCompletion status: ")
@@ -126,6 +129,7 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getTaskAsText() {
+        
         final StringBuilder builder = new StringBuilder();
         builder.append(getActivityName())
                 .append("\nDeadline: ")
@@ -149,6 +153,7 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getEventAsText() {
+        
         final StringBuilder builder = new StringBuilder();
         
         builder.append(getActivityName())
@@ -177,6 +182,5 @@ public interface ReadOnlyActivity {
         		.append(getActivityStatus().toString());
         
         return builder.toString();
-        
     }
 }

@@ -32,7 +32,6 @@ public class EditParser {
             + "Example: " + EditCommand.COMMAND_WORD+ " task 1 n: write in red ink \n" 
             + "Example: " + EditCommand.COMMAND_WORD + " event 1 name: ORD";
 
-            
     UnmodifiableObservableList<ReadOnlyActivity> lastShownList; // List of all current activities.
     public static String[] editDetails = new String[6];
     private static ArrayList<String> fromNatty = new ArrayList<String>();
@@ -42,7 +41,6 @@ public class EditParser {
         
         String[] input = details.split("\\s+");
 
-        System.out.println("editDetails length: "+  editDetails.length);
         // Checks for valid number of parameters.
         // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
         if (editDetails.length <= 4) {

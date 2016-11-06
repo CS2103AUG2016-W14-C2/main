@@ -91,7 +91,6 @@ public class ModelManager extends ComponentManager implements Model {
      * Methods for undo 
      * 
      */
-
     @Override
     public void addStateToUndoStack(ReadOnlyActivityManager activityManager) {
     	activityManagerUndoStack.push(activityManager);
@@ -146,50 +145,52 @@ public class ModelManager extends ComponentManager implements Model {
      */
     @Override
     public void completeFloatingTask(ReadOnlyActivity activityToComplete) throws ActivityNotFoundException {
+        
         activityManager.completeFloatingTask(activityToComplete);
         indicateActivityManagerChanged();
     }
+    
     @Override
     public void completeTask(ReadOnlyActivity activityToComplete) throws ActivityNotFoundException {
+        
         activityManager.completeTask(activityToComplete);
         indicateActivityManagerChanged();
     }
-
+    
     /**
      * Methods for Un-completing an activity
      */
     @Override
     public void UncompleteFloatingTask(ReadOnlyActivity activityToUncomplete) throws ActivityNotFoundException {
+        
         activityManager.unCompleteFloatingTask(activityToUncomplete);
         indicateActivityManagerChanged();
     }
 
     @Override
     public void UncompleteTask(ReadOnlyActivity activityToUncomplete) throws ActivityNotFoundException {
+        
         activityManager.unCompleteTask(activityToUncomplete);
         indicateActivityManagerChanged();
     }
 
-    
-    //@@author A0139164A
-    /**
-     * Methods for editing Activity's name
-     * @throws IllegalValueException 
-     */
     @Override
-    public void editFloatingTaskName(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException{
+    public void editFloatingTaskName(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editFloatingTaskName(floatingTaskToEdit, changes);
         indicateActivityManagerChanged();
     }
     
     @Override 
     public void editTaskName(ReadOnlyActivity taskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editTaskName(taskToEdit, changes);
         indicateActivityManagerChanged();
     }
     
     @Override
     public void editEventName(ReadOnlyActivity eventToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editEventName(eventToEdit, changes);
         indicateActivityManagerChanged();
     }
@@ -200,6 +201,7 @@ public class ModelManager extends ComponentManager implements Model {
      */
     @Override
     public void editFloatingTaskNote(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editFloatingTaskNote(floatingTaskToEdit, changes);
         indicateActivityManagerChanged();
     }
@@ -212,6 +214,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     @Override
     public void editEventNote(ReadOnlyActivity eventToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editEventNote(eventToEdit, changes);
         indicateActivityManagerChanged();
     }
@@ -220,22 +223,25 @@ public class ModelManager extends ComponentManager implements Model {
      * Methods for editting Activities Starting Date & Time
      * @throws IllegalValueException 
      */
-    
     @Override
     public void editTaskToFloating(ReadOnlyActivity taskToEdit)
             throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editTaskToFloating(taskToEdit);
         indicateActivityManagerChanged();
         
     }
+    
     @Override
     public void editTaskDateTime(ReadOnlyActivity taskToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editTaskDateTime(taskToEdit, newDate, newTime);
         indicateActivityManagerChanged();
     }
     
     @Override 
     public void editEventStartDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editEventStartDateTime(eventToEdit, newDate, newTime);
         indicateActivityManagerChanged();
         
@@ -243,6 +249,7 @@ public class ModelManager extends ComponentManager implements Model {
     
     @Override
     public void editEventEndDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {
+        
         activityManager.editEventEndDateTime(eventToEdit, newDate, newTime);
         indicateActivityManagerChanged();
     }

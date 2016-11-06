@@ -1,4 +1,3 @@
-//@@author A0139164A
 package seedu.menion.model.activity;
 
 
@@ -9,6 +8,7 @@ import seedu.menion.commons.util.DateChecker;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidReminder(String)}
  */
+//@@author A0139164A
 public class ActivityTime {
 
     public static final String ACTIVITY_TIME_CONSTRAINTS = "Activity time should be in 24-hour format";
