@@ -164,7 +164,7 @@ The `Storage` component
 
 API : [`Logic.java`](../src/main/java/seedu/menion/logic/Logic.java)
 
- [`Logic`](../src/main/java/seedu/menion/logic/Logic.java) uses the `ActivityParser` class to parse the user's command.For example, `ActivityParser` uses `AddParser` to parse argument for `AddCommand`. This results in a `Command` object, which is executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding an Activity) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+ [`Logic`](../src/main/java/seedu/menion/logic/Logic.java) uses the `ActivityParser` class to parse the user's command. Some commands such as the `AddCommand` and the `EditCommand` use additional `Parser` classes to help further parse the arguments. They result in a `Command` object being created and executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding an Activity) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 <img src="images/DeletePersonSdForLogic.png" width="800"><br>
 > Figure 8: Sequence Diagram in Logic<br>
@@ -174,7 +174,7 @@ Figure 8 is the Sequence Diagram for interactions within the `Logic` component f
 <img src="images/addsequencediagram.png" width="800"><br>
 > Figure 9: Sequence Diagram in Logic for the add command<br>
 
-TO BE WRITTEN BY JIAN SHENG<br>
+Figure 9 above shows the additional steps required by the `AddCommand` to parse its arguments. `ActivityParser` class to parse the user's command. The `ActivityParser` uses the `AddParser` class to parse argument for `AddCommand`. After the additional parsing, it creates a `Command` object and continues on in the same steps as the other commands.
 
 [//]: # (@@author A139515A)
 
