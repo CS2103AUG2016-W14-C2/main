@@ -24,8 +24,8 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Menion successfully redo your previous changes";
     public static final String MESSAGE_FAILURE = "There are no changes for Menion to redo\n" + 
     											"Examples of redo: \n" +
-    											"For normal redo: redo n\n" +
-    											"For redo of modify storage path: redo m\n";
+    											"For normal redo: redo\n" +
+    											"For redo of modify storage path: redo modify\n";
     private final String argument;
     
     public RedoCommand(String arugment) {
@@ -41,14 +41,11 @@ public class RedoCommand extends Command {
         
         boolean ableToRedo;
         
-        if (argument.equals("n")) {
-        	ableToRedo = redoActivityManger();
-        }
-        else if (argument.equals("m")){
+        if (argument.equals("modify")){
         	ableToRedo = redoStoragePath();
         }
         else {
-        	return new CommandResult(MESSAGE_FAILURE);
+        	ableToRedo = redoActivityManger();
         }
 
         if (ableToRedo) {

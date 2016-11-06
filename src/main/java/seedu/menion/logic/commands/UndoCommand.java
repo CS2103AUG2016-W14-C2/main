@@ -24,8 +24,8 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Menion successfully undo your previous changes";
     public static final String MESSAGE_FAILURE = "There are no changes for Menion to undo\n" + 
 											"Examples of undo: \n" +
-											"For normal undo: undo n\n" +
-											"For undo of modify storage path: undo m\n";
+											"For normal undo: undo\n" +
+											"For undo of modify storage path: undo modify\n";
     public final String argument;
 
     public UndoCommand(String argument) {
@@ -41,14 +41,11 @@ public class UndoCommand extends Command {
         
         boolean ableToUndo;
         
-        if (argument.equals("n")) {
-	        ableToUndo = undoActivityManger();
-        }
-        else if (argument.equals("m")){
+        if (argument.equals("modify")){
         	ableToUndo = undoStoragePath();
         }
         else {
-        	return new CommandResult(MESSAGE_FAILURE);
+        	ableToUndo = undoActivityManger();
         }
         
         if (ableToUndo) {

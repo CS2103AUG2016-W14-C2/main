@@ -47,12 +47,12 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
 
         
         //testing undo command for adding of task
-        commandBox.runCommand("undo n");
+        commandBox.runCommand("undo");
         assertTrue(activityListPanel.isTaskListMatching(originalList));
         assertResultMessage(UndoCommand.MESSAGE_SUCCESS);
         
         //testing redo command 
-        commandBox.runCommand("redo n");
+        commandBox.runCommand("redo");
         assertTrue(activityListPanel.isTaskListMatching(currentList));
         assertResultMessage(RedoCommand.MESSAGE_SUCCESS);
         
@@ -63,24 +63,24 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand("delete task 6");
         assertTrue(activityListPanel.isTaskListMatching(originalList));
         
-        commandBox.runCommand("undo n");
+        commandBox.runCommand("undo");
         assertTrue(activityListPanel.isTaskListMatching(beforeDeleteList));
         assertResultMessage(UndoCommand.MESSAGE_SUCCESS);
         
         //testing redo command
-        commandBox.runCommand("redo n");
+        commandBox.runCommand("redo");
         assertTrue(activityListPanel.isTaskListMatching(originalList));
         assertResultMessage(RedoCommand.MESSAGE_SUCCESS);
           
         
         //testing undo for clear command
         commandBox.runCommand("clear");
-        commandBox.runCommand("undo n");
+        commandBox.runCommand("undo");
         assertTrue(activityListPanel.isTaskListMatching(originalList));
         assertResultMessage("Menion successfully undo your previous changes");
         
         //testing redo command
-        commandBox.runCommand("redo n");
+        commandBox.runCommand("redo");
         assertListSize(0);
         assertResultMessage(RedoCommand.MESSAGE_SUCCESS);
         
@@ -93,7 +93,7 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
     	testConfig = readFromCurrentConfig();
     	String modifiedFilePath = testConfig.getActivityManagerFilePath();
     	
-        commandBox.runCommand("undo m");
+        commandBox.runCommand("undo modify");
         
     	testConfig = readFromCurrentConfig();
     	String undoFilePath = testConfig.getActivityManagerFilePath();
@@ -103,31 +103,27 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         
         //testing redo command
         String testFilePath = new File(ModifyStoragePathCommand.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent() + File.separator + FileUtil.getPath("src/test/data/ModifyStoragePathTest/test.xml");
-        commandBox.runCommand("redo m");
+        commandBox.runCommand("redo modify");
     	
         assertEquals(testFilePath, modifiedFilePath);
         assertResultMessage(RedoCommand.MESSAGE_SUCCESS);
         
         //revert to original file path
-        commandBox.runCommand("undo m");
-        commandBox.runCommand("undo m");
+        commandBox.runCommand("undo modify");
+        commandBox.runCommand("undo modify");
        
         //invalid command
         //there is 3 states to undo, undo 4 times to check message
-        commandBox.runCommand("undo n");
-        commandBox.runCommand("undo n");
-        commandBox.runCommand("undo n");
-        commandBox.runCommand("undo n");
-        assertResultMessage(UndoCommand.MESSAGE_FAILURE);
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
+        commandBox.runCommand("undo");
         commandBox.runCommand("undo");
         assertResultMessage(UndoCommand.MESSAGE_FAILURE);
         
         //there is 3 states to redo, redo 4 times to check message
-        commandBox.runCommand("redo n");
-        commandBox.runCommand("redo n");
-        commandBox.runCommand("redo n");
-        commandBox.runCommand("redo n");
-        assertResultMessage(RedoCommand.MESSAGE_FAILURE);
+        commandBox.runCommand("redo");
+        commandBox.runCommand("redo");
+        commandBox.runCommand("redo");
         commandBox.runCommand("redo");
         assertResultMessage(RedoCommand.MESSAGE_FAILURE);
         
