@@ -40,29 +40,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         assertFloatingEditNoteSuccess(floating, 1, "Floating Hello Note");
         assertTaskEditNoteSuccess(task, 1, "Task Hello Note");
         assertEventEditNoteSuccess(event, 1, "Event Hello Note");
-        
-        /**
-         * Editting for single parameters no longer works due to natty.
-         * I.e editting time/date alone does not work.
-        // Edit Date - For Task
-        assertTaskEditDateTimeSuccess(task, 1, "30-11-1994");
-        
-        // Edit Time - For Task
-        assertTaskEditDateTimeSuccess(task, 1, "2359");
-        
-        // Edit From Date - For Event
-        assertEventEditFromDateTimeSuccess(event, 1, "30-11-1994");
-       
-        // Edit From Time - For Event
-        assertEventEditFromDateTimeSuccess(event, 1, "2359");
-        
-        // Edit To Date - For Event
-        assertEventEditToDateTimeSuccess(event, 1, "20-02-2016");
-        
-        // Edit to Time - For Event. 
-        assertEventEditToDateTimeSuccess(event, 1, "1200");
 
-        */
         
         // Edit Both, Date/Time - For Task
         assertTaskEditBothDateTimeSuccess(task, 1, "10-10-2016 1000");

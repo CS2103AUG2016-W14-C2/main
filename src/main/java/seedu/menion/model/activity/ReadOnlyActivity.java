@@ -131,7 +131,7 @@ public interface ReadOnlyActivity {
                 .append("\nDeadline: ")
                 .append(getActivityStartDate().toFormattedDateString());
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
-        	builder.append("\nat:")
+        	builder.append(", ")
         			.append(getActivityStartTime());
         }
         if (getNote().toString() != null){
@@ -152,11 +152,11 @@ public interface ReadOnlyActivity {
         final StringBuilder builder = new StringBuilder();
         
         builder.append(getActivityName())
-        		.append(" Starting at: ")
+        		.append("\nStarting from: ")
         		.append(getActivityStartDate().toFormattedDateString());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
-        	builder.append("\nat: ")
+        	builder.append(", ")
 			.append(getActivityStartTime());
         }
         
@@ -164,7 +164,7 @@ public interface ReadOnlyActivity {
         		.append(getActivityEndDate().toFormattedDateString());
         
         if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
-        	builder.append("\nat: ")
+        	builder.append(",  ")
 			.append(getActivityEndTime());
         }
         
