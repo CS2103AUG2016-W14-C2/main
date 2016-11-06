@@ -171,6 +171,11 @@ API : [`Logic.java`](../src/main/java/seedu/menion/logic/Logic.java)
 
 Figure 8 is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete task 1")`API call.
 
+<img src="images/addsequencediagram.png" width="800"><br>
+> Figure 9: Sequence Diagram in Logic for the add command<br>
+
+TO BE WRITTEN BY JIAN SHENG<br>
+
 [//]: # (@@author A139515A)
 
 Under logic command, there are several commands that make use of `Model` for execution.
