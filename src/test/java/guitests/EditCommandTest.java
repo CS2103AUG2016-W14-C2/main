@@ -29,6 +29,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
         commandBox.runCommand(floating.getAddCommand());
         commandBox.runCommand(task.getAddCommand());
         commandBox.runCommand(event.getAddCommand());
+        commandBox.runCommand("list all");
 
         assertFloatingEditNameSuccess(floating, 1, "Floating Hello World");
         assertTaskEditNameSuccess(task, 1, "Task Hello World");
@@ -85,7 +86,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
     
     private void refresh(int numTimes) {
         for (int i = 0; i < numTimes; i++) {
-            commandBox.runCommand("undo");
+            commandBox.runCommand("undo n");
         }
     }
     
