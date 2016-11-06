@@ -22,9 +22,9 @@ import seedu.menion.model.activity.ReadOnlyActivity;
  * This class does a background check on Menion for any Activities which may have 
  * it's deadline passed.
  */
-public class BackgroundDateCheck extends ComponentManager{
+public class BackgroundCheckManager extends ComponentManager implements BackgroundCheck{
 
-	public BackgroundDateCheck(){};
+	public BackgroundCheckManager(){};
 	
 	/**
 	 * This method does a check on all the activities in Menion

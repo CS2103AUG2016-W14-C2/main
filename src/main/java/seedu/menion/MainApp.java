@@ -5,7 +5,8 @@ import com.google.common.eventbus.Subscribe;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import seedu.menion.background.BackgroundDateCheck;
+import seedu.menion.background.BackgroundCheck;
+import seedu.menion.background.BackgroundCheckManager;
 import seedu.menion.commons.core.Config;
 import seedu.menion.commons.core.EventsCenter;
 import seedu.menion.commons.core.LogsCenter;
@@ -74,7 +75,7 @@ public class MainApp extends Application {
         	    		
         	        @Override
         	        public void run() {
-        	        	BackgroundDateCheck backgroundChecker = new BackgroundDateCheck();
+        	        	BackgroundCheck backgroundChecker = new BackgroundCheckManager();
         	        	backgroundChecker.checkActivities(model);
         	        }
         	        

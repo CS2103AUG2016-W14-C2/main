@@ -264,11 +264,11 @@ There is no need to save manually.<br>
 
 Command | Format  
 -------- | :-------- 
-Add | `add FLOATING_TASK_NAME n:NOTES...`<br>`add TASK_NAME by: TASK_DEADLINE_DATE TASK_DEADLINE_TIME n:NOTES...`<br>`add EVENT_NAME from: EVENT_START_DATE EVENT_START_TIME to: EVENT_END_DATE EVENT_END_TIME n:NOTES...`
+Add | `add NAME n:NOTES...`<br>`add NAME by: DEADLINE_DATE DEADLINE_TIME n:NOTES...`<br>`add NAME from: START_DATE START_TIME to: END_DATE END_TIME n:NOTES...`
 Delete | `delete ACTIVITY_TYPE INDEX`
 List | `list` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
 Clear | `clear`
-Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX ACTIVITY_PARAMETER_TO_CHANGE ACTIVITY_PARAMETER_CHANGES`
+Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Complete | `complete ACTIVITY_TYPE INDEX`
 Uncomplete | `uncomplete ACTIVITY_TYPE INDEX`
 Set Reminder | `remind EMAIL_ADDRESS`
