@@ -17,12 +17,13 @@ public class Config {
     private String appTitle = "Menion";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
-    private String activityManagerFilePath;
+    private String activityManagerFilePath = "data/menion.xml";
     private String activityManagerName = "Menion";
 
     private static Config instance;
     
     public Config() {
+ 
     }
     
     public static Config getInstance() {
