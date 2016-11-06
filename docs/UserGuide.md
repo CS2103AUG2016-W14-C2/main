@@ -1,6 +1,6 @@
 [//]: # (@@author A0146752B)
-<center><h1> Menion User Guide </h1> </center>
 
+<center><h1> Menion User Guide </h1> </center>
 
 
 # Table of Contents
@@ -40,8 +40,8 @@ Let's get started!
    **COMING SOON**
 3. Copy the file to the folder you want to use as the home folder for  Menion.
 4. Double-click the file to start the app. The GUI should appear in a few seconds. 
-<img src="images/MainPageLayout.png" width="600">
-Figure 1 : The user interface presented after start up
+<img src="images/MainPageLayout.png" width="600"><br>
+>Figure 1 : The user interface presented after start up
    
 
 5. Type the command in the command box as shown in Figure 1 and press <kbd>Enter</kbd> to execute it. <br>
@@ -86,16 +86,16 @@ Formats : <br>
 > - Informal dates : tomorrow, next monday 12pm
 > 
 
-<img src="images/addexample.png" width="600">
-Figure 2 : Screenshot of adding an activity into Menion.
-
 Examples: <br>
 `add Dinner With Family from: tomorrow 1900 to: tomorrow 2000 n: bring flowers`<br>
 `add Buy lunch n: hawker food`<br>
-`add CS2103T final submission by: tomorrow n: important!`<br>
+`add CS2103T final submission by: tomorrow n: important!`
+
+<img src="images/addexample.png" width="600"><br>
+>Figure 2 : Screenshot of adding an activity into Menion.
 
 #### Deleting activities `delete`
-Delete 1 or more activities from Menion at the specified `INDEX`/`INDICES`.<br>
+Deletes 1 or more activities from Menion at the specified `INDEX`/`INDICES`.<br>
 Format: 
 `delete ACTIVITY_TYPE INDEX...`
 
@@ -104,12 +104,13 @@ Format:
 >There are 3 `ACTIVITY_TYPE`: event, task, floating<br>
 >In each delete instance, you can only delete activites from the same activity type.
 
-
 Examples:<br>
 `delete event 2 3 6`<br>
-`delete task 2`<br>
-`delete floating 2 1`
+`delete floating 2 1`<br>
+`delete task 1`<br>
 
+<img src="images/deleteexample.png" width="500"><br>
+>Figure 3 : The index of activity to be deleted.
 
 
 #### List Activities `list`
@@ -172,9 +173,11 @@ Parameters :<br>
 
 Examples :
 
-`edit event 3 by: 08-08-2016 1900`<br>
-`edit task 4 n: buy extra stuff`<br>
-`edit task 1 name: Hello World`
+`edit event 3 from: tomorrow 1900 to: the day after tomorrow 9pm`<br>
+`edit floating 1 name: Hello World`<br>
+`edit task 2 by: sunday n: Yay extension!`<br>
+<img src="images/editexample.png" width="500"><br>
+
 
 
 #### Complete an activity `complete`
