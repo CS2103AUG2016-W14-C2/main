@@ -86,7 +86,7 @@ public class EditCommandTest extends ActivityManagerGuiTest {
     
     private void refresh(int numTimes) {
         for (int i = 0; i < numTimes; i++) {
-            commandBox.runCommand("undo n");
+            commandBox.runCommand("undo");
         }
     }
     

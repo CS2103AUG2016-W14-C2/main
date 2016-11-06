@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-import seedu.menion.TestApp;
 import seedu.menion.commons.core.Config;
 import seedu.menion.commons.core.EventsCenter;
 import seedu.menion.commons.events.storage.StoragePathChangedEvent;
@@ -16,7 +15,6 @@ import seedu.menion.commons.util.FileUtil;
 import seedu.menion.model.ActivityManager;
 import seedu.menion.model.ReadOnlyActivityManager;
 import seedu.menion.storage.XmlActivityManagerStorage;
-import seedu.menion.testutil.TestUtil;
 
 //@@author A0139515A
 /**
@@ -60,8 +58,7 @@ public class ModifyStoragePathCommand extends Command {
     	
     	model.updateRecentChangedActivity(null);
     	
-    	ReadOnlyActivityManager before = new ActivityManager(model.getActivityManager());
-		
+    	ReadOnlyActivityManager before = new ActivityManager(model.getActivityManager());		
     	
 		String newPath;
     	

@@ -38,30 +38,29 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
 	@Test
 	public void modifyStoragePath() throws DataConversionException, JAXBException, IOException {
 		
+		Config config;
+		String filePath;
 		saveOriginalConfig();
     	
-		//testing if the file in the new location created has the same content
-		String filePath = ModifyStoragePathCommand.TEST_STORAGE_PATH;		
-		TypicalTestActivities typicalTestActivities = new TypicalTestActivities();		
-		ActivityManager original = typicalTestActivities.getTypicalActivityManager();
-		
-        commandBox.runCommand("modify " + filePath);         
-        XmlActivityManagerStorage xmlActivityManagerStorage = new XmlActivityManagerStorage(filePath);       
-        ReadOnlyActivityManager am =  xmlActivityManagerStorage.readActivityManager(filePath).get();       
-        ActivityManager after = new ActivityManager(am);       
-        assertEquals(original, after);
+		//testing for correct filepath
+		filePath = ModifyStoragePathCommand.TEST_STORAGE_PATH;			
+        commandBox.runCommand("modify " + filePath);      
+        config = readFromCurrentConfig();                
+        assertEquals(filePath, config.getActivityManagerFilePath());
         
+        filePath = ModifyStoragePathCommand.DEFAULT_STORAGE_PATH;
         commandBox.runCommand("modify default");
-        assertEquals(original, after);
+        config = readFromCurrentConfig();  
+        assertEquals(filePath, config.getActivityManagerFilePath());
         
         //for invalid command
         commandBox.runCommand("modify"); 
         assertResultMessage(ModifyStoragePathCommand.MESSAGE_FAILURE);
         
         //revert to original file path
-        commandBox.runCommand("undo m"); 
-        commandBox.runCommand("undo m"); 
-        commandBox.runCommand("undo m");
+        commandBox.runCommand("undo modify"); 
+        commandBox.runCommand("undo modify"); 
+        commandBox.runCommand("undo modify");
         restoreOriginalConfig();
 	}
 	
@@ -81,5 +80,16 @@ public class ModifyStoragePathCommandTest extends ActivityManagerGuiTest {
     	FileUtil.createIfMissing(originalFile);
     	originalData = XmlFileStorage.loadDataFromSaveFile(originalFile);
     	originalStoragePath = originalConfig.getActivityManagerFilePath();
+	}
+	
+	private Config readFromCurrentConfig() {
+		Config testConfig;
+		try {
+            Optional<Config> configOptional = ConfigUtil.readConfig(Config.DEFAULT_CONFIG_FILE);
+            testConfig = configOptional.orElse(Config.getInstance());
+        } catch (DataConversionException e) {
+        	testConfig = Config.getInstance();
+        }
+		return testConfig;
 	}
 }
