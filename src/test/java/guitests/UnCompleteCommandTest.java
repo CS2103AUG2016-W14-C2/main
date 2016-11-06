@@ -51,7 +51,7 @@ public class UnCompleteCommandTest extends ActivityManagerGuiTest {
     
     /**
      * checks whether a uncomplete command correctly updates the UI
-     * @author Marx Low (A0139164A)
+     * 
      * @param activityToUncomplete
      * @param index
      */

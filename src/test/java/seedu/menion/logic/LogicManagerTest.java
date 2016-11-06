@@ -70,9 +70,9 @@ public class LogicManagerTest {
     @Before
     public void setup() {
         model = new ModelManager();
-        String tempAddressBookFile = saveFolder.getRoot().getPath() + "TempAddressBook.xml";
+        String tempActivityManagerFile = saveFolder.getRoot().getPath() + "TempActivityManager.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempAddressBookFile, tempPreferencesFile));
+        logic = new LogicManager(model, new StorageManager(tempActivityManagerFile, tempPreferencesFile));
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedMenion = new ActivityManager(model.getActivityManager()); // last saved assumed to be up to date before.
@@ -185,7 +185,7 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         ActivityManager expectedAB = helper.generateMenion(2);
         List<? extends ReadOnlyActivity> expectedList = expectedAB.getTaskList();
-        // prepare address book state
+        // prepare activity manager state
         helper.addToModel(model, 2);
         assertCommandBehavior("list all",
                 ListCommand.MESSAGE_SUCCESS_ALL,
@@ -223,7 +223,7 @@ public class LogicManagerTest {
             model.addTask(p);
         }
 
-        assertCommandBehavior(commandWord + " 3", expectedMessage, model.getActivityManager(), taskList);
+        assertCommandBehavior(commandWord + " task 3", expectedMessage, model.getActivityManager(), taskList);
     }
 
 
@@ -234,12 +234,11 @@ public class LogicManagerTest {
         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
     }
 
-    /*
+
     @Test
     public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
         assertIndexNotFoundBehaviorForCommand("delete");
     }
-*/
     
     @Test
     public void execute_delete_removesCorrectTask() throws Exception {

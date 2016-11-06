@@ -47,7 +47,7 @@ public class CompleteCommandTest extends ActivityManagerGuiTest {
 
     /**
      * checks whether a complete command correctly updates the UI
-     * @author Marx Low (A0139164A)
+     * 
      * @param activityToComplete
      * @param index
      */

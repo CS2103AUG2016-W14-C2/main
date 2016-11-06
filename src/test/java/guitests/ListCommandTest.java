@@ -27,17 +27,12 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 	@Test
 	public void list() {
 
-
 		commandBox.runCommand("clear");
 		ActivityManager testListActivities = new ActivityManager();
 		generateActivitiesForList(testListActivities);
 		
 		// To test for list all
-		assertListSuccess();
-		
-		
-		
-		
+		assertListSuccess();	
 	}
 
 	private void assertListSuccess(){
