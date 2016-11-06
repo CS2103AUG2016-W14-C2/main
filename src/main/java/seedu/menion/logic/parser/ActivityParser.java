@@ -266,24 +266,6 @@ public class ActivityParser {
         return new DeleteCommand(indexArray[0], indexArray);
     }
     
-
-    /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
-     */
-    private Optional<Integer> parseIndex(String command) {
-        final Matcher matcher = ACTIVITY_INDEX_ARGS_FORMAT.matcher(command.trim());
-        if (!matcher.matches()) {
-            return Optional.empty();
-        }
-
-        String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
-            return Optional.empty();
-        }
-        return Optional.of(Integer.parseInt(index));
-
-    }
     
     /**
      * Parses arguments in the context of the find person command.
