@@ -8,6 +8,7 @@ import seedu.menion.commons.util.DateChecker;
 import seedu.menion.logic.commands.CompleteCommand;
 import seedu.menion.logic.commands.EditCommand;
 import seedu.menion.logic.commands.UnCompleteCommand;
+import seedu.menion.logic.parser.EditParser;
 import seedu.menion.model.activity.*;
 
 //@@author A0139164A
@@ -244,8 +245,8 @@ public class TestActivity implements ReadOnlyActivity {
      * @return a addCommand for the specific activity.
      */
     public String getAddCommand() {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append("add ");
             build.append(this.name.toString());
@@ -285,7 +286,6 @@ public class TestActivity implements ReadOnlyActivity {
     public String getCompleteCommand(int index) {
         
         StringBuilder build = new StringBuilder();
-        
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(CompleteCommand.COMMAND_WORD);
             build.append(" ");
@@ -316,7 +316,6 @@ public class TestActivity implements ReadOnlyActivity {
     public String getUncompleteCommand(int index) {
         
         StringBuilder build = new StringBuilder();
-        
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(UnCompleteCommand.COMMAND_WORD);
             build.append(" ");
@@ -345,8 +344,8 @@ public class TestActivity implements ReadOnlyActivity {
      * @return edit name command for the given Activity.
      */
     public String getEditNameCommand(int index, String newName) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(EditCommand.COMMAND_WORD);
             build.append(" ");
@@ -354,7 +353,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         } else if (activityType.equals(Activity.TASK_TYPE)) {
@@ -364,7 +363,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         } else if (activityType.equals(Activity.EVENT_TYPE)) {
@@ -374,7 +373,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         }
@@ -386,8 +385,8 @@ public class TestActivity implements ReadOnlyActivity {
      * @return edit note command for the given Activity.
      */
     public String getEditNoteCommand(int index, String newNote) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(EditCommand.COMMAND_WORD);
             build.append(" ");
@@ -395,7 +394,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         } else if (activityType.equals(Activity.TASK_TYPE)) {
@@ -405,7 +404,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         } else if (activityType.equals(Activity.EVENT_TYPE)) {
@@ -415,7 +414,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         }
@@ -423,45 +422,45 @@ public class TestActivity implements ReadOnlyActivity {
     }
     
     public String getEditTaskDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.TASK_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.TASK_DEADLINE_PARAM);
+        build.append(EditParser.TASK_DEADLINE_PARAM);
         build.append(" ");
         build.append(newDateTime);
         return build.toString();
     }
     
     public String getEditEventFromDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.EVENT_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.EVENT_FROM_PARAM);
+        build.append(EditParser.EVENT_FROM_PARAM);
         build.append(" ");
         build.append(newDateTime);
         return build.toString();
     }
     
     public String getEditEventToDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.EVENT_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.EVENT_TO_PARAM);
+        build.append(EditParser.EVENT_TO_PARAM);
         build.append(" ");
         build.append(newDateTime);
         return build.toString();
@@ -474,15 +473,15 @@ public class TestActivity implements ReadOnlyActivity {
      * @return
      */
     public String getFloatingTaskChangeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.FLOATING_TASK_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.TASK_DEADLINE_PARAM);
+        build.append(EditParser.TASK_DEADLINE_PARAM);
         build.append(" ");
         build.append(newDateTime);
         return build.toString();
@@ -494,15 +493,15 @@ public class TestActivity implements ReadOnlyActivity {
      * @return a command to change Task --> FloatingTask
      */
     public String getTaskChangeCommand(int index) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.TASK_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.EVENT_TO_PARAM);
+        build.append(EditParser.EVENT_TO_PARAM);
         build.append(" ");
         build.append(Activity.FLOATING_TASK_TYPE);
         return build.toString();

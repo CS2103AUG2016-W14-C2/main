@@ -186,26 +186,11 @@ public class ActivityParser {
     }
     
     private Command prepareEdit(String args) {
-        
-        String[] splited = args.split("\\s+");
-        
-        // Checks for valid number of parameters.
-        // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
-        if (splited.length > 4) {
-            String activityType = splited[1];
-            // Checks for valid activityType
-            if (activityType.equals(Activity.FLOATING_TASK_TYPE) || activityType.equals(Activity.TASK_TYPE) || activityType.equals(Activity.EVENT_TYPE)) {  
-                // Checks for valid index 
-                Optional<Integer> index = Optional.of(Integer.valueOf(splited[2]));
-                if(index.isPresent()){
-                    return new EditCommand(splited);
-                }
-            }
+        try {
+            return new EditCommand(EditParser.parseEditCommand(args));
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
-        
-        // Only get here if invalid command!
-        return new IncorrectCommand(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
     
     //@@author A0139515A
@@ -228,8 +213,7 @@ public class ActivityParser {
 		} catch (IllegalValueException e) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
 		}
-    	  
-   
+		
     }
     //@@author
 
