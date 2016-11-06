@@ -17,11 +17,19 @@ public class Config {
     private String appTitle = "Menion";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
-    private String activityManagerFilePath = 
-    		new File(ModifyStoragePathCommand.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParent() + File.separator + "data/menion.xml";
+    private String activityManagerFilePath;
     private String activityManagerName = "Menion";
 
+    private static Config instance;
+    
     public Config() {
+    }
+    
+    public static Config getInstance() {
+        if (instance == null) {
+            instance = new Config();
+        }
+        return instance;
     }
 
     public String getAppTitle() {
