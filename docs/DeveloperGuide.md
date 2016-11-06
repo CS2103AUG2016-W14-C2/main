@@ -80,7 +80,7 @@ Two of those classes play important roles at the architecture level.
 
 The rest of the App consists four components.
 
-* [*`UI`*](#ui-component) : The UI of tha App.
+* [*`UI`*](#ui-component) : The UI of the App.
 * [*`Logic`*](#logic-component) : The command executor.
 * [*`Model`*](#model-component) : Holds the data of the App in-memory.
 * [*`Storage`*](#storage-component) : Reads data from, and writes data to, the hard disk.
@@ -114,6 +114,7 @@ being saved to the hard disk and the status bar of the UI being updated to refle
 The sections below give more details of each component.
 
 [//]: # (@@author A0139515A)
+
 ### UI component
 
 <img src="images/UiClassDiagram.png" width="800"><br>
@@ -139,7 +140,7 @@ The `UI` component
 * executes user commands using the `Logic` component by passing in strings that are captured by `CommandBox`
 * binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change
 * retrieves the three different lists from `Logic` at the start of the session
-* responds to events raised from various parts of the App and updates the UI accordingly. e.g. `ModifyStoragePathCommand` raise an event that leads to a pop up so as to show a message to the user (refer to diagram 6)
+* responds to events raised from various parts of the App and updates the UI accordingly. e.g. `ModifyStoragePathCommand` raise an event that leads to update of storage path in the status bar (refer to diagram 6)
 
 [//]: # (@@author)
 

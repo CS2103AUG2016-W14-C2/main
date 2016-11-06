@@ -34,7 +34,7 @@ public class TypicalTestActivities {
                     , new ActivityName("CS2103T Lab6"), new Note("Prepare for demo")
                     , new Completed(Completed.UNCOMPLETED_ACTIVITY)).build();
             task = new Activitybuilder().withTask(Activity.TASK_TYPE
-                    , new ActivityName("CS2103T testing"), new Note("it is so hard!")
+                    , new ActivityName("CS2103T testing"), new Note("give roses")
                     , new ActivityDate("10-08-2016"), new ActivityTime("1900")
                     , new Completed(Completed.UNCOMPLETED_ACTIVITY)).build();
             task2 = new Activitybuilder().withTask(Activity.TASK_TYPE

@@ -22,6 +22,7 @@ public class UnCompleteCommandTest extends ActivityManagerGuiTest {
         
         // Runs uncomplete  on a task.
         activityToUncomplete = td.task;
+        commandBox.runCommand("list all");
         commandBox.runCommand("clear");
         commandBox.runCommand(activityToUncomplete.getAddCommand());
         commandBox.runCommand(activityToUncomplete.getCompleteCommand(1));
@@ -50,7 +51,7 @@ public class UnCompleteCommandTest extends ActivityManagerGuiTest {
     
     /**
      * checks whether a uncomplete command correctly updates the UI
-     * @author Marx Low (A0139164A)
+     * 
      * @param activityToUncomplete
      * @param index
      */

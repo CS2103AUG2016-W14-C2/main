@@ -48,9 +48,4 @@ public class ListCommandTest {
 		
 		assertEquals(list.LIST_BLANK, list.checkListType(argument));
 	}
-	
-	
-
-	
-	
 }

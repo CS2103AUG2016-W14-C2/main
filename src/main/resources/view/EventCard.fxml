@@ -12,16 +12,16 @@
 
 <!-- @@author A0139515A -->
 
-<HBox id="eventCardPane" fx:id="eventCardPane" maxWidth="1.7976931348623157E308" minWidth="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="eventCardPane" fx:id="eventCardPane" maxWidth="1.7976931348623157E308" minWidth="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<GridPane maxWidth="1.7976931348623157E308" minWidth="700.0" prefWidth="700.0" HBox.hgrow="ALWAYS">
+		<GridPane maxWidth="1.7976931348623157E308" minWidth="500.0" prefWidth="700.0" HBox.hgrow="ALWAYS">
 			<columnConstraints>
 				<ColumnConstraints />
-				<ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="700.0" prefWidth="700.0" />
+				<ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="500.0" prefWidth="700.0" />
 				<ColumnConstraints />
 			</columnConstraints>
 			<children>
-				<VBox alignment="CENTER_LEFT" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="70.0" minWidth="700.0" prefHeight="70.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+				<VBox alignment="CENTER_LEFT" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="70.0" minWidth="500.0" prefHeight="70.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
 					<stylesheets>
 						<URL value="@DarkTheme.css" />
 						<URL value="@Extensions.css" />
@@ -31,9 +31,9 @@
 					</padding>
 
 					<children>
-						<GridPane maxWidth="1.7976931348623157E308" minWidth="700.0" prefWidth="700.0">
+						<GridPane maxWidth="1.7976931348623157E308" minWidth="500.0" prefWidth="700.0">
 							<columnConstraints>
-								<ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="280.0" prefWidth="280.0" />
+								<ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="80.0" prefWidth="280.0" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
@@ -68,7 +68,7 @@
 								</HBox>
 							</children>
 						</GridPane>
-						<HBox alignment="BASELINE_LEFT" maxWidth="750.0" minWidth="750.0" prefWidth="750.0">
+						<HBox alignment="BASELINE_LEFT" maxWidth="750.0" minWidth="550.0" prefWidth="750.0">
 							<children>
 								<Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_note_label" text="Note: " />
 								<Label fx:id="note" styleClass="cell_note_label" text="\$note" />

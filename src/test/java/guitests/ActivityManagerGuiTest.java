@@ -77,7 +77,7 @@ public abstract class ActivityManagerGuiTest {
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
      */
     protected ActivityManager getInitialData() {
-        ActivityManager ab = TestUtil.generateEmptyAddressBook();
+        ActivityManager ab = TestUtil.generateEmptyActivityManager();
 
         TypicalTestActivities.loadActivityManagerWithSampleData(ab);
 
@@ -119,11 +119,11 @@ public abstract class ActivityManagerGuiTest {
     }
 
     /**
-     * Asserts the size of the person list is equal to the given number.
+     * Asserts the size of the activity list is equal to the given number.
      */
     protected void assertListSize(int size) {
-        int numberOfPeople = activityListPanel.getNumberOfPeople();
-        assertEquals(size, numberOfPeople);
+        int numberOfActivity = activityListPanel.getNumberOfActivities();
+        assertEquals(size, numberOfActivity);
     }
 
     /**

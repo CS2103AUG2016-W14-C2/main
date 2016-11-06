@@ -18,7 +18,6 @@ public class AddCommandTest extends ActivityManagerGuiTest {
     @Test
     public void add() {
     	
-//    	commandBox.runCommand("clear");
         //add one task
         TestActivity[] taskList = td.getTypicalTask();
         TestActivity taskToAdd = td.task6;
