@@ -92,8 +92,8 @@ public class ModifyStoragePathCommand extends Command {
     		}
     		
     		// Deleting old files
-    		File oldStorage =  new File(initializedConfig.getActivityManagerFilePath());
-    		oldStorage.delete();
+    		//File oldStorage =  new File(initializedConfig.getActivityManagerFilePath());
+    		//oldStorage.delete();
     		
             // Saving configuration
     		initializedConfig.setActivityManagerFilePath(newPath);
