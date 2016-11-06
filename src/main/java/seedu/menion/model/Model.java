@@ -120,19 +120,22 @@ public interface Model {
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyEvent>} */
     UnmodifiableObservableList<ReadOnlyActivity> getFilteredEventList();
 
-    /** Updates the filter of the filtered task list to show all tasks */
+    /** Updates the filter of the filtered activity list to show all activities */
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered task list to filter by the given keywords
-     * @param parameterToSearch TODO*/
+     * @param parameterToSearch 
+     * */
     void updateFilteredTaskList(Set<String> keywords, String parameterToSearch);
     
-    /** Updates the filter of the filtered task list to filter by the given keywords
-     * @param parameterToSearch TODO*/
+    /** Updates the filter of the filtered floating task list to filter by the given keywords
+     * @param parameterToSearch 
+     * */
     void updateFilteredFloatingTaskList(Set<String> keywords, String parameterToSearch);
     
-    /** Updates the filter of the filtered task list to filter by the given keywords
-     * @param parameterToSearch TODO*/
+    /** Updates the filter of the filtered event list to filter by the given keywords
+     * @param parameterToSearch 
+     * */
     void updateFilteredEventList(Set<String> keywords, String parameterToSearch);
 
 
