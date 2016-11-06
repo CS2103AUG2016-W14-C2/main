@@ -40,8 +40,9 @@ public class EditParser {
     
     public static String[] parseEditCommand(String details) throws IllegalValueException {
         
-        editDetails = details.split("\\s+");
-        
+        String[] input = details.split("\\s+");
+
+        System.out.println("editDetails length: "+  editDetails.length);
         // Checks for valid number of parameters.
         // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
         if (editDetails.length <= 4) {
@@ -49,18 +50,19 @@ public class EditParser {
         }
 
         // Checks for valid activityType
-        String activityType = editDetails[1];
+        String activityType = input[1];
         validActivityType(activityType);
-
+        editDetails[1] = activityType;
+        
         // Checks for presence of index 
-        int targetIndex = Integer.valueOf(editDetails[2]) - 1;
+        int targetIndex = Integer.valueOf(input[2]) - 1;
         validIndex(targetIndex);
         editDetails[2] = String.valueOf(targetIndex); // replace with verified index
         
         // Checks for paramToChange
-        String indexOfParam = String.valueOf(checkParam(editDetails[3], activityType));
+        String indexOfParam = String.valueOf(checkParam(input[3], activityType));
         editDetails[3] = indexOfParam; // Replace with an index for editCommand to check.
-        editDetails[4] = arrayToString(Arrays.copyOfRange(editDetails, 4, editDetails.length));
+        editDetails[4] = arrayToString(Arrays.copyOfRange(input, 4, input.length));
         
         // Parse the changes with natty, if required to
         // From indexOfParam 2 -> 5. It requires Natty to parse Date & Time. 0, and 1 is simply Name and note.
