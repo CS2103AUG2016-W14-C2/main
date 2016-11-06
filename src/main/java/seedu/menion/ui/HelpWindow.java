@@ -53,8 +53,8 @@ public class HelpWindow extends UiPart {
         Image image = AppUtil.getImage(USERGUIDE_FILEPATH);
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setHeight(image.getHeight() + 45);
-        dialogStage.setWidth(image.getWidth() + 20);
+        dialogStage.setHeight(image.getHeight() + 25);
+        dialogStage.setWidth(image.getWidth());
         setIcon(dialogStage, ICON);
         
         ImageView imageView = new ImageView(image);
