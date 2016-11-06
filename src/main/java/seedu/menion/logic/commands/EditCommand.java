@@ -2,7 +2,6 @@ package seedu.menion.logic.commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import seedu.menion.commons.core.Messages;
 import seedu.menion.commons.core.UnmodifiableObservableList;
 import seedu.menion.commons.exceptions.IllegalValueException;
@@ -18,7 +17,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String MESSAGE_EDITED_ACTIVITY_SUCCESS = "Menion edited your Activity to: %1$s";
-    public static final String NAME_PARAM = "name";
+    public static final String NAME_PARAM = "name:";
     public static final String NOTE_PARAM = "n:";
     public static final String TASK_DEADLINE_PARAM = "by:";
     public static final String EVENT_FROM_PARAM = "from:";
@@ -109,7 +108,6 @@ public class EditCommand extends Command {
             NattyDateParser.parseDate(this.changes, fromNatty);
             model.editTaskDateTime(floatingTaskToEdit, fromNatty.get(0), fromNatty.get(1));
             break;
-            
         }
 
     }
