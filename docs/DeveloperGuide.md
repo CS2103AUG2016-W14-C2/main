@@ -348,15 +348,8 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | modify storage path | store data in my desired location
 `* * *` | user | search for my activities using keywords | locate activities quickly
 `* *` | user | upload my schedule online and sync them across devices | view my schedules when I am using different devices
-<<<<<<< HEAD
 `* *` | user | set recurring activities| add repeated activities just once
 `* *` | user | sort activities by different datelines | have a clearer view of what needs to be completed first
-
-{More to be added}
-=======
-`* *` | user | sort activities by different datelines | have a clearer view of what needs to be completed first
->>>>>>> 9fac70e7d6976538d0a389dca9ba026816c3710f
-
 
 [//]: # (@@author A0139164A)
 
