@@ -83,20 +83,4 @@ public class UnCompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
     }
-<<<<<<< HEAD
-    
-    //@@author A0139515A
-    /**
-     * Uncomplete command will store previous activity manager to support undo command
-     *
-     */
-    public void storePreviousState() {
-        
-        assert model != null;
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
-    }
-    //@@author
-=======
->>>>>>> ce67655fce0673595e08af8f6b6f7c20d6b0f2d4
 }

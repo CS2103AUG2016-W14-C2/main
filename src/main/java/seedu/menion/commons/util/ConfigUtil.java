@@ -59,7 +59,7 @@ public class ConfigUtil {
         FileUtil.serializeObjectToJsonFile(new File(configFilePath), config);
     }
 
-    //@@author A01391515A
+    //@@author A0139515A
 	/**
 	 * Initialize Config based on the current config file
 	 */
