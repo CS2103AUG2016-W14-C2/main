@@ -10,6 +10,7 @@ import org.junit.Test;
 import seedu.menion.logic.commands.ListCommand;
 import seedu.menion.logic.parser.ListParser;
 
+//@@author A0139277U
 public class ListParserTest {
 
 	@Test
