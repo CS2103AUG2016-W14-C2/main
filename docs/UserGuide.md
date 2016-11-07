@@ -27,7 +27,7 @@ Ever felt overwhelmed from the multitude of tasks you have to complete and have 
 
 Menion is your personal assistant that tracks all your activities and displays them in a simple to read display. It saves you the hassle of remembering what needs to be done and is able to help you prioritise your tasks.
 
-Unlike other complicated task managers, Menion is simple and intuitive. It relies completely on the keyboard and only requires a single line of command, removing the inconvenience of clicking and navigating through multiple interfaces. It also has a flexible command interface, accepting many variations of the same command, removing the need to memorise a certain format for every command. 
+Unlike other complicated task managers, Menion is simple and intuitive. It relies completely on the keyboard and only requires a single line of command. This removes the inconvenience of clicking and navigating through multiple interfaces for you. It also has a flexible command interface, and is able to accept variations of the same command, removing the need to memorise a certain format for every command. 
 
 Let's get started!
 ## Quick Start
@@ -37,23 +37,22 @@ Let's get started!
    This app will not work with earlier versions of Java 8.
    
 2. Download Menion: You can download Menion.jar from the latest release here: 
-   **COMING SOON**
+   [Menion.jar]()
 3. Copy the file to the folder you want to use as the home folder for  Menion.
-4. Double-click the file to start the app. The GUI should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
 <img src="images/MainPageLayout.png" width="600"><br>
 >Figure 1 : The user interface presented after start up
-   
-
 5. Type the command in the command box as shown in Figure 1 and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window. 
 6. Some example commands you can try:
 
 	* `add Assignment 2 by: TASK_DEADLINE_DATE TASK_DEADLINE_TIME n: NOTES`
-   * `list`: lists all activities
+   * `list all`: lists all activities
    * `delete event 3` : deletes the 3rd event shown in the current list
    * `exit` : exits the app
 7. Refer to the [Features](#features) section below for details of each command.<br>
 
+[//]: # (@@author)
 
 ##Features
 
@@ -72,7 +71,7 @@ Let's get started!
 [//]: # (@@author A0139277U)
 
 #### Adding an activity `add`
-Adds an activity to Menion<br>
+Adds an activity to Menion.<br>
 
 Formats : <br>
 `add TASK_NAME by: TASK_DEADLINE_DATE TASK_DEADLINE_TIME n:NOTES...` <br>
@@ -94,6 +93,8 @@ Examples: <br>
 <img src="images/addexample.png" width="600"><br>
 >Figure 2 : Screenshot of adding an activity into Menion.
 
+[//]: # (@@author A0146752B)
+
 #### Deleting activities `delete`
 Deletes 1 or more activities from Menion at the specified `INDEX`/`INDICES`.<br>
 Format: 
@@ -112,6 +113,7 @@ Examples:<br>
 <img src="images/deleteexample.png" width="500"><br>
 >Figure 3 : The index of activity to be deleted.
 
+[//]: # (@@author A0139277U)
 
 #### List Activities `list`
 Shows a list of activities in Menion for specified parameters such as date, month, completion status and keywords.
@@ -132,7 +134,7 @@ Examples:<br>
 > `list completed` will fit `list CoMpleted`.<br>
 > Listing of dates has to be in the format of dd-mm-yyyy.
 
-
+[//]: # (@@author A0146752B)
 
 #### Find Activities `find`
 Shows a list of activities in Menion for specified keywords in their activity name and notes.
@@ -146,14 +148,13 @@ Examples:<br>
 
 >Find parameters are case-insensitive. Cs2103T will match cs2103t.
 
+[//]: # (@@author A0139164A)
 
 #### Clearing all entries `clear`
 Clear all entries from Menion.<br>
 
 Format : `clear`
 
-
-[//]: # (@@author A0139164A)
 
 #### Editing an activity `edit`
 Edits an activity from Menion at the specified `INDEX`.
@@ -179,7 +180,6 @@ Examples :
 <img src="images/editexample.png" width="500"><br>
 
 
-
 #### Complete an activity `complete`
 Marks an activity as completed.
 
@@ -196,7 +196,7 @@ Marks an activity as uncompleted.
 
 Format : `uncomplete ACTIVITY_TYPE ACTIVITY_INDEX`
 
-Example : 
+Examples : 
 
 `uncomplete event 3`<br>
 `uncomplete task 3`
@@ -204,9 +204,9 @@ Example :
 #### Set reminder for tasks `remind`
 Enables menion to send notifications to the specified `EMAIL_ADDRESS` to remind users of uncompleted overdue tasks.
 
-Format: `remind EMAIL_ADDRESS`
+Format : `remind EMAIL_ADDRESS`
 
-Example:
+Example :
 `remind jondoe@gmail.com`
 
 #### Unset reminder for tasks `unremind`
@@ -244,9 +244,11 @@ Modifies the storage path that stores all the data.<br>
 Format : `modify STORAGE_LOCATION`
 > Enter `modify default` to revert to the original file storage
 
-Example:
+Example :
 
 `modify Dropbox/MyStorage/menion.xml`
+
+[//]: # (@@author A0146752B)
 
 #### Viewing help `help`
 Shows a list of available commands and how to use them.<br>
@@ -263,14 +265,16 @@ Format : `exit`
 Menion data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.<br>
 
-
+[//]: # (@@author)
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer?<br>
-**A**: Install Menion in the other computer and overwrite the empty data file it creates with 
+**Q** : How do I transfer my data to another computer?<br>
+**A** : Install Menion in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Menion folder.
        
+[//]: # (@@author A0139515A)
+             
 ## Command Summary
 
 Command | Format  
@@ -281,6 +285,7 @@ Complete | `complete ACTIVITY_TYPE INDEX`
 Delete | `delete ACTIVITY_TYPE INDEX`
 Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Exit | `exit`
+Find | `find KEYWORD`
 Help | `help`
 List | `list` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
 Modify Storage Path | `modify STORAGE_LOCATION` <br> `modify default`
@@ -290,6 +295,7 @@ Uncomplete | `uncomplete ACTIVITY_TYPE INDEX`
 Undo| `undo` <br> `undo modify`
 Unset Reminder | `unremind`
 
+[//]: # (@@author A0139164A)
 
 ## GLOSSARY
 

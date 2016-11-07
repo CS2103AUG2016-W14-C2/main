@@ -63,6 +63,8 @@ private static Matcher matcher;
      * @return true if the arguments fit the format of a Date.
      */
     private static Boolean isDate (String args, Set<String> argumentsToList){
+    	assert(args.length() != 0);
+    	
     	matcher = VALID_DATE.matcher(args);
     	if (matcher.find()){
     		argumentsToList.add(args);
@@ -71,8 +73,7 @@ private static Matcher matcher;
     	else {
     		return false;
     	}
-    }
-    
+    }    
 
     /**
      * This method checks if the arguments is a month
@@ -80,6 +81,8 @@ private static Matcher matcher;
      * @return true if the arguments fit the format of a Month.
      */
     private static Boolean isMonth (String args, Set<String> argumentsToList){
+    	
+    	assert(args.length() != 0);
     	
     	String monthString;
     	
@@ -91,19 +94,5 @@ private static Matcher matcher;
     		}
     	}	
     	return false;
-    }
-    /*
-    public static String getKeywordToList(){
-    	return this.keywordToList;
-    }
-    
-    public static String getDateToList(){
-    	return this.dateToList;
-    }
-    
-    public static String getMonthToList(){
-    	return this.monthToList;
-    }
-    */
-    
+    }    
 }

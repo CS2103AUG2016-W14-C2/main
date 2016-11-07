@@ -38,11 +38,8 @@ public class ListCommand extends Command {
     private String listType;
     private String monthToList;
     private String dateToList;
-    private String keywordToList;
-    private String argumentListed;
-    
+
     private Set<String> argumentsToList;
-    
     
     public ListCommand(String args, Set<String> argumentsToList, String listType){
         this.argumentsToList = argumentsToList;
