@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 //@@author A0139277U
 public class AddParser {
 
-	public AddParser() {
-	};
+	public AddParser() {};
 
 	private static final Pattern REGULAR_TASK_REGEX_WITH_NOTES = Pattern
 			.compile("(.+)[\\ ]*?by[\\ ]*?:[\\ ]*?(.+)[\\ ]*?n[\\ ]*?:[\\ ]*?(.+)");
@@ -32,17 +31,13 @@ public class AddParser {
 	private static final Pattern FLOATING_TASK_REGEX_WITHOUT_NOTES = Pattern
 			.compile("(.+)");
 		
-	
-	
 	private static Matcher matcher;
 	private static ArrayList<String> parsedArguments;
 	
-
 	/**
 	 * This method parses the input command and will check the type of add
 	 * command.
-	 * 
-	 * @param args
+	 * @param args from command
 	 * @return An array of parsed commands
 	 */
 	public static ArrayList<String> parseCommand (String args) throws IllegalValueException {
@@ -56,8 +51,7 @@ public class AddParser {
 	/**
 	 * This method checks the type of activity based on its arguments and sets
 	 * the arguments into an array list.
-	 * 
-	 * @param args
+	 * @param args from command
 	 * @throws IllegalValueException 
 	 */
 	public static void checkActivityType(String args) throws IllegalValueException {
@@ -88,7 +82,6 @@ public class AddParser {
 	 * list(2) = Floating Task Notes
 	 */
 	private static void inputFloatingTaskArguments(){
-
 		if (matcher.pattern().equals(FLOATING_TASK_REGEX_WITHOUT_NOTES)){
 				parsedArguments.add(1, matcher.group(1).trim());
 				parsedArguments.add(2, null);
@@ -98,7 +91,6 @@ public class AddParser {
 				parsedArguments.add(1, matcher.group(1).trim());
 				parsedArguments.add(2, matcher.group(2).trim());
 		}
-		
 	}
 	
 	/**
@@ -110,7 +102,6 @@ public class AddParser {
 	 */
 	private static void inputTaskArguments() {
 		parsedArguments.add(1, matcher.group(1).trim());
-
 		if (matcher.pattern().equals(REGULAR_TASK_REGEX_WITHOUT_NOTES)){
 			parsedArguments.add(2, null);			
 		}
@@ -170,7 +161,7 @@ public class AddParser {
 
 	/**
 	 * This method checks if the input arguments satisfy the requirements to be a Floating Task
-	 * @param args
+	 * @param args from command
 	 * @return true : the input arguments satisfy a floating task
 	 */
 	public static Boolean isFloatingTask(String args){

@@ -129,9 +129,7 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 			commandBox.runCommand(testEvent1.getAddCommand());
 			commandBox.runCommand(testEvent2.getAddCommand());
 			commandBox.runCommand(testFloating1.getAddCommand());
-			commandBox.runCommand(testFloating2.getAddCommand());
-
-			
+			commandBox.runCommand(testFloating2.getAddCommand());			
 			
 		} catch (IllegalValueException e) {
 			System.out.println("Not possible");

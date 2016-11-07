@@ -52,8 +52,8 @@ public class ListCommand extends Command {
 
     /**
      * This method checks the argument input by the user.
-     * @param args
-     * @return
+     * @param args of command
+     * @return type of Listing selected by user
      * @throws IllegalValueException
      */
     public String checkListType(String args){
@@ -62,12 +62,11 @@ public class ListCommand extends Command {
     		return LIST_BLANK;
     	}
     	
-    	if (args.toLowerCase().equals(LIST_ALL)) {
+    	else if (args.toLowerCase().equals(LIST_ALL)) {
             return LIST_ALL;
         }
     	
     	else if (isMonth(args)){
-    		
     		return LIST_MONTH;
     	}
     	
@@ -110,7 +109,7 @@ public class ListCommand extends Command {
 
     /**
      * This method checks if the arguments is a month
-     * @param args
+     * @param args of command
      * @return true if the arguments fit the format of a Month.
      */
     private Boolean isMonth (String args){

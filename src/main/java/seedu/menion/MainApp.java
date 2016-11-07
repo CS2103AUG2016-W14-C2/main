@@ -71,7 +71,10 @@ public class MainApp extends Application {
         ui = new UiManager(logic, config, userPrefs);
         
         initEventsCenter();
+        
+        // Shows only uncompleted activities at start
         showUncompletedOnly(model);
+        
         // Does background check
         new Timer().schedule(
         	    new TimerTask() {
@@ -84,7 +87,11 @@ public class MainApp extends Application {
         	        
         	    }, 0, BACKGROUND_REFRESH_RATE);
     }
-
+    
+    /**
+     * This method takes in the current model and lists only uncompleted activities
+     * @param model
+     */
     private void showUncompletedOnly(Model model) {
         Set<String> isCompleted = new HashSet<String>();
         isCompleted.add(Completed.UNCOMPLETED_ACTIVITY);

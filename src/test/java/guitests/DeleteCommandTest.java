@@ -11,10 +11,10 @@ import static org.junit.Assert.assertTrue;
 import static seedu.menion.logic.commands.DeleteCommand.MESSAGE_DELETE_ACTIVITY_SUCCESS;
 
 public class DeleteCommandTest extends ActivityManagerGuiTest {
-
+    //@@author A0146752B
     @Test
     public void delete() {
-        //@@author A0146752B
+        
         //delete the first floating task in the list
         TestActivity[] currentList = td.getTypicalFloatingTask();
         int targetIndex = 1;
@@ -106,12 +106,13 @@ public class DeleteCommandTest extends ActivityManagerGuiTest {
             assertTrue(activityListPanel.isTaskListMatching(expectedRemainder));
         }
         
+        //building commandLine output
         for (int i = 0; i < activityToDeleteArr.length; i++) {
             activityToDeleteMessage.append(activityToDeleteArr[i]);
             if (i == activityToDeleteArr.length - 1) {
                 break;
             }
-            activityToDeleteMessage.append("\n");
+            activityToDeleteMessage.append("\n\n");
             activityToDeleteMessage.append("Deleted Activity: ");
         }
         //confirm the result message is correct
