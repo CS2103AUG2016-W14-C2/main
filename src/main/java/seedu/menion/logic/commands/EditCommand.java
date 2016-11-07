@@ -31,6 +31,7 @@ public class EditCommand extends Command {
 
     public EditCommand(String[] splited) {
         
+        assert splited != null;
         this.targetType = splited[1];
         this.targetIndex = Integer.valueOf(splited[2]);
         this.paramToChange = Integer.valueOf(splited[3]);

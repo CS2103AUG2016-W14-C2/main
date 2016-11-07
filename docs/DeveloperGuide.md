@@ -191,7 +191,7 @@ Figure 9 above shows the additional steps required by the `AddCommand` to parse 
 
 Figure 10 above shows how `EditCommand` requires an additional step in parsing. `ActivityParser` class passes the user's input to the `EditParser` class to parse the command properly. After parsing, it will return a new `Command` object being created and executed by the `LogicManager`. The command execution can affect the `Model` (e.g. editting an Activity) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. This is similar to the `AddCommand`.
 
-[//]: # (@@author A139515A)
+[//]: # (@@author A0139515A)
 
 <img src="images/undosequencediagram.png" width="800"><br>
 > Figure 11: Sequence Diagram in Logic of undo command<br>
@@ -199,7 +199,7 @@ Figure 10 above shows how `EditCommand` requires an additional step in parsing. 
 Figure 11 above shows how `UndoCommand` makes use of the model to retrieve the previous activity manager.
 `UndoCommand` and `RedoCommand` make use of two stacks in `Model` which stores different states of `ReadOnlyActivityManager`. When there is a command that causes modification to `ReadOnlyActivityManager`, a copy of the state of `ReadOnlyActivityManager` before the modification will be pushed into the undo stack. Calling `UndoCommand` will cause a pop from the undo stack and the state will be pushed into the redo stack. Similarly, calling `RedoCommand` will cause a pop from redo stack and the state will be pushed back into the undo stack. This allows the application to jump around different states of `ReadOnlyActivityManager`.
 
-[//]: # (@@A0139277U)
+[//]: # (@@author A0139277U)
 ### BackgroundCheck Component
 <img src="images/BackgroundCheck.png" width="800"><br>
 > Figure 12: BackgroundCheck component<br>

@@ -596,6 +596,5 @@ public class TestActivity implements ReadOnlyActivity {
     public Activity get() {
         return null;
     }
-
-
+    
 }

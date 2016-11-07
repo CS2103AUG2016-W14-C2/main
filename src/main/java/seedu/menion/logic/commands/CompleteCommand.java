@@ -29,18 +29,19 @@ public class CompleteCommand extends Command {
     ReadOnlyActivity activityToComplete;
 
     public CompleteCommand(String[] splited) {
+        
+        assert splited != null;
         this.targetType = splited[1];
         this.targetIndex = Integer.valueOf(splited[2]) - 1;
     }
 
     @Override
     public CommandResult execute() {
+
     	assert model != null;
-    	
     	model.storePreviousState(new ActivityManager(model.getActivityManager()));
     	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
-        
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                 lastShownList = model.getFilteredFloatingTaskList();
@@ -84,6 +85,5 @@ public class CompleteCommand extends Command {
         }catch (ActivityNotFoundException pnfe) {
             assert false : "The target activity cannot be missing";
         }
-        
     }
 }

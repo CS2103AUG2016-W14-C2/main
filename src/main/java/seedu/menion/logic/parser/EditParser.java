@@ -43,7 +43,7 @@ public class EditParser {
 
         // Checks for valid number of parameters.
         // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
-        if (editDetails.length <= 4) {
+        if (input.length <= 4) {
             throw new IllegalValueException(MESSAGE_USAGE);
         }
 
