@@ -45,13 +45,13 @@ Let's get started!
    
 
 5. Type the command in the command box as shown in Figure 1 and press <kbd>Enter</kbd> to execute it. <br>
-   e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
+   e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window. 
 6. Some example commands you can try:
 
-	* **`add`**` Assignment 2 by: TASK_DEADLINE_DATE TASK_DEADLINE_TIME n: NOTES` 
-   * **`list`** : lists all activities
-   * **`delete`**`event 3` : deletes the 3rd event shown in the current list
-   * **`exit`** : exits the app
+	* `add Assignment 2 by: TASK_DEADLINE_DATE TASK_DEADLINE_TIME n: NOTES`
+   * `list`: lists all activities
+   * `delete event 3` : deletes the 3rd event shown in the current list
+   * `exit` : exits the app
 7. Refer to the [Features](#features) section below for details of each command.<br>
 
 
@@ -218,24 +218,35 @@ Format : `unremind`
 [//]: # (@@author A0139515A)
 
 #### Undo `undo`
-Undo the most recent command.
+Undo the most recent command.<br>
+>Only applicable for add, delete, edit, complete, uncomplete and clear commands
 
 Format : `undo`
 
+Undo modify storage path command.<br>
+
+Format : `undo modify`
+
 #### Redo `redo`
 Redo the most recent command.
+>Only applicable for add, delete, edit, complete, uncomplete and clear commands
 
 Format : `redo`
+
+Redo modify storage path command.<br>
+
+Format : `redo modify`
 
 
 #### Modifying the storage path `modify`
 Modifies the storage path that stores all the data.<br>
 
 Format : `modify STORAGE_LOCATION`
+> Enter `modify default` to revert to the original file storage
 
 Example:
 
-`modify storage path user/Desktop`
+`modify Dropbox/MyStorage/menion.xml`
 
 #### Viewing help `help`
 Shows a list of available commands and how to use them.<br>
@@ -265,19 +276,19 @@ There is no need to save manually.<br>
 Command | Format  
 -------- | :-------- 
 Add | `add NAME n:NOTES...`<br>`add NAME by: DEADLINE_DATE DEADLINE_TIME n:NOTES...`<br>`add NAME from: START_DATE START_TIME to: END_DATE END_TIME n:NOTES...`
-Delete | `delete ACTIVITY_TYPE INDEX`
-List | `list` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
 Clear | `clear`
-Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Complete | `complete ACTIVITY_TYPE INDEX`
-Uncomplete | `uncomplete ACTIVITY_TYPE INDEX`
-Set Reminder | `remind EMAIL_ADDRESS`
-Unset Reminder | `unremind`
-Undo| `undo`
-Redo | `redo`
-Modify Storage Path | `modify STORAGE_LOCATION`
-Help | `help`
+Delete | `delete ACTIVITY_TYPE INDEX`
+Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Exit | `exit`
+Help | `help`
+List | `list` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
+Modify Storage Path | `modify STORAGE_LOCATION` <br> `modify default`
+Set Reminder | `remind EMAIL_ADDRESS`
+Redo | `redo` <br> `redo modify`
+Uncomplete | `uncomplete ACTIVITY_TYPE INDEX`
+Undo| `undo` <br> `undo modify`
+Unset Reminder | `unremind`
 
 
 ## GLOSSARY
