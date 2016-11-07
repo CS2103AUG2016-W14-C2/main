@@ -126,6 +126,11 @@ public class ModelManager extends ComponentManager implements Model {
     public boolean checkStoragePathInUndoStack() {
     	return this.storagePathUndoStack.isEmpty();
     }
+   
+    @Override
+    public void storePreviousState(ReadOnlyActivityManager activityManager) {
+    	addStateToUndoStack(activityManager);
+    }
     
     /**
      * Methods for redo

@@ -77,12 +77,14 @@ public interface Model {
     /** check if there is any previous file path in undo file path stack */
     boolean checkStoragePathInUndoStack();
     
+    /** store a previous state of activity manager into undo stack */
+    void storePreviousState(ReadOnlyActivityManager activityManager);
+    
     /**
      * Methods for redo
      * 
      */
     
-
     /** add an activity manager state into redo state stack */
     void addStateToRedoStack(ReadOnlyActivityManager activityManager);
     
@@ -106,6 +108,7 @@ public interface Model {
      */
     
     ReadOnlyActivity getMostRecentUpdatedActivity();
+    
     void updateRecentChangedActivity(ReadOnlyActivity activity);
     
     //@@author A0146752B

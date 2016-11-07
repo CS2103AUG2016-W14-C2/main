@@ -76,7 +76,8 @@ public class AddCommand extends Command {
     public CommandResult execute() {
     	assert model != null;
     	
-    	storePreviousState();
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
     	model.updateRecentChangedActivity((ReadOnlyActivity) toAdd);
     	
         try {
@@ -94,17 +95,5 @@ public class AddCommand extends Command {
         } catch (UniqueActivityList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         }
-    }
-    
-    //@@author A0139515A
-    /**
-     * Add command will store previous activity manager to support undo command
-     * 
-     */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
     }
 }
