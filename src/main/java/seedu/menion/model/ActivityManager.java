@@ -2,9 +2,13 @@ package seedu.menion.model;
 
 import javafx.collections.ObservableList;
 import seedu.menion.model.activity.ReadOnlyActivity;
+import seedu.menion.background.BackgroundCheckManager;
 import seedu.menion.commons.exceptions.IllegalValueException;
 import seedu.menion.logic.commands.EditCommand;
 import seedu.menion.model.activity.Activity;
+import seedu.menion.model.activity.ActivityName;
+import seedu.menion.model.activity.Completed;
+import seedu.menion.model.activity.Note;
 import seedu.menion.model.activity.UniqueActivityList;
 import seedu.menion.model.activity.UniqueActivityList.ActivityNotFoundException;
 
@@ -151,6 +155,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * @param activityToComplete
      */
     public void completeTask(ReadOnlyActivity activityToComplete) throws ActivityNotFoundException {
+        
         Activity dub = (Activity)activityToComplete;
         dub.setCompleted();
         tasks.getInternalList().set(tasks.getIndexOf(activityToComplete), dub);  
@@ -158,6 +163,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
     }
 
     public void completeFloatingTask(ReadOnlyActivity activityToComplete) throws ActivityNotFoundException {
+        
         Activity dub = (Activity)activityToComplete;
         dub.setCompleted();
         floatingTasks.getInternalList().set(floatingTasks.getIndexOf(activityToComplete), dub);
@@ -170,6 +176,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * @param activityToUncomplete
      */
     public void unCompleteFloatingTask(ReadOnlyActivity activityToUncomplete) throws ActivityNotFoundException {
+        
         Activity dub = (Activity)activityToUncomplete;
         dub.setUncompleted();
         floatingTasks.getInternalList().set(floatingTasks.getIndexOf(activityToUncomplete), dub);
@@ -177,6 +184,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
     }
     
     public void unCompleteTask(ReadOnlyActivity activityToUncomplete) throws ActivityNotFoundException {
+        
         Activity dub = (Activity)activityToUncomplete;
         dub.setUncompleted();
         tasks.getInternalList().set(tasks.getIndexOf(activityToUncomplete), dub);
@@ -190,6 +198,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * @throws IllegalValueException 
      */
     public void editFloatingTaskName(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)floatingTaskToEdit;
         dub.setActivityName(changes);
         floatingTasks.getInternalList().set(floatingTasks.getIndexOf(floatingTaskToEdit), dub);
@@ -197,6 +206,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
     }
     
     public void editTaskName(ReadOnlyActivity taskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)taskToEdit;
         dub.setActivityName(changes);
         tasks.getInternalList().set(tasks.getIndexOf(taskToEdit), dub); 
@@ -217,44 +227,80 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * @throws IllegalValueException 
      */
     public void editFloatingTaskNote(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)floatingTaskToEdit;
         dub.setActivityNote(changes);
         floatingTasks.getInternalList().set(floatingTasks.getIndexOf(floatingTaskToEdit), dub);
     }
     
     public void editTaskNote(ReadOnlyActivity taskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)taskToEdit;
         dub.setActivityNote(changes);
         tasks.getInternalList().set(tasks.getIndexOf(taskToEdit), dub); 
     }
     
     public void editEventNote(ReadOnlyActivity eventToEdit, String changes) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)eventToEdit;
         dub.setActivityNote(changes);
         events.getInternalList().set(events.getIndexOf(eventToEdit), dub);
     }
     
     /**
-     * Methods, edits a Task/Event's starting Date & Time in the activity manager.
+     * Methods, edits a Activity's starting Date & Time in the activity manager.
      * Passes in the index of the list to complete, and changes to make
      * @param taskToEdit
      * @throws IllegalValueException 
+     * @throws ActivityNotFoundException 
      */
+    public void editTaskToFloating(ReadOnlyActivity taskToEdit) throws IllegalValueException, ActivityNotFoundException {
+        
+        ActivityName name = taskToEdit.getActivityName();
+        Note note = taskToEdit.getNote();
+        Completed status = taskToEdit.getActivityStatus();
+        Activity dub = new Activity(Activity.FLOATING_TASK_TYPE, name, note, status);
+        removeTask(taskToEdit);
+        addFloatingTask(dub);
+    }
+    
     public void editTaskDateTime(ReadOnlyActivity taskToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)taskToEdit;
         dub.setActivityStartDateTime(newDate, newTime);
+        // Check if the task is overdue/not overdue after an edit.
+        Calendar currentTime = Calendar.getInstance();
+        
+        // Only goes into this conditional statement if it is overdue.
+        if (BackgroundCheckManager.isActivityOver(currentTime, taskToEdit)) {
+            dub.setTimePassed(true);
+        } else {
+            // Not overdue.
+            dub.setTimePassed(false);
+            dub.setEmailSent(false);
+        }
+        // It is a FloatingTask changing to a Task
+        // Removes the floatingTask from it's panel and adds it to Task panel
+        if (taskToEdit.getActivityType().equals(Activity.FLOATING_TASK_TYPE)) {
+            removeFloatingTask(taskToEdit);
+            dub.setActivityType(Activity.TASK_TYPE);
+            addTask(dub);
+            return;
+        }
         tasks.getInternalList().set(tasks.getIndexOf(taskToEdit), dub); 
         Collections.sort(tasks.getInternalList(), new TaskComparator());
     }
 
     public void editEventStartDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {
+        
         Activity dub = (Activity)eventToEdit;
         dub.setActivityStartDateTime(newDate, newTime);
         events.getInternalList().set(events.getIndexOf(eventToEdit), dub);
         Collections.sort(events.getInternalList(), new EventComparator());
     }
     
-    public void editEventEndDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {    
+    public void editEventEndDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException {  
+        
         Activity dub = (Activity)eventToEdit;
         dub.setActivityEndDateTime(newDate, newTime);
         events.getInternalList().set(events.getIndexOf(eventToEdit), dub);
@@ -286,7 +332,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
             throw new UniqueActivityList.ActivityNotFoundException();
         }
     }
-    
+    //@@author
 
 //// util methods
 

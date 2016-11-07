@@ -19,7 +19,7 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Provides a handle for the panel containing the person list.
+ * Provides a handle for the panel containing the activity list.
  */
 public class ActivityListPanelHandle extends GuiHandle {
 
@@ -35,25 +35,19 @@ public class ActivityListPanelHandle extends GuiHandle {
         super(guiRobot, primaryStage, TestApp.APP_TITLE);
     }
 
-    public List<ReadOnlyActivity> getSelectedPersons() {
-        ListView<ReadOnlyActivity> personList = getTaskListView();
-        return personList.getSelectionModel().getSelectedItems();
+    public List<ReadOnlyActivity> getSelectedActivities() {
+        ListView<ReadOnlyActivity> activityList = getTaskListView();
+        return activityList.getSelectionModel().getSelectedItems();
     }
 
     public ListView<ReadOnlyActivity> getTaskListView() {
         return (ListView<ReadOnlyActivity>) getNode(TASK_LIST_VIEW_ID);
     }
     
-    /**
-     * @author BrehmerChan (A046752B)
-     */
     public ListView<ReadOnlyActivity> getFloatingTaskListView() {
         return (ListView<ReadOnlyActivity>) getNode(FLOATING_LIST_VIEW_ID);
     }
 
-    /**
-     * @author BrehmerChan (A046752B)
-     */
     public ListView<ReadOnlyActivity> getEventListView() {
         return (ListView<ReadOnlyActivity>) getNode(EVENT_LIST_VIEW_ID);
     }
@@ -178,7 +172,7 @@ public class ActivityListPanelHandle extends GuiHandle {
         return true;
     }
     
-    //@@author: A0139164A
+    //@@author A0139164A
     public TestActivity returnsUpdatedEvent(String name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
         final Optional<ReadOnlyActivity> activity = getEventListView().getItems().stream().filter(p -> p.getActivityName().fullName.equals(name)).findAny();
@@ -207,7 +201,7 @@ public class ActivityListPanelHandle extends GuiHandle {
         TestActivity dub = new TestActivity(activity.get());
         return dub;
     }
-
+    //@@author
     
     /**
      * Returns true if the list is showing the floating task details correctly and in correct order.
@@ -298,7 +292,7 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
 
     /**
-     * @author BrehmerChan (A0146752B)
+     * 
      * Navigates the listview to display and select the floating task.
      */
     public FloatingTaskCardHandle navigateToFloatingTask(ReadOnlyActivity floatingTask) {
@@ -313,7 +307,7 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
     
     /**
-     * @author BrehmerChan (A0146752B)
+     * 
      * Navigates the listview to display and select the event.
      */
     public EventCardHandle navigateToEvent(ReadOnlyActivity event) {
@@ -368,9 +362,9 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
 
     /**
-     * Gets a person from the list by index
+     * Gets a task from the list by index
      */
-    public ReadOnlyActivity getPerson(int index) {
+    public ReadOnlyActivity getTask(int index) {
         return getTaskListView().getItems().get(index);
     }
 
@@ -387,10 +381,10 @@ public class ActivityListPanelHandle extends GuiHandle {
         return getEventCardHandle(new Activity(getEventListView().getItems().get(index)));
     }
 
-    public TaskCardHandle getTaskCardHandle(ReadOnlyActivity person) {
+    public TaskCardHandle getTaskCardHandle(ReadOnlyActivity task) {
         Set<Node> nodes = getAllTaskCardNodes();
         Optional<Node> activityCardNode = nodes.stream()
-                .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameActivity(person))
+                .filter(n -> new TaskCardHandle(guiRobot, primaryStage, n).isSameActivity(task))
                 .findFirst();
         if (activityCardNode.isPresent()) {
             return new TaskCardHandle(guiRobot, primaryStage, activityCardNode.get());
@@ -399,10 +393,10 @@ public class ActivityListPanelHandle extends GuiHandle {
         }
     }
     
-    public FloatingTaskCardHandle getFloatingTaskCardHandle(ReadOnlyActivity person) {
+    public FloatingTaskCardHandle getFloatingTaskCardHandle(ReadOnlyActivity floatingTask) {
         Set<Node> nodes = getAllFloatingTaskCardNodes();
         Optional<Node> activityCardNode = nodes.stream()
-                .filter(n -> new FloatingTaskCardHandle(guiRobot, primaryStage, n).isSameActivity(person))
+                .filter(n -> new FloatingTaskCardHandle(guiRobot, primaryStage, n).isSameActivity(floatingTask))
                 .findFirst();
         if (activityCardNode.isPresent()) {
             return new FloatingTaskCardHandle(guiRobot, primaryStage, activityCardNode.get());
@@ -435,7 +429,7 @@ public class ActivityListPanelHandle extends GuiHandle {
         return guiRobot.lookup(EVENT_CARD_PANE_ID).queryAll();
     }
 
-    public int getNumberOfPeople() {
-        return getTaskListView().getItems().size();
+    public int getNumberOfActivities() {
+        return getTaskListView().getItems().size() + getFloatingTaskListView().getItems().size() + getEventListView().getItems().size();
     }
 }

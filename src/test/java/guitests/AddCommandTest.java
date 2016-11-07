@@ -6,7 +6,6 @@ import guitests.guihandles.TaskCardHandle;
 import org.junit.Test;
 
 import seedu.menion.commons.core.Messages;
-import seedu.menion.logic.commands.AddCommand;
 import seedu.menion.model.activity.Activity;
 import seedu.menion.testutil.TestActivity;
 import seedu.menion.testutil.TestUtil;
@@ -18,10 +17,9 @@ public class AddCommandTest extends ActivityManagerGuiTest {
     @Test
     public void add() {
     	
-//    	commandBox.runCommand("clear");
         //add one task
         TestActivity[] taskList = td.getTypicalTask();
-        TestActivity taskToAdd = td.task2;
+        TestActivity taskToAdd = td.task6;
         
         assertAddSuccess(taskToAdd, taskList);
         taskList = TestUtil.addActivitiesToList(taskList, taskToAdd);
@@ -29,13 +27,13 @@ public class AddCommandTest extends ActivityManagerGuiTest {
         //@@author A0139515A
         //add floating task
         TestActivity[] floatingTaskList = td.getTypicalFloatingTask();
-        TestActivity floatingTaskToAdd = td.floatingTask2;
+        TestActivity floatingTaskToAdd = td.floatingTask6;
         assertAddSuccess(floatingTaskToAdd, floatingTaskList);
         floatingTaskList = TestUtil.addActivitiesToList(floatingTaskList, floatingTaskToAdd);
          
         //add event
         TestActivity[] eventList = td.getTypicalEvent();
-        TestActivity eventToAdd = td.event2;
+        TestActivity eventToAdd = td.event6;
         assertAddSuccess(eventToAdd, eventList);
         floatingTaskList = TestUtil.addActivitiesToList(eventList, eventToAdd);
     

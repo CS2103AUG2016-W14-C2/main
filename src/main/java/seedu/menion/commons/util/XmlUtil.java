@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Helps with reading from and writing to XML files.
+ * Helps with reading from, writing and deleting XML files
  */
 public class XmlUtil {
 
@@ -63,5 +63,13 @@ public class XmlUtil {
 
         m.marshal(data, file);
     }
-
+    
+    //@@author A0139515A
+	/**
+	 * Delete the original storage file that the activity manager is saved in
+	 */
+	public static void deleteOldStorageFile(String filepath) {
+		File oldStorage =  new File(filepath);
+		oldStorage.delete();
+	}
 }

@@ -1,7 +1,10 @@
 package seedu.menion.commons.core;
 
+import java.io.File;
 import java.util.Objects;
 import java.util.logging.Level;
+
+import seedu.menion.logic.commands.ModifyStoragePathCommand;
 
 /**
  * Config values used by the app
@@ -17,8 +20,17 @@ public class Config {
     private String activityManagerFilePath = "data/menion.xml";
     private String activityManagerName = "Menion";
 
-
+    private static Config instance;
+    
     public Config() {
+ 
+    }
+    
+    public static Config getInstance() {
+        if (instance == null) {
+            instance = new Config();
+        }
+        return instance;
     }
 
     public String getAppTitle() {

@@ -1,5 +1,7 @@
 package seedu.menion.logic.commands;
 
+import java.util.ArrayList;
+
 import seedu.menion.commons.core.Messages;
 import seedu.menion.commons.core.UnmodifiableObservableList;
 import seedu.menion.model.ActivityManager;
@@ -26,26 +28,27 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + Activity.EVENT_TYPE + " 3";
 
     public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
-
-    public final int targetIndex;
+    
+    public final String[] targetIndex;
     public final String targetType;
     
-    private Activity toBeDeleted;
-    
-    public DeleteCommand(String targetType, int targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(String targetType, String[] targetIndexArray) {
+        this.targetIndex = targetIndexArray;
         this.targetType = targetType.trim();
     }
-
 
     @Override
     public CommandResult execute() {
     	assert model != null;
     	
-    	storePreviousState();
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
     	model.updateRecentChangedActivity(null);
     	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
+        StringBuilder feedbackString = new StringBuilder();  
+        ArrayList<Activity> activitiesToBeDeleted = new ArrayList<Activity>();
+        
         if (targetType.equals(Activity.TASK_TYPE)) {
             lastShownList = model.getFilteredTaskList();
         }
@@ -58,43 +61,75 @@ public class DeleteCommand extends Command {
         else {
             lastShownList = null;
             indicateAttemptToExecuteIncorrectCommand();
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
-
-        if (lastShownList.size() < targetIndex) {
+        
+        //Delete command has to contain at least one activity index
+        if (targetIndex.length == 1){
             indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+            return new CommandResult(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
-
-        ReadOnlyActivity activityToDelete = lastShownList.get(targetIndex - 1);
-        toBeDeleted = (Activity)activityToDelete;
-    	
-        try {
-            if (targetType.equals(Activity.TASK_TYPE)){
-                model.deleteTask(activityToDelete);
+        
+        //retrieves a list of activities based on the index provided
+        for (int Index = 1; Index < targetIndex.length; Index++) {
+            try {
+                Integer newTargetIndex = Integer.valueOf(targetIndex[Index]);
+                
+                if (!isValidTargetIndex(lastShownList, newTargetIndex)){
+                    indicateAttemptToExecuteIncorrectCommand();
+                    return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+                }
+                
+                ReadOnlyActivity activityToDelete = lastShownList.get(newTargetIndex - 1);
+                activitiesToBeDeleted.add((Activity)activityToDelete);
+                
+            }catch (NumberFormatException error) {
+                indicateAttemptToExecuteIncorrectCommand();
+                return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
             }
-            else if (targetType.equals(Activity.EVENT_TYPE)){
-                model.deleteEvent(activityToDelete);
-            }
-            else {
-                model.deleteFloatingTask(activityToDelete);
-            }
-        } catch (ActivityNotFoundException pnfe) {
-            assert false : "The target activity cannot be missing";
         }
-
-        return new CommandResult(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
+        
+        //deletes each activity in the activitiesToBeDeleted list
+        for (int i = 0; i < activitiesToBeDeleted.size(); i++) {
+            ReadOnlyActivity activityToDelete = activitiesToBeDeleted.get(i);
+            try {
+                if (targetType.equals(Activity.TASK_TYPE)){
+                    model.deleteTask(activityToDelete);
+                }
+                else if (targetType.equals(Activity.EVENT_TYPE)){
+                    model.deleteEvent(activityToDelete);
+                }
+                else if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
+                    model.deleteFloatingTask(activityToDelete);
+                }
+            } catch (ActivityNotFoundException pnfe) {
+                assert false : "The target activity cannot be missing";
+            }
+            
+            feedbackString.append(String.format(MESSAGE_DELETE_ACTIVITY_SUCCESS, activityToDelete));
+            //last line of console message should not have new line
+            if (i == activitiesToBeDeleted.size() - 1) {
+                break;
+            }
+            feedbackString.append("\n\n");
+        }
+        return new CommandResult(feedbackString.toString());
     }
-
-    //@@author A0139515A
+    
     /**
-     * Delete command will store previous activity manager to support undo command
+     * Checks if targetIndex provided is within the range of lastShownList
      *
      */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
+    private boolean isValidTargetIndex(UnmodifiableObservableList<ReadOnlyActivity> lastShownList,
+            Integer newTargetIndex) {
+        if (lastShownList.size() < newTargetIndex) {
+            return false;
+        }
+        else if (newTargetIndex < 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
-    //@@author
 }

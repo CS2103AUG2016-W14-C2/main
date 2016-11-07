@@ -6,76 +6,71 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import seedu.menion.model.activity.Activity;
 import seedu.menion.model.activity.ReadOnlyActivity;
 
 //@@author A0139515A
-public class TaskCard extends UiPart{
+public class TaskCard extends UiPart {
 
-    private static final String FXML = "TaskCard.fxml";
+	private static final String FXML = "TaskCard.fxml";
 
-    @FXML
-    private HBox taskCardPane;
-    @FXML
-    private Label id;
-    @FXML
-    private Label name;
-    @FXML
-    private Label note;
-    @FXML
-    private Label startDate;
-    @FXML
-    private Label startTime;
-    @FXML
-    private ImageView completionStatus;
-    
-    private ReadOnlyActivity task;
-    
-    private int displayedIndex;
+	@FXML
+	private HBox taskCardPane;
+	@FXML
+	private Label id;
+	@FXML
+	private Label name;
+	@FXML
+	private Label note;
+	@FXML
+	private Label startDate;
+	@FXML
+	private Label startTime;
+	@FXML
+	private ImageView completionStatus;
 
-    public TaskCard(){
-        
-    }
+	private ReadOnlyActivity task;
 
-    public static TaskCard load(ReadOnlyActivity task, int displayedIndex){
-        TaskCard card = new TaskCard();
-        card.task = task;
-        card.displayedIndex = displayedIndex;
-        return UiPartLoader.loadUiPart(card);
-    }
+	private int displayedIndex;
 
-    @FXML
-    public void initialize() {
-        name.setText(task.getActivityName().fullName);
-        note.setText(task.getNote().toString());
-        startDate.setText(task.getActivityStartDate().toFormattedDateString());
-        startTime.setText(task.getActivityStartTime().toString());
-        if (task.getActivityStatus().toString().equals("Completed")) {
-        	completionStatus.setImage(new Image("/images/complete.png"));
-        }
-        else if (task.isTimePassed()) {
-            System.out.println("This task's istimePAssed : " + task.isTimePassed());
-           // WEIJIE -> DISPLAY Overdue.png here!
-        }
-        /**
-        else {
-        	completionStatus.setImage(new Image("/images/uncomplete.png"));
-        }
-        */
-        id.setText(displayedIndex + ". ");    
-    }
+	public TaskCard() {
 
-    public HBox getLayout() {
-        return taskCardPane;
-    }
+	}
 
-    @Override
-    public void setNode(Node node) {
-        taskCardPane = (HBox)node;
-    }
+	public static TaskCard load(ReadOnlyActivity task, int displayedIndex) {
+		TaskCard card = new TaskCard();
+		card.task = task;
+		card.displayedIndex = displayedIndex;
+		return UiPartLoader.loadUiPart(card);
+	}
 
-    @Override
-    public String getFxmlPath() {
-        return FXML;
-    }
+	@FXML
+	public void initialize() {
+		name.setText(task.getActivityName().fullName);
+		note.setText(task.getNote().toString());
+		startDate.setText(task.getActivityStartDate().toFormattedDateString());
+		startTime.setText(task.getActivityStartTime().toString());
+		if (task.getActivityStatus().toString().equals("Completed")) {
+			completionStatus.setImage(new Image("/images/complete.png"));
+		} else if (task.isTimePassed()) {
+			completionStatus.setImage(new Image("/images/overdue.png"));
+		} else {
+			// Uncompleted activities have no image
+		}
+
+		id.setText(displayedIndex + ". ");
+	}
+
+	public HBox getLayout() {
+		return taskCardPane;
+	}
+
+	@Override
+	public void setNode(Node node) {
+		taskCardPane = (HBox) node;
+	}
+
+	@Override
+	public String getFxmlPath() {
+		return FXML;
+	}
 }
