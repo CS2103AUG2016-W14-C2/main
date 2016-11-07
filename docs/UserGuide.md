@@ -284,7 +284,7 @@ Command | Format
 Add | `add NAME n:NOTES...`<br>`add NAME by: DEADLINE_DATE DEADLINE_TIME n:NOTES...`<br>`add NAME from: START_DATE START_TIME to: END_DATE END_TIME n:NOTES...`
 Clear | `clear`
 Complete | `complete ACTIVITY_TYPE INDEX`
-Delete | `delete ACTIVITY_TYPE INDEX`
+Delete | `delete ACTIVITY_TYPE INDEX...`
 Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Exit | `exit`
 Find | `find KEYWORD`
