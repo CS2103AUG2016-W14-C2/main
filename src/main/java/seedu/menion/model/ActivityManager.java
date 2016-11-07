@@ -112,8 +112,19 @@ public class ActivityManager implements ReadOnlyActivityManager {
      * @throws UniqueActivityList.DuplicateTaskException if an equivalent tasks already exists.
      */
     public void addTask(Activity t) throws UniqueActivityList.DuplicateTaskException {
+
+        Calendar currentTime = Calendar.getInstance();
+        // Only goes into this conditional statement if it is overdue.
+        if (BackgroundCheckManager.isActivityOver(currentTime, (ReadOnlyActivity) t)) {
+            t.setTimePassed(true);
+        } else {
+            // Not overdue.
+            t.setTimePassed(false);
+            t.setEmailSent(false);
+        }
         //syncTagsWithMasterList(t);
         tasks.add(t);
+        
         Collections.sort(tasks.getInternalList(), new TaskComparator());
     }
     
