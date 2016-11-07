@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<activitymanager>
+    <tasks>
+        <activityType>task</activityType>
+        <name>complete cs2101 op2 script</name>
+        <note>must complete urgent</note>
+        <startDate>08-10-2016</startDate>
+        <startTime>1900</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>update readme page</name>
+        <note>2103t</note>
+        <startDate>06-11-2016</startDate>
+        <startTime>2359</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>collate cs2103t code</name>
+        <startDate>07-11-2016</startDate>
+        <startTime>2359</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>prepare CS2103 software demo</name>
+        <startDate>09-11-2016</startDate>
+        <startTime></startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>CS2010 PS6</name>
+        <startDate>09-11-2016</startDate>
+        <startTime>0116</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>do cs2106 tutorial</name>
+        <note>read lecture notes beforehand</note>
+        <startDate>10-11-2016</startDate>
+        <startTime></startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>Complete CS3230 Homework 4</name>
+        <note>It is very difficult. Should start soon</note>
+        <startDate>11-11-2016</startDate>
+        <startTime>2027</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>watch CS2103 week 12 webcast</name>
+        <note>download video</note>
+        <startDate>12-11-2016</startDate>
+        <startTime>2000</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>revise CS2103 uml diagram</name>
+        <startDate>26-11-2016</startDate>
+        <startTime></startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>CS3230 Homework 3</name>
+        <note>Not easy</note>
+        <startDate>28-10-2016</startDate>
+        <startTime>2347</startTime>
+        <status>Completed</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>Complete CS2106 Tutorial 10</name>
+        <startDate>03-11-2016</startDate>
+        <startTime>2341</startTime>
+        <status>Completed</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>Fix bugs to pass travis</name>
+        <note>must!</note>
+        <startDate>07-11-2016</startDate>
+        <startTime>2359</startTime>
+        <status>Completed</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>update test script</name>
+        <note>must!</note>
+        <startDate>07-11-2016</startDate>
+        <startTime>2359</startTime>
+        <status>Completed</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>Completed Product Demo</name>
+        <note>This is cool </note>
+        <startDate>08-11-2016</startDate>
+        <startTime>0012</startTime>
+        <status>Completed</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>Buy lunch</name>
+        <note>Spend less than $20</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>send email to Damith</name>
+        <note>2103t is hard</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>schedule meetup with Jim</name>
+        <note>introduce Menion</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>organize 2010 notes</name>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>buy new shoes</name>
+        <note>puma seudes</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>buy snacks</name>
+        <note>put in locker</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>go for a run</name>
+        <note>lose some weight</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>sign up for 2fa</name>
+        <note>troublesome</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>buy flower</name>
+        <note>not roses</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>print handouts for cs2103</name>
+        <note>revision</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>sign up for dance session</name>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>buy pencil case</name>
+        <note>plain pencil case</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>train for ippt</name>
+        <note>i dont know when</note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>buy christmas gift</name>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>Top up Ez Link Card</name>
+        <note>$20</note>
+        <status>Completed</status>
+    </floatingTasks>
+    <events>
+        <activityType>event</activityType>
+        <name>project meeting</name>
+        <note>celebrate</note>
+        <startDate>10-10-2016</startDate>
+        <startTime>1400</startTime>
+        <endDate>10-10-2016</endDate>
+        <endTime>1800</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>revise ST2131 tut 8</name>
+        <startDate>11-10-2016</startDate>
+        <startTime>0900</startTime>
+        <endDate>11-10-2016</endDate>
+        <endTime>1200</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>go to gym</name>
+        <startDate>18-10-2016</startDate>
+        <startTime>2000</startTime>
+        <endDate>18-10-2016</endDate>
+        <endTime>2100</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>church meetup</name>
+        <startDate>20-10-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>20-10-2016</endDate>
+        <endTime>2000</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>buy groceries for dinner</name>
+        <startDate>23-10-2016</startDate>
+        <startTime>1600</startTime>
+        <endDate>23-10-2016</endDate>
+        <endTime>1700</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>go for a light run</name>
+        <startDate>23-10-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>23-10-2016</endDate>
+        <endTime>1900</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>German Mundliche Prufung</name>
+        <note>I got screwed</note>
+        <startDate>26-10-2016</startDate>
+        <startTime>1000</startTime>
+        <endDate>26-10-2016</endDate>
+        <endTime>1200</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>CS2103T First Product Demo</name>
+        <startDate>26-10-2016</startDate>
+        <startTime>1200</startTime>
+        <endDate>26-10-2016</endDate>
+        <endTime>1400</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>get a haircut</name>
+        <startDate>01-11-2016</startDate>
+        <startTime>1100</startTime>
+        <endDate>01-11-2016</endDate>
+        <endTime>1130</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>2103t meeting</name>
+        <startDate>01-11-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>01-11-2016</endDate>
+        <endTime>2200</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>CS2103T demo</name>
+        <note>Remember to prepare for it!</note>
+        <startDate>02-11-2016</startDate>
+        <startTime>1400</startTime>
+        <endDate>02-11-2016</endDate>
+        <endTime>1500</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>true</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>Prepare for OP2 tomorrow</name>
+        <note>I have to finish it</note>
+        <startDate>02-11-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>02-11-2016</endDate>
+        <endTime>1900</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>revise ST2131 tut 8</name>
+        <startDate>03-11-2016</startDate>
+        <startTime>0800</startTime>
+        <endDate>03-11-2016</endDate>
+        <endTime>1500</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>CS2101 OP2</name>
+        <startDate>03-11-2016</startDate>
+        <startTime>1200</startTime>
+        <endDate>03-11-2016</endDate>
+        <endTime>1400</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>watch iphone 7 demo</name>
+        <startDate>03-11-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>03-11-2016</endDate>
+        <endTime>1900</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>dance lesson</name>
+        <startDate>06-11-2016</startDate>
+        <startTime>1230</startTime>
+        <endDate>06-11-2016</endDate>
+        <endTime>1400</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>revise cs2101 materials</name>
+        <note>for reflection tomorrow </note>
+        <startDate>06-11-2016</startDate>
+        <startTime>2000</startTime>
+        <endDate>06-11-2016</endDate>
+        <endTime>2300</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>true</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>CS2101 reflection</name>
+        <startDate>07-11-2016</startDate>
+        <startTime>1200</startTime>
+        <endDate>07-11-2016</endDate>
+        <endTime>1330</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>get1006 wildcard</name>
+        <startDate>08-11-2016</startDate>
+        <startTime>1600</startTime>
+        <endDate>08-11-2016</endDate>
+        <endTime>1800</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>watch dr strange</name>
+        <note>need a break </note>
+        <startDate>13-11-2016</startDate>
+        <startTime>1100</startTime>
+        <endDate>13-11-2016</endDate>
+        <endTime>1300</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>dinner at marina bay sands</name>
+        <note>family dinner</note>
+        <startDate>13-11-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>13-11-2016</endDate>
+        <endTime>2000</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+</activitymanager>

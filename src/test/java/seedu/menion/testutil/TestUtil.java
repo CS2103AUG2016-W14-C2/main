@@ -62,17 +62,12 @@ public class TestUtil {
      */
     public static String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Activity[] sampleActivityData = getSamplePersonData();
+    public static final Activity[] sampleActivityData = getSampleActivityData();
 
-    private static Activity[] getSamplePersonData() {
+    private static Activity[] getSampleActivityData() {
         try {
-            return new Activity[]{
-                    // Floating Task
-                   // new Activity(Activity.FLOATING_TASK_TYPE, new ActivityName("Pay JS for spotify!"), new Note(" It costs $15")),
-                    // Task
+            return new Activity[]{                  
                     new Activity(Activity.TASK_TYPE, new ActivityName("Do CS2103T testing"), new Note("it is so hard!"), new ActivityDate("10-08-2016"), new ActivityTime("1900"), new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null),
-                    // Event
-                   // new Activity(Activity.EVENT_TYPE, new ActivityName("CS2103T tutorial"), new Note("Don't Sleep"), new ActivityDate("10-08-2016"), new ActivityTime("1500"), new ActivityDate("10-08-2016"), new ActivityTime("1800"))               
             };
         } catch (IllegalValueException e) {
             assert false;
@@ -81,7 +76,7 @@ public class TestUtil {
         }
     }
 
-    public static List<Activity> generateSamplePersonData() {
+    public static List<Activity> generateSampleActivityData() {
         return Arrays.asList(sampleActivityData);
     }
 
@@ -101,7 +96,7 @@ public class TestUtil {
     }
 
     public static void createDataFileWithSampleData(String filePath) {
-        createDataFileWithData(generateSampleStorageAddressBook(), filePath);
+        createDataFileWithData(generateSampleStorageActivityManager(), filePath);
     }
 
     public static <T> void createDataFileWithData(T data, String filePath) {
@@ -118,12 +113,12 @@ public class TestUtil {
         createDataFileWithSampleData(TestApp.SAVE_LOCATION_FOR_TESTING);
     }
 
-    public static ActivityManager generateEmptyAddressBook() {
+    public static ActivityManager generateEmptyActivityManager() {
         return new ActivityManager(new UniqueActivityList(), new UniqueActivityList(), new UniqueActivityList());
     }
 
-    public static XmlSerializableActivityManager generateSampleStorageAddressBook() {
-        return new XmlSerializableActivityManager(generateEmptyAddressBook());
+    public static XmlSerializableActivityManager generateSampleStorageActivityManager() {
+        return new XmlSerializableActivityManager(generateEmptyActivityManager());
     }
 
     /**
@@ -267,8 +262,21 @@ public class TestUtil {
         listOfActivities.removeAll(asList(activitiesToRemove));
         return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
     }
-
-
+    
+    //@@author A0146752B
+    /**
+     * Removes a subset from the list of activities.
+     * @param activities The list of activities
+     * @param activitiesToRemove The array containing subset of activities.
+     * @return The modified activities after removal of the subset from activities.
+     */
+    public static TestActivity[] removeMultipleActivitiesFromList(final TestActivity[] activities, TestActivity[] activitiesToRemove) {
+        List<TestActivity> listOfActivities = asList(activities);
+        listOfActivities.removeAll(asList(activitiesToRemove));
+        return listOfActivities.toArray(new TestActivity[listOfActivities.size()]);
+    }
+    //@@author
+    
     /**
      * Returns a copy of the list with the activity at specified index removed.
      * @param list original list to copy from
@@ -277,7 +285,22 @@ public class TestUtil {
     public static TestActivity[] removeActivityFromList(final TestActivity[] list, int targetIndexInOneIndexedFormat) {
         return removeActivitiesFromList(list, list[targetIndexInOneIndexedFormat-1]);
     }
-
+    
+    //@@author A0146752B
+    /**
+     * Returns a copy of the list with the activity at specified indexes removed.
+     * @param list original list to copy from
+     * @param targetIndexInOneIndexedString e.g. if the element indexed at 1,3,5 is to be removed, {"1","3","5"} should be given as the string array.
+     */
+    public static TestActivity[] removeMultipleActivityFromList(final TestActivity[] list, String[] targetIndexInOneIndexedString) {
+        TestActivity[] testActivityArray = new TestActivity[targetIndexInOneIndexedString.length];
+        for (int i = 0; i < targetIndexInOneIndexedString.length; i++){
+            testActivityArray[i] = list[Integer.valueOf(targetIndexInOneIndexedString[i]) - 1];
+        }
+        return removeMultipleActivitiesFromList(list, testActivityArray);
+    }
+    //@@author
+    
     /**
      * Replaces activities[i] with a activity.
      * @param activities The array of activities.
@@ -285,7 +308,9 @@ public class TestUtil {
      * @param index The index of the activity to be replaced.
      * @return
      */
-    public static TestActivity[] replacePersonFromList(TestActivity[] activities, TestActivity activity, int index) {
+    
+    
+    public static TestActivity[] replaceActivityFromList(TestActivity[] activities, TestActivity activity, int index) {
         activities[index] = activity;
         return activities;
     }

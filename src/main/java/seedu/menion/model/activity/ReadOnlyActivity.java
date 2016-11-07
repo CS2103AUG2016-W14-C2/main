@@ -50,6 +50,7 @@ public interface ReadOnlyActivity {
      */
     void setCompleted();
     void setUncompleted();
+    void setActivityType(String newType) throws IllegalValueException;
     void setActivityName(String newName) throws IllegalValueException;
     void setActivityNote(String newNote) throws IllegalValueException;
     void setActivityStartDateTime(String newDate, String newTime) throws IllegalValueException;
@@ -64,10 +65,10 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isFloatingTaskSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getActivityName().equals(this.getActivityName()) // state checks here onwards
-                && other.getNote().equals(this.getNote()));
+                && other.getActivityName().equals(this.getActivityName())); // state checks here onwards
     }
 
     /**
@@ -76,12 +77,12 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isTaskSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getActivityName().equals(this.getActivityName()) // state checks here onwards
                 && other.getActivityStartDate().equals(this.getActivityStartDate())
-                && other.getActivityStartTime().equals(this.getActivityStartTime())
-                && other.getNote().equals(this.getNote()));
+                && other.getActivityStartTime().equals(this.getActivityStartTime()));
     }
 
     /**
@@ -90,14 +91,14 @@ public interface ReadOnlyActivity {
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
     default boolean isEventSameStateAs(ReadOnlyActivity other) {
+        
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getActivityName().equals(this.getActivityName()) // state checks here onwards
                 && other.getActivityStartDate().equals(this.getActivityStartDate())
                 && other.getActivityStartTime().equals(this.getActivityStartTime())
                 && other.getActivityEndDate().equals(this.getActivityEndDate())
-                && other.getActivityEndTime().equals(this.getActivityEndTime())
-                && other.getNote().equals(this.getNote()));
+                && other.getActivityEndTime().equals(this.getActivityEndTime()));
     }
     
     /**
@@ -105,13 +106,22 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getFloatingTaskAsText() {
+        
         final StringBuilder builder = new StringBuilder();
-        builder.append(getActivityName())
-                .append(" Note: ")
-                .append(getNote())
-                .append(" Completion status: ")
-                .append(getActivityStatus().toString());
-        return builder.toString();
+        if (getNote().equals(null)){
+        	builder.append(getActivityName())
+        			.append("\nCompletion status: ")
+        			.append(getActivityStatus().toString());
+        	return builder.toString();
+        }
+		else {
+			builder.append(getActivityName())
+					.append("\nNote: ")
+					.append(getNote())
+					.append("\nCompletion status: ")
+					.append(getActivityStatus().toString());
+			return builder.toString();
+		}
     }
     
     /**
@@ -119,16 +129,21 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getTaskAsText() {
+        
         final StringBuilder builder = new StringBuilder();
         builder.append(getActivityName())
-                .append(" by: ")
-                .append(getActivityStartDate())
-                .append(" at: ")
-                .append(getActivityStartTime())
-                .append(" Note: ")
-                .append(getNote())
-                .append(" Completion status: ")
-                .append(getActivityStatus().toString());
+                .append("\nDeadline: ")
+                .append(getActivityStartDate().toFormattedDateString());
+        if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
+        	builder.append(", ")
+        			.append(getActivityStartTime());
+        }
+        if (getNote().toString() != null){
+        	builder.append("\nNote: ")
+        			.append(getNote());
+        }
+       builder.append("\nCompletion status: ")
+       			.append(getActivityStatus().toString());
 
         return builder.toString();
     }
@@ -138,20 +153,34 @@ public interface ReadOnlyActivity {
      * Formats the Activity as text, showing all activity details.
      */
     default String getEventAsText() {
+        
         final StringBuilder builder = new StringBuilder();
+        
         builder.append(getActivityName())
-                .append(" Starting at: ")
-                .append(getActivityStartDate())
-                .append(" at: ")
-                .append(getActivityStartTime())
-                .append(" Ending at: ")
-                .append(getActivityEndDate())
-                .append(" at: ")
-                .append(getActivityEndTime())
-                .append(" Note: ")
-                .append(getNote())        
-                .append(" Completion status: ")
-                .append(getActivityStatus().toString());
+        		.append("\nStarting from: ")
+        		.append(getActivityStartDate().toFormattedDateString());
+        
+        if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
+        	builder.append(", ")
+			.append(getActivityStartTime());
+        }
+        
+        builder.append("\nEnding at: ")
+        		.append(getActivityEndDate().toFormattedDateString());
+        
+        if (!getActivityStartTime().toString().equals(ActivityTime.INFERRED_TIME)){
+        	builder.append(",  ")
+			.append(getActivityEndTime());
+        }
+        
+        if (getNote().toString() != null){
+        	builder.append("\nNote: ")
+        			.append(getNote());
+        }
+        
+        builder.append("\nCompletion status: ")
+        		.append(getActivityStatus().toString());
+        
         return builder.toString();
     }
 }

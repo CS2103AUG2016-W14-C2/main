@@ -1,4 +1,3 @@
-//@@author A0139164A
 package seedu.menion.model.activity;
 
 import java.util.Date;
@@ -13,6 +12,7 @@ import seedu.menion.commons.util.DateChecker;
  * Represents a Activity's date date in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
+//@@author A0139164A
 public class ActivityDate {
 
 
@@ -32,10 +32,9 @@ public class ActivityDate {
      * @throws IllegalValueException if given date string is invalid.
      */
     public ActivityDate(String date) throws IllegalValueException {
+        
         assert date != null;
         date = date.trim();
-
-         
         extractMonth(date);
         this.formattedValue = formatNiceDate(date);
         this.value = date;

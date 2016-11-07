@@ -1,6 +1,4 @@
-//@@author A0139164A
 package seedu.menion.model.activity;
-
 
 import seedu.menion.commons.exceptions.IllegalValueException;
 
@@ -8,6 +6,7 @@ import seedu.menion.commons.exceptions.IllegalValueException;
  * Represents an activity's note in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
  */
+//@@author A0139164A
 public class Note {
     
     public String value = "-";
@@ -16,6 +15,7 @@ public class Note {
      * Constructor for a note, takes in new String as note.
      */
     public Note(String note) throws IllegalValueException {
+        
         this.value = note;
     }
     
@@ -26,6 +26,7 @@ public class Note {
 
     @Override
     public boolean equals(Object other) {
+        
         return other == this // short circuit if same object
                 || (other instanceof Note // instanceof handles nulls
                 && this.value.equals(((Note) other).value)); // state check

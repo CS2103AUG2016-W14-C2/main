@@ -87,7 +87,8 @@ public class CommandBox extends UiPart {
         highlightMostRecentlyChangedActivity();
     }
     
-    //@@author A139515A
+    //@@author A0139515A
+    
     /**
      * Highlight the most recently changed activity to indicate changes are made to it
      */

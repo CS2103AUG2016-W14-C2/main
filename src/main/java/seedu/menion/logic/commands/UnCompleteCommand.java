@@ -1,4 +1,4 @@
-//@@author A0139164A
+
 package seedu.menion.logic.commands;
 
 import seedu.menion.commons.core.Messages;
@@ -12,6 +12,7 @@ import seedu.menion.model.activity.UniqueActivityList.ActivityNotFoundException;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
+//@@author A0139164A
 public class UnCompleteCommand extends Command {
 
     public static final String COMMAND_WORD = "uncomplete";
@@ -27,15 +28,17 @@ public class UnCompleteCommand extends Command {
     ReadOnlyActivity activityToUncomplete;
     
     public UnCompleteCommand(String[] splited) {
+        
+        assert splited != null;
         this.targetType = splited[1];
         this.targetIndex = Integer.valueOf(splited[2]) - 1;
     }
 
     @Override
     public CommandResult execute() {
-        assert model != null;
         
-        storePreviousState();
+        assert model != null;
+        model.storePreviousState(new ActivityManager(model.getActivityManager()));
         
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         try {
@@ -61,7 +64,6 @@ public class UnCompleteCommand extends Command {
         }
         
         callUnCompleteActivity(targetType, activityToUncomplete); // Calls the correct method depending on type of activity.
-        activityToUncomplete = lastShownList.get(targetIndex);
         
         model.updateRecentChangedActivity(activityToUncomplete);
         
@@ -69,7 +71,8 @@ public class UnCompleteCommand extends Command {
     }
 
     private void callUnCompleteActivity(String targetType, ReadOnlyActivity activityToUncomplete) {
-        
+    	assert model != null;
+        		
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                 model.UncompleteFloatingTask(activityToUncomplete);
@@ -80,17 +83,4 @@ public class UnCompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
     }
-    
-    //@@author A0139515A
-    /**
-     * Uncomplete command will store previous activity manager to support undo command
-     *
-     */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
-    }
-    //@@author
 }

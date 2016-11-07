@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
+
+import seedu.menion.model.activity.ActivityTime;
 //@@author A0139277U
 /**
  * This class is a Parser utility class. It's main purpose is to use the Natty Library to parse
@@ -35,8 +37,12 @@ public class NattyDateParser {
 		calendar.setTime(date);
 		
 		dateTimeList.add(0, formatDate(calendar));
-		dateTimeList.add(1, formatTime(calendar));
-			
+		if (group.isTimeInferred()){
+			dateTimeList.add(1, ActivityTime.INFERRED_TIME);
+		}
+		else {
+			dateTimeList.add(1, formatTime(calendar));
+		}
 	}
 	
 	/**
@@ -68,7 +74,6 @@ public class NattyDateParser {
 		else {
 			dayString = Integer.toString(day);
 		}
-		
 		return (dayString + "-" + monthString + "-" + Integer.toString(year));
 	}
 		
@@ -97,8 +102,6 @@ public class NattyDateParser {
 		else {
 			minString = Integer.toString(min);
 		}
-		
-		return hourString + minString;
-		
+		return hourString + minString;	
 	}
 }

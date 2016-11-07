@@ -2,17 +2,19 @@ package seedu.menion.testutil;
 
 import java.util.ArrayList;
 
+import seedu.menion.commons.core.Messages;
 import seedu.menion.commons.exceptions.IllegalValueException;
 import seedu.menion.commons.util.DateChecker;
 import seedu.menion.logic.commands.CompleteCommand;
 import seedu.menion.logic.commands.EditCommand;
 import seedu.menion.logic.commands.UnCompleteCommand;
+import seedu.menion.logic.parser.EditParser;
 import seedu.menion.model.activity.*;
 
-//@@author A0139164A
 /**
  * A mutable Activity object. For testing only.
  */
+//@@author A0139164A
 public class TestActivity implements ReadOnlyActivity {
 
     private ActivityName name;
@@ -32,11 +34,10 @@ public class TestActivity implements ReadOnlyActivity {
     private ArrayList<String> activityDetails;
 
     /**
-     * For floatingTask
-     * Every field must be present and not null.
-     * @return 
+     * For floatingTask Every field must be present and not null.
      */
     public TestActivity(String type, ActivityName name, Note note, Completed status) {
+        
         this.activityType = type;
         this.name = name;
         this.note = note;
@@ -47,10 +48,9 @@ public class TestActivity implements ReadOnlyActivity {
     /**
      * For Task
      * Every field must be present and not null.
-     * @param activityTimePassed TODO
-     * @param emailSent TODO
      */
     public TestActivity(String type, ActivityName name, Note note, ActivityDate startDate, ActivityTime startTime, Completed status, Boolean activityTimePassed, Boolean emailSent) {
+        
         this.activityType = type;
         this.name = name;
         this.note = note;
@@ -75,10 +75,9 @@ public class TestActivity implements ReadOnlyActivity {
     /**
      * For Event
      * Every field must be present and not null.
-     * @param activityTimePassed TODO
-     * @param eventOngoing TODO
      */
     public TestActivity(String type, ActivityName name, Note note, ActivityDate startDate, ActivityTime startTime, ActivityDate endDate, ActivityTime endTime, Completed status, Boolean activityTimePassed, Boolean eventOngoing) {
+        
         this.activityType = type;
         this.name = name;
         this.note = note;
@@ -105,7 +104,6 @@ public class TestActivity implements ReadOnlyActivity {
 
     /**
      * Copy constructor.
-     * 
      */
     public TestActivity (ReadOnlyActivity source) {
         
@@ -138,7 +136,8 @@ public class TestActivity implements ReadOnlyActivity {
         this.activityDetails = source.getActivityDetails();
 
     }
-
+    
+    // Setters
     @Override
     public void setCompleted() {
         this.status = new Completed(true);
@@ -150,12 +149,43 @@ public class TestActivity implements ReadOnlyActivity {
     }
     
     @Override
-    public Completed getActivityStatus() {
-        return this.status;
+    public void setActivityDetails() {
+        if (activityType == Activity.FLOATING_TASK_TYPE) {
+            activityDetails = new ArrayList<String>(Activity.FLOATING_TASK_LENGTH);
+            activityDetails.add(activityType);
+            activityDetails.add(name.toString());
+            activityDetails.add(note.toString());
+            activityDetails.add(status.toString());
+        } else if (activityType == Activity.TASK_TYPE) {
+            activityDetails = new ArrayList<String>(Activity.TASK_LENGTH);
+            activityDetails.add(activityType);
+            activityDetails.add(name.toString());
+            activityDetails.add(note.toString());
+            activityDetails.add(startDate.toString());
+            activityDetails.add(startTime.toString());
+            activityDetails.add(status.toString());
+        } else if (activityType == Activity.EVENT_TYPE) {
+            activityDetails = new ArrayList<String>(Activity.EVENT_LENGTH);
+            activityDetails.add(activityType);
+            activityDetails.add(name.toString());
+            activityDetails.add(note.toString());
+            activityDetails.add(startDate.toString());
+            activityDetails.add(startTime.toString());
+            activityDetails.add(endDate.toString());
+            activityDetails.add(endTime.toString());
+            activityDetails.add(status.toString());
+        }
     }
+    
+    // Getters
     @Override
     public ActivityName getActivityName() {
         return this.name;
+    }
+
+    @Override
+    public Completed getActivityStatus() {
+        return this.status;
     }
 
     @Override
@@ -188,47 +218,22 @@ public class TestActivity implements ReadOnlyActivity {
         return this.activityType;
     }
 
-    @Override
-    public void setActivityDetails() {
-        if (activityType == Activity.FLOATING_TASK_TYPE) {
-            activityDetails = new ArrayList<String>(Activity.FLOATING_TASK_LENGTH);
-            activityDetails.add(activityType);
-            activityDetails.add(name.toString());
-            activityDetails.add(note.toString());
-            activityDetails.add(status.toString());
-        } else if (activityType == Activity.TASK_TYPE) {
-            activityDetails = new ArrayList<String>(Activity.TASK_LENGTH);
-            activityDetails.add(activityType);
-            activityDetails.add(name.toString());
-            activityDetails.add(note.toString());
-            activityDetails.add(startDate.toString());
-            activityDetails.add(startTime.toString());
-            activityDetails.add(status.toString());
-        } else if (activityType == Activity.EVENT_TYPE) {
-            activityDetails = new ArrayList<String>(Activity.EVENT_LENGTH);
-            activityDetails.add(activityType);
-            activityDetails.add(name.toString());
-            activityDetails.add(note.toString());
-            activityDetails.add(startDate.toString());
-            activityDetails.add(startTime.toString());
-            activityDetails.add(endDate.toString());
-            activityDetails.add(endTime.toString());
-            activityDetails.add(status.toString());
-        }
-    }
-
-    /**
-     * returns the arrayList consisting of an activity's details.
-     */
+    // returns the arrayList consisting of an activity's details.
     @Override
     public ArrayList<String> getActivityDetails() {
         return activityDetails;
     }
-
-
+    
+    /**
+     * List of GetCommands for Testing
+     * ------IMPORTANT FOR NEW DEVELOPERS-------
+     * Update example where necessary, when changes are made to command
+     */
+    
+    //Example: add helloworld by: tomorrow 9pm
     public String getAddCommand() {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append("add ");
             build.append(this.name.toString());
@@ -257,31 +262,13 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" n:");
             build.append(this.getNote().toString());
         }
-        
         return build.toString();
     }
-    //@@author A0139277U
-    /**
-     * This method changes the format of date from dd-mm-yyyy to mm-dd-yyyy
-     * @param dateToChange
-     * @return a date String in the format of mm-dd-yyyy
-     */
-    private static String changeDateFormat(String dateToChange){
-    
-    	String[] parts = dateToChange.split("-");
-    	return parts[1] + "-" + parts[0] + "-" + parts[2]; 
-    	
-    }
-    
-    //@@author
-    /**
-     * @param index of the Activity to complete
-     * @return complete command for the given Activity.
-     */
+
+    //Example: complete task 1
     public String getCompleteCommand(int index) {
         
         StringBuilder build = new StringBuilder();
-        
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(CompleteCommand.COMMAND_WORD);
             build.append(" ");
@@ -301,18 +288,13 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
         }
-        
         return build.toString();
     }
-    
-    /**
-     * @param index of the Activity to complete
-     * @return complete command for the given Activity.
-     */
+
+    //Example: uncomplete task 1
     public String getUncompleteCommand(int index) {
         
         StringBuilder build = new StringBuilder();
-        
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(UnCompleteCommand.COMMAND_WORD);
             build.append(" ");
@@ -332,17 +314,13 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
         }
-        
         return build.toString();
     }
     
-    /**
-     * @param index of the Activity to edit, and it's newName
-     * @return edit name command for the given Activity.
-     */
+    //Example: edit task 1 name: helloworld
     public String getEditNameCommand(int index, String newName) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(EditCommand.COMMAND_WORD);
             build.append(" ");
@@ -350,7 +328,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         } else if (activityType.equals(Activity.TASK_TYPE)) {
@@ -360,7 +338,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         } else if (activityType.equals(Activity.EVENT_TYPE)) {
@@ -370,20 +348,17 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NAME_PARAM);
+            build.append(EditParser.NAME_PARAM);
             build.append(" ");
             build.append(newName);
         }
         return build.toString();
     }
-    
-    /**
-     * @param index of the Activity to edit, and it's newNote
-     * @return edit note command for the given Activity.
-     */
+
+    //Example: edit task 1 note: helloworld
     public String getEditNoteCommand(int index, String newNote) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         if (activityType.equals(Activity.FLOATING_TASK_TYPE)) {
             build.append(EditCommand.COMMAND_WORD);
             build.append(" ");
@@ -391,7 +366,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         } else if (activityType.equals(Activity.TASK_TYPE)) {
@@ -401,7 +376,7 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         } else if (activityType.equals(Activity.EVENT_TYPE)) {
@@ -411,71 +386,110 @@ public class TestActivity implements ReadOnlyActivity {
             build.append(" ");
             build.append(String.valueOf(index));
             build.append(" ");
-            build.append(EditCommand.NOTE_PARAM);
+            build.append(EditParser.NOTE_PARAM);
             build.append(" ");
             build.append(newNote);
         }
         return build.toString();
     }
     
+    //Example: edit task 1 by: tomorrow 6pm
     public String getEditTaskDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.TASK_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.TASK_DEADLINE_PARAM);
+        build.append(EditParser.TASK_DEADLINE_PARAM);
         build.append(" ");
         build.append(newDateTime);
         return build.toString();
     }
     
+    //Example: edit event 1 from: tomorrow 2pm
     public String getEditEventFromDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.EVENT_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.EVENT_FROM_PARAM);
+        build.append(EditParser.EVENT_FROM_PARAM);
         build.append(" ");
         build.append(newDateTime);
-        System.out.println(build.toString());
         return build.toString();
     }
     
+    //Example: edit event 1 to: tomorrow 2pm
     public String getEditEventToDateTimeCommand(int index, String newDateTime) {
-        StringBuilder build = new StringBuilder();
         
+        StringBuilder build = new StringBuilder();
         build.append(EditCommand.COMMAND_WORD);
         build.append(" ");
         build.append(Activity.EVENT_TYPE);
         build.append(" ");
         build.append(String.valueOf(index));
         build.append(" ");
-        build.append(EditCommand.EVENT_TO_PARAM);
+        build.append(EditParser.EVENT_TO_PARAM);
         build.append(" ");
         build.append(newDateTime);
-        System.out.println(build.toString());
         return build.toString();
     }
     
-    @Override
-    public Activity get() {
-        return null;
+    //Example: edit floating 1 by: 12-12-2016 1700
+    public String getFloatingTaskChangeCommand(int index, String newDateTime) {
+        
+        StringBuilder build = new StringBuilder();
+        build.append(EditCommand.COMMAND_WORD);
+        build.append(" ");
+        build.append(Activity.FLOATING_TASK_TYPE);
+        build.append(" ");
+        build.append(String.valueOf(index));
+        build.append(" ");
+        build.append(EditParser.TASK_DEADLINE_PARAM);
+        build.append(" ");
+        build.append(newDateTime);
+        return build.toString();
     }
-
+    
+    //Example: edit task 1 to: floating
+    public String getTaskChangeCommand(int index) {
+        
+        StringBuilder build = new StringBuilder();
+        build.append(EditCommand.COMMAND_WORD);
+        build.append(" ");
+        build.append(Activity.TASK_TYPE);
+        build.append(" ");
+        build.append(String.valueOf(index));
+        build.append(" ");
+        build.append(EditParser.EVENT_TO_PARAM);
+        build.append(" ");
+        build.append(Activity.FLOATING_TASK_TYPE);
+        return build.toString();
+    }
+    
+    // SETTERS
     /**
      * List of methods to set Activity's param : Name, Note, startDate, startTime
-     * Exception handling to be editted ----------> ALERT! (Assumes User to pass in correct parameters)
      */
     @Override
+    public void setActivityType(String newType) throws IllegalValueException {
+        
+        if (!newType.equals(Activity.FLOATING_TASK_TYPE) && !newType.equals(Activity.TASK_TYPE) && !newType.equals(Activity.EVENT_TYPE)) {
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_TYPE);
+        }
+        else {
+            this.activityType = newType;
+        }
+    }
+    @Override
     public void setActivityName(String newName) {
+        
         assert (newName != null);
         try {
             this.name = new ActivityName(newName);
@@ -486,6 +500,7 @@ public class TestActivity implements ReadOnlyActivity {
 
     @Override
     public void setActivityNote(String newNote) {
+        
         assert (newNote != null);
         try {
             this.note = new Note(newNote);
@@ -496,6 +511,7 @@ public class TestActivity implements ReadOnlyActivity {
 
     @Override
     public void setActivityStartDateTime(String newDate, String newTime) throws IllegalValueException {
+        
         boolean isTask = this.activityType.equals(Activity.TASK_TYPE);
         boolean isEvent = this.activityType.equals(Activity.EVENT_TYPE);
         assert (isTask || isEvent);
@@ -513,6 +529,7 @@ public class TestActivity implements ReadOnlyActivity {
 
     @Override
     public void setActivityEndDateTime(String newDate, String newTime) throws IllegalValueException {
+        
         boolean isEvent = this.activityType.equals(Activity.EVENT_TYPE);
         DateChecker check = new DateChecker();
         assert (isEvent);
@@ -521,6 +538,19 @@ public class TestActivity implements ReadOnlyActivity {
         check.validEventDate(this.startDate, this.startTime, newDateObject, newTimeObject);
         this.endDate = newDateObject;
         this.endTime = newTimeObject;
+    }
+  
+    //@@author A0139277U
+    /**
+     * This method changes the format of date from dd-mm-yyyy to mm-dd-yyyy
+     * @param dateToChange
+     * @return a date String in the format of mm-dd-yyyy
+     */
+    private static String changeDateFormat(String dateToChange){
+    
+    	String[] parts = dateToChange.split("-");
+    	return parts[1] + "-" + parts[0] + "-" + parts[2]; 
+    	
     }
   
     @Override
@@ -561,5 +591,10 @@ public class TestActivity implements ReadOnlyActivity {
 	public void setEventOngoing(Boolean eventOngoing) {
     	this.eventOngoing = eventOngoing;		
 	}
-
+    
+    @Override
+    public Activity get() {
+        return null;
+    }
+    
 }

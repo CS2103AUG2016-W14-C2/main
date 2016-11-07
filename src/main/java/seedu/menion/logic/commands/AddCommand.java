@@ -17,7 +17,6 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-
     public static final String MESSAGE_USAGE = "add: adds an activity to Menion! Make sure the date is a valid date. If not Menion will set the date to today. \n"
             + "Examples to add different Activities: \n"
             + "Adding a Floating Task: "+ COMMAND_WORD + " buy lunch n: hawker food\n"
@@ -26,7 +25,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "Oh no! This activity already exists in the Menion";
-
+//@@author
+    
     private final Activity toAdd;
 
     private ActivityName name;
@@ -76,7 +76,8 @@ public class AddCommand extends Command {
     public CommandResult execute() {
     	assert model != null;
     	
-    	storePreviousState();
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
     	model.updateRecentChangedActivity((ReadOnlyActivity) toAdd);
     	
         try {
@@ -94,17 +95,5 @@ public class AddCommand extends Command {
         } catch (UniqueActivityList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         }
-    }
-    
-    //@@author A0139515A
-    /**
-     * Add command will store previous activity manager to support undo command
-     * 
-     */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
     }
 }

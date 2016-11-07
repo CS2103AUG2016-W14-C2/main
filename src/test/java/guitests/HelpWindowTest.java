@@ -25,3 +25,4 @@ public class HelpWindowTest extends ActivityManagerGuiTest {
         helpWindowHandle.closeWindow();
     }
 }
+
