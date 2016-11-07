@@ -5,7 +5,7 @@
 
 [//]: # (@@author A0146752B)
 
-Menion is a simple activity manager for users to track their activities so they can better manage their schedule. It is a command line interface that minimizes mouse usage and focuses on keyboard commands.
+Menion is a simple activity manager for everyone to track their activities so they can better manage their schedule. It is a command line interface that minimizes mouse usage and focuses on keyboard commands.
 
 This guide will bring you through the design and implementation of Menion. It's purpose is to help you understand how Menion works and how you can further contribute to its development. The content of this guide is structured from a top-down manner to best help you understand how our application works before going into the minute details. Let's begin!
 
@@ -21,7 +21,7 @@ This guide will bring you through the design and implementation of Menion. It's 
 * [Appendix B: Use Cases](#appendix-b-use-cases)
 * [Appendix C: Non Functional Requirements](#appendix-c-non-functional-requirements)
 * [Appendix D: Glossary](#appendix-d-glossary)
-* [Appendix E : Product Survey](#appendix-e-product-survey)
+* [Appendix E: Product Survey](#appendix-e-product-survey)
 
 
 ## Setting up
@@ -32,34 +32,36 @@ This guide will bring you through the design and implementation of Menion. It's 
 
     > * Having any Java 8 version is not enough. 
     > * This app will not work with earlier versions of Java 8.
-2. Eclipse IDE
-3. e(fx)clipse plugin for Eclipse 
-4. Buildship Gradle Integration plugin from the Eclipse Marketplace
+2. Eclipse IDE.
+3. e(fx)clipse plugin for Eclipse.
+4. Buildship Gradle Integration plugin from the Eclipse Marketplace.
 
 
 #### Importing the project into Eclipse
 
-1. Fork this repository, and clone the fork to your computer
+1. Fork this repository, and clone the fork to your computer.
 
-2. Open Eclipse
+2. Open Eclipse.
 
 	> * Ensure you have installed the e(fx)clipse and buildship plugins as given in the 		prerequisites above
 3. Click `File` > `Import`
 4. Click `Gradle` > `Gradle Project` > `Next` > `Next`
-5. Click `Browse`, then locate the project's directory
+5. Click `Browse`, then locate the project's directory.
 6. Click `Finish`
 
   > * If you are asked whether to 'keep' or 'overwrite' config files, choose to 'keep'.
-  > * Depending on your connection speed and server load, it can even take up to 30 minutes for the set up to finish
+  > * Depending on your connection speed and server load, it can even take up to 30 minutes for the set up to finish.
       (This is because Gradle downloads library files from servers during the project set up process)
   > * If Eclipse auto-changed any settings files during the import process, you can discard those changes.
 
 ## Design
 
+[//]: # (@@author A0139277U)
+
 ### Architecture
 
 <img src="images/Architecture.png" width="600"><br> 
-> Figure 1: Architecture of the App.<br>
+> Figure 1: Architecture of the App<br>
 
 Figure 1 above explains the high-level design of the App.
 Given below is a quick overview of each component.
@@ -70,6 +72,7 @@ It interacts with the different components at 2 specific parts of the App life c
 * On app launch: Initializes the components in the correct sequence, and connect them up with each other.
 * On exit: Shuts down the components and saves the activity manager.
 
+[//]: # (@@author)
 
 [*Commons*](#common-classes) represents a collection of classes used by multiple other components.
 Two of those classes play important roles at the architecture level:
@@ -81,8 +84,8 @@ Two of those classes play important roles at the architecture level:
 
 The rest of the App consists five components.
 
-* [*`UI`*](#ui-component) : The UI of the App.
-* [*`Logic`*](#logic-component) : The command executor.
+* [*`UI`*](#ui-component) : Facilitates interaction between the user and the app.
+* [*`Logic`*](#logic-component) : Executes the command given by the user.
 * [*`BackgroundCheck`*]() : Tracks any changes in data when application is running.   
 * [*`Model`*](#model-component) : Holds the data of the App in-memory.
 * [*`Storage`*](#storage-component) : Reads data from, and writes data to, the hard disk.
@@ -97,7 +100,7 @@ interface and exposes its functionality using the `LogicManager.java` class.
 
 
 <img src="images\SDforDeletePerson.png" width="800"><br>
-> Figure 2: Sequence diagram for delete command.
+> Figure 2: Sequence diagram for delete command
 
 Figure 2 above shows how the components interact for the scenario where the user issues the
 command `delete task 1`.
@@ -107,7 +110,7 @@ command `delete task 1`.
 
 
 <img src="images\SDforDeletePersonEventHandling.png" width="800"><br>
-> Figure 3 : Continuation of delete command from Figure 2.
+> Figure 3 : Continuation of delete command from Figure 2
 
 Figure 3 above shows how the `EventsCenter` reacts to that event, which eventually results in the updates
 being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br>
@@ -138,10 +141,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component
 
-* executes user commands using the `Logic` component by passing in strings that are captured by `CommandBox`
-* binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change
-* retrieves the three different lists from `Logic` at the start of the session
-* responds to events raised from various parts of the App and updates the UI accordingly. e.g. `ModifyStoragePathCommand` raise an event that leads to update of storage path in the status bar (refer to diagram 6)
+* executes user commands using the `Logic` component by passing in strings that are captured by `CommandBox`.
+* binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
+* retrieves the three different lists from `Logic` at the start of the session.
+* responds to events raised from various parts of the App and updates the UI accordingly. e.g. `ModifyStoragePathCommand` raise an event that leads to update of storage path in the status bar. (refer to figure 5)
 
 [//]: # (@@author)
 
@@ -157,6 +160,7 @@ The `Storage` component
 * saves `UserPref` objects in json format and feeds it back.
 * saves the Activity Manager data in xml format and feeds it back.
 
+[//]: # (@@author A0139164A)
 
 ### Logic component
 
@@ -167,25 +171,38 @@ API : [`Logic.java`](../src/main/java/seedu/menion/logic/Logic.java)
 
  [`Logic`](../src/main/java/seedu/menion/logic/Logic.java) uses the `ActivityParser` class to parse the user's command. Some commands such as the `AddCommand` and the `EditCommand` use additional `Parser` classes to help further parse the arguments. They result in a `Command` object being created and executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding an Activity) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
+[//]: # (@@author A0146752B)
+
 <img src="images/DeletePersonSdForLogic.png" width="800"><br>
-> Figure 8: Sequence Diagram in Logic<br>
+> Figure 8: Sequence Diagram of delete commannd<br>
 
 Figure 8 is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete task 1")`API call.
 
+[//]: # (@@author A0139277U)
+
 <img src="images/addsequencediagram.png" width="800"><br>
-> Figure 9: Sequence Diagram in Logic for the add command<br>
+> Figure 9: Sequence Diagram in Logic of add command<br>
 
 Figure 9 above shows the additional steps required by the `AddCommand` to parse its arguments. `ActivityParser` class to parse the user's command. The `ActivityParser` uses the `AddParser` class to parse argument for `AddCommand`. After the additional parsing, it creates a `Command` object and continues on in the same steps as the other commands.
 
+[//]: # (@@author A0139164A)
+<img src="images/editsequencediagram.png" width="800"><br>
+> Figure 10: Sequence Diagram in Logic of edit command<br>
+
+Figure 10 above shows how `EditCommand` requires an additional step in parsing. `ActivityParser` class passes the user's input to the `EditParser` class to parse the command properly. After parsing, it will return a new `Command` object being created and executed by the `LogicManager`. The command execution can affect the `Model` (e.g. editting an Activity) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`. This is similar to the `AddCommand`.
+
 [//]: # (@@author A139515A)
 
-Under logic command, there are several commands that make use of `Model` for execution.
+<img src="images/undosequencediagram.png" width="800"><br>
+> Figure 11: Sequence Diagram in Logic of undo command<br>
+
+Figure 11 above shows how `UndoCommand` makes use of the model to retrieve the previous activity manager.
 `UndoCommand` and `RedoCommand` make use of two stacks in `Model` which stores different states of `ReadOnlyActivityManager`. When there is a command that causes modification to `ReadOnlyActivityManager`, a copy of the state of `ReadOnlyActivityManager` before the modification will be pushed into the undo stack. Calling `UndoCommand` will cause a pop from the undo stack and the state will be pushed into the redo stack. Similarly, calling `RedoCommand` will cause a pop from redo stack and the state will be pushed back into the undo stack. This allows the application to jump around different states of `ReadOnlyActivityManager`.
 
 [//]: # (@@A0139277U)
 ### BackgroundCheck Component
 <img src="images/BackgroundCheck.png" width="800"><br>
-> Figure 9: BackgroundCheck component<br>
+> Figure 12: BackgroundCheck component<br>
 
 API: `BackgroundCheck.java`
 
@@ -199,19 +216,18 @@ The `BackgroundCheck` component
 ### Model component
 
 <img src="images/ModelClassDiagram.png" width="800"><br>
-> Figure 10: Model component<br>
+> Figure 13: Model component<br>
 
 *API* : [`Model.java`](../src/main/java/seedu/menion/model/Model.java)
 
 > The model class is not coupled to the other three components.
-
 
 The `Model` component
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Activity Manager data.
 * exposes a `UnmodifiableObservableList<ReadOnlyActivity>` that can be 'observed' For example, the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-<br><br>
+<br>
 
 ### Common classes
 
@@ -231,12 +247,16 @@ Take note of the following:
 * The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level
 * Currently log messages are output through: `Console` and to a `.log` file
 
+[//]: # (@@author A0139164A)
+
 *Logging Levels* can be classified as follows: 
 
 * `SEVERE`: It is a critical problem that may cause the termination of the application.
-* `WARNING` : It is a problem which may allow the application to continue to run but do so with caution.
-* `INFO` : It is a noteworthy action by the App.
-* `FINE` : It may not be noteworthy, but may be useful in debugging.
+* `WARNING`: It is a problem which may allow the application to continue to run but do so with caution.
+* `INFO`: It is a noteworthy action by the App.
+* `FINE`: It may not be noteworthy, but may be useful in debugging.
+
+[//]: # (@@author)
 
 ### Configuration
 
@@ -255,14 +275,12 @@ Tests can be found in the `./src/test/java` folder. There are two available opti
 2. Gradle
 	* See [UsingGradle.md](UsingGradle.md) for how to run tests using Gradle
 
-
-
 Testing is split into two components:
 
 1. *GUI Tests* - These are System Tests that test the entire App by simulating user actions on the GUI. 
    These are in the `guitests` package.
   
-2. *Non-GUI Tests* - These are tests not involving the GUI. They include,
+2. *Non-GUI Tests* - These are tests not involving the GUI. They include:
    * Unit tests targeting the lowest level methods/classes. 
       e.g. `seedu.menion.commons.UrlUtilTest`
       <br>
@@ -273,7 +291,7 @@ Testing is split into two components:
       e.g. `seedu.menion.logic.LogicManagerTest`
       <br>
   
->*Headless GUI Testing* :
+>*Headless GUI Testing*:
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,our GUI tests can be run in the headless mode.In the headless mode, GUI tests do not show up on the screen.That means the developer can do other things on the Computer while the tests are running.<br>
  See [UsingGradle.md](UsingGradle.md#running-tests) to learn how to run tests in headless mode.
  
@@ -314,7 +332,7 @@ Remember to include those libraries in the repo (this bloats the repo size). Dev
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
-[//]: # (@@author A0139277U)
+[//]: # (@@author A0146752B)
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
@@ -330,13 +348,17 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | modify storage path | store data in my desired location
 `* * *` | user | search for my activities using keywords | locate activities quickly
 `* *` | user | upload my schedule online and sync them across devices | view my schedules when I am using different devices
+<<<<<<< HEAD
 `* *` | user | set recurring activities| add repeated activities just once
 `* *` | user | sort activities by different datelines | have a clearer view of what needs to be completed first
 
 {More to be added}
+=======
+`* *` | user | sort activities by different datelines | have a clearer view of what needs to be completed first
+>>>>>>> 9fac70e7d6976538d0a389dca9ba026816c3710f
 
 
-[//]: # (@@author A0139515A)
+[//]: # (@@author A0139164A)
 
 ## Appendix B : Use Cases
 
@@ -361,7 +383,7 @@ Use case ends.
 > Repeat 1a1 - 1a2 until user inputs the correct format.<br>
 > Use case resumes at step 2.
 
-
+[//]: # (@@author A0146752B)
 
 #### Use Case : Delete Activity
 
@@ -381,6 +403,8 @@ Use case ends.
 > 1a2. User reinputs the indices of the Activities.<br>
 > Repeat 1a1 - 1ab until user inputs valid indices of the Activities.<br>
 > Use case resumes at step 2.
+
+[//]: # (@@author A0139515A)
 
 #### Use Case : Undo
 
@@ -405,28 +429,28 @@ Use case ends.
 
 **MSS**
 
-1. User enters edit command followed by the name of the Activity to be edited and the information that is to be edited.
-2. Menion does a search for the name of the Activity in the database and updates the entry.
-3. Menion displays the updated information of the Activity.
+1. User enters edit command followed by the name of the Activity to be edited, it's index, the parameter that is to be edited, and the changes to be made.
+2. Menion displays the updated information of the Activity.
 
 Use case ends.
 
 **Extensions**
 
-1a. The name of the Activity entered by the user does not exist.
+1a. The index of the Activity entered by the user does not exist.
 
-> 1a1. Menion prompts user to re-input name of the Activity.<br>
-> 1a2. User re-inputs name of Activity.<br>
-> Repeat 1a1 - 1a2 until the user inputs a valid name of Activity.<br>
+> 1a1. Menion prompts user to re-input index of the Activity.<br>
+> 1a2. User re-inputs the index of Activity.<br>
+> Repeat 1a1 - 1a2 until the user inputs a valid index of Activity.<br>
 > Use case resumes at step 2.
 
 1b. The information entered by the user does not follow the format.
 
-> 1b1. Menion prompts user to re-input details of the Activity in the given format.<br>
-> 1b2. User re-inputs details of the Activity.<br>
-> Repeat 1b1 - 1b2 until the user inputs a valid format for the Activity.<br>
+> 1b1. Menion prompts user to re-input edit command of the Activity in the given format.<br>
+> 1b2. User re-inputs edit command of the Activity.<br>
+> Repeat 1b1 - 1b2 until the user inputs a valid format of edit command for the Activity.<br>
 > Use case resumes at step 2.
 
+[//]: # (@@author A0139277U)
 
 #### Use Case : List
 
@@ -451,6 +475,7 @@ Use case ends.
 > 1c1. Menion shows a list of all the Activities in the Menion which has a deadline of the specified date.<br>
 > 1c2. Resume to step 3 in MSS.
 
+[//]: # (@@author A0146752B)
 
 #### Use Case: Find
 
@@ -468,6 +493,7 @@ Use case ends.
 > 2a1. Menion displays '0 activities listed!' message.<br>
 > Use case ends.
 
+[//]: # (@@author A0139515A)
 
 #### Use Case : Modify Storage Path
 **MSS**

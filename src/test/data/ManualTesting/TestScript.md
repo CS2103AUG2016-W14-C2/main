@@ -158,7 +158,7 @@ Remind Command test:
 
 Unremind Command test:
 
-1. unput: unremind
+1. input: unremind
    output: modifies the first line of existing "email.txt." file. changes it from "True" to "False" thus removing the permission for Menion to send email.
 
 

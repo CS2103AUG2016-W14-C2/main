@@ -24,8 +24,6 @@ import seedu.menion.model.activity.ReadOnlyActivity;
  */
 public class BackgroundCheckManager extends ComponentManager implements BackgroundCheck{
 
-	public BackgroundCheckManager(){};
-	
 	/**
 	 * This method does a check on all the activities in Menion
 	 */
@@ -110,6 +108,9 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	
 	private void checkEventStatus(Calendar currentTime, ReadOnlyActivity eventToCheck,
 										ReadOnlyActivityManager activityManager){
+		assert(currentTime != null && eventToCheck.getActivityType().equals(Activity.EVENT_TYPE));
+		assert(activityManager != null);
+		
 		// Event is over.
 		if(isActivityOver(currentTime, eventToCheck)){
 			eventToCheck.setTimePassed(true);
@@ -121,7 +122,6 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 			eventToCheck.setEventOngoing(true);
 			raise(new ActivityManagerChangedEventNoUI(activityManager));
 		}
-		
 	}
 	
 	/**
@@ -132,6 +132,7 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 */
 	private static boolean isEventStarted(Calendar currentTime, ReadOnlyActivity activityToCheck){
 		assert(activityToCheck.getActivityType().equals(Activity.EVENT_TYPE));
+		assert(currentTime != null);
 		
 		String activityStartDateString;
 		String activityStartTimeString;
@@ -166,7 +167,7 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * @return true: the current time is later than the activity time. 
 	 */
 	public static boolean isActivityOver(Calendar currentTime, ReadOnlyActivity activityToCheck){
-			assert(activityToCheck != null);
+		assert(activityToCheck != null && currentTime != null);
 		
 		String activityDateString;
 		String activityTimeString;

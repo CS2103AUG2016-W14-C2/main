@@ -105,7 +105,9 @@ public class ActivityParser {
     private Command prepareList(String args){
     	
     	args = args.trim();
-    	return new ListCommand(args);
+    	Set<String> argumentsToList = new HashSet<String>();
+    	String commandType = ListParser.checkListType(args, argumentsToList);
+    	return new ListCommand(args, argumentsToList, commandType);
     
     }
     
