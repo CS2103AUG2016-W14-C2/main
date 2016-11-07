@@ -83,7 +83,7 @@ The rest of the App consists five components.
 
 * [*`UI`*](#ui-component) : Provides the interface for the user to interact with the App.
 * [*`Logic`*](#logic-component) : Executes commands given by the UI.
-* [*`BackgroundLogic`*]() : Tracks any changes in data when application is running.   
+* [*`BackgroundCheck`*]() : Tracks any changes in data when application is running.   
 * [*`Model`*](#model-component) : Holds the data of the App in-memory.
 * [*`Storage`*](#storage-component) : Reads data from, and writes data to, the hard disk.
 
