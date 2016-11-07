@@ -4,7 +4,7 @@
 # Menion
 
 
-<img src="docs/images/MainUI.jpg" width="600"><br>
+<img src="docs/images/MainUI.png" width="600"><br>
 
 * This is a desktop Activity Manager application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * It is a Java application intended for any user to manage their schedule and to-do tasks. Our target audience are people who wants to have a quick, easy, and efficient application to manage their busy schedule or tasks in a systematic process.
