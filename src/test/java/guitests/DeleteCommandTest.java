@@ -106,12 +106,13 @@ public class DeleteCommandTest extends ActivityManagerGuiTest {
             assertTrue(activityListPanel.isTaskListMatching(expectedRemainder));
         }
         
+        //building commandLine output
         for (int i = 0; i < activityToDeleteArr.length; i++) {
             activityToDeleteMessage.append(activityToDeleteArr[i]);
             if (i == activityToDeleteArr.length - 1) {
                 break;
             }
-            activityToDeleteMessage.append("\n");
+            activityToDeleteMessage.append("\n\n");
             activityToDeleteMessage.append("Deleted Activity: ");
         }
         //confirm the result message is correct

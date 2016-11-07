@@ -111,7 +111,7 @@ public class DeleteCommand extends Command {
             if (i == activitiesToBeDeleted.size() - 1) {
                 break;
             }
-            feedbackString.append("\n");
+            feedbackString.append("\n\n");
         }
         return new CommandResult(feedbackString.toString());
     }
