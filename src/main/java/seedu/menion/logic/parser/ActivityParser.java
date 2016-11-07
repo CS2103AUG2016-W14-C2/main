@@ -64,13 +64,13 @@ public class ActivityParser {
         	return prepareList(arguments);
             
         case UndoCommand.COMMAND_WORD:
-        	return new UndoCommand();
+        	return new UndoCommand(arguments);
         
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
-            
+
         case RedoCommand.COMMAND_WORD:
-        	return new RedoCommand();
+        	return new RedoCommand(arguments);
         	//@@author: A0139164A
         case CompleteCommand.COMMAND_WORD:
             return prepareComplete(arguments);
@@ -193,26 +193,11 @@ public class ActivityParser {
     }
     
     private Command prepareEdit(String args) {
-        
-        String[] splited = args.split("\\s+");
-        
-        // Checks for valid number of parameters.
-        // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
-        if (splited.length > 4) {
-            String activityType = splited[1];
-            // Checks for valid activityType
-            if (activityType.equals(Activity.FLOATING_TASK_TYPE) || activityType.equals(Activity.TASK_TYPE) || activityType.equals(Activity.EVENT_TYPE)) {  
-                // Checks for valid index 
-                Optional<Integer> index = Optional.of(Integer.valueOf(splited[2]));
-                if(index.isPresent()){
-                    return new EditCommand(splited);
-                }
-            }
+        try {
+            return new EditCommand(EditParser.parseEditCommand(args));
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
-        
-        // Only get here if invalid command!
-        return new IncorrectCommand(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
     
     //@@author A0139515A
@@ -235,8 +220,7 @@ public class ActivityParser {
 		} catch (IllegalValueException e) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
 		}
-    	  
-   
+		
     }
     //@@author
 
@@ -266,24 +250,6 @@ public class ActivityParser {
         return new DeleteCommand(indexArray[0], indexArray);
     }
     
-
-    /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
-     */
-    private Optional<Integer> parseIndex(String command) {
-        final Matcher matcher = ACTIVITY_INDEX_ARGS_FORMAT.matcher(command.trim());
-        if (!matcher.matches()) {
-            return Optional.empty();
-        }
-
-        String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
-            return Optional.empty();
-        }
-        return Optional.of(Integer.parseInt(index));
-
-    }
     
     /**
      * Parses arguments in the context of the find person command.

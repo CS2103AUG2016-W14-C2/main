@@ -24,6 +24,8 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
+    	assert model != null;
+    	
         model.updateFilteredTaskList(this.keywords, ModelManager.listKeyword);
         model.updateFilteredEventList(this.keywords, ModelManager.listKeyword);
         model.updateFilteredFloatingTaskList(this.keywords, ModelManager.listKeyword);
