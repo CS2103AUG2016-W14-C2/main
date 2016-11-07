@@ -14,6 +14,7 @@ We are a team of students from the [School of Computing, National University of 
  - Add Command
  - Background Date Check
  - List Command
+* Code written: [functional code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/main/A0139277U.md)[test code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/test/A0139277U.md)[docs](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/docs/A0139277U.md)
 * Other major contributions: 
  - Set up Travis and Coveralls
 
@@ -29,6 +30,7 @@ Role: Developer <br>
  - Delete Command
  - Sorting of Lists
  - List Command
+* Code written: [functional code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/main/A0146752B.md)[test code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/test/A0146752B.md)[docs](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/docs/A0146752B.md)
 * Other major contributions
  - Project Manual editor
 
@@ -44,6 +46,7 @@ Role: Developer <br>
  - Edit Command
  - Complete/Uncomplete Activities
  - Set Reminders for Email 
+* Code written: [functional code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/main/A0139164A.md)[test code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/test/A0139164A.md)[docs](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/docs/A0139164A.md)
 * Other major contributions
  - Major refactoring from addressbook to activity manager
 
@@ -60,6 +63,7 @@ Role: Developer <br>
  - Redo Command
  - Modify Storage Path
  - GUI Implementation
+* Code written: [functional code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/main/A0139515A.md)[test code](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/test/A0139515A.md)[docs](https://github.com/CS2103AUG2016-W14-C2/main/blob/master/collated/docs/A0139515A.md)
 * Other major contributions
  - Initial refactoring from addressbook to activity manager
 

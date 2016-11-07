@@ -37,7 +37,7 @@ Let's get started!
    This app will not work with earlier versions of Java 8.
    
 2. Download Menion: You can download Menion.jar from the latest release here: 
-   [Menion.jar]()
+   [Menion.jar](https://github.com/CS2103AUG2016-W14-C2/main/releases/download/V0.5/Menion.jar)
 3. Copy the file to the folder you want to use as the home folder for  Menion.
 4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
 <img src="images/MainPageLayout.png" width="600"><br>
