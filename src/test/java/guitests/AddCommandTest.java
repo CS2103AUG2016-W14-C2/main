@@ -6,7 +6,6 @@ import guitests.guihandles.TaskCardHandle;
 import org.junit.Test;
 
 import seedu.menion.commons.core.Messages;
-import seedu.menion.logic.commands.AddCommand;
 import seedu.menion.model.activity.Activity;
 import seedu.menion.testutil.TestActivity;
 import seedu.menion.testutil.TestUtil;
@@ -18,7 +17,6 @@ public class AddCommandTest extends ActivityManagerGuiTest {
     @Test
     public void add() {
     	
-//    	commandBox.runCommand("clear");
         //add one task
         TestActivity[] taskList = td.getTypicalTask();
         TestActivity taskToAdd = td.task6;

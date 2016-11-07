@@ -53,7 +53,7 @@ public class XmlActivityManagerStorageTest {
     public void read_notXmlFormat_exceptionThrown() throws Exception {
 
         thrown.expect(DataConversionException.class);
-        readActivityManager("NotXmlFormatAddressBook.xml");
+        readActivityManager("NotXmlFormatActivityManager.xml");
 
         /* IMPORTANT: Any code below an exception-throwing line (like the one above) will be ignored.
          * That means you should not have more than one exception test in one method
@@ -62,7 +62,7 @@ public class XmlActivityManagerStorageTest {
 
     @Test
     public void readAndSaveActivityManager_allInOrder_success() throws Exception {
-        String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
+        String filePath = testFolder.getRoot().getPath() + "TempActivityManager.xml";
         
         TypicalTestActivities td = new TypicalTestActivities();
         ActivityManager original = td.getTypicalActivityManager();

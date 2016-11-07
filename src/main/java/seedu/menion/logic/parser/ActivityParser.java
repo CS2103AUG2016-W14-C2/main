@@ -1,11 +1,15 @@
 package seedu.menion.logic.parser;
 
+import seedu.menion.logic.commands.Command;
+import seedu.menion.logic.commands.FindCommand;
+import seedu.menion.logic.commands.IncorrectCommand;
 import seedu.menion.commons.core.Messages;
 import seedu.menion.commons.exceptions.IllegalValueException;
 import seedu.menion.commons.util.StringUtil;
 import seedu.menion.logic.commands.*;
 import seedu.menion.model.activity.Activity;
 
+import static seedu.menion.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.menion.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.menion.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -60,10 +64,13 @@ public class ActivityParser {
         	return prepareList(arguments);
             
         case UndoCommand.COMMAND_WORD:
-        	return new UndoCommand();
-        	
+        	return new UndoCommand(arguments);
+        
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
+
         case RedoCommand.COMMAND_WORD:
-        	return new RedoCommand();
+        	return new RedoCommand(arguments);
         	//@@author: A0139164A
         case CompleteCommand.COMMAND_WORD:
             return prepareComplete(arguments);
@@ -186,26 +193,11 @@ public class ActivityParser {
     }
     
     private Command prepareEdit(String args) {
-        
-        String[] splited = args.split("\\s+");
-        
-        // Checks for valid number of parameters.
-        // Must be 5 and above. [Command] + [Type] + [index] + [parameter] + [changes]
-        if (splited.length > 4) {
-            String activityType = splited[1];
-            // Checks for valid activityType
-            if (activityType.equals(Activity.FLOATING_TASK_TYPE) || activityType.equals(Activity.TASK_TYPE) || activityType.equals(Activity.EVENT_TYPE)) {  
-                // Checks for valid index 
-                Optional<Integer> index = Optional.of(Integer.valueOf(splited[2]));
-                if(index.isPresent()){
-                    return new EditCommand(splited);
-                }
-            }
+        try {
+            return new EditCommand(EditParser.parseEditCommand(args));
+        } catch (IllegalValueException e) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
-        
-        // Only get here if invalid command!
-        return new IncorrectCommand(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
     
     //@@author A0139515A
@@ -228,8 +220,7 @@ public class ActivityParser {
 		} catch (IllegalValueException e) {
 			return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
 		}
-    	  
-   
+		
     }
     //@@author
 
@@ -259,23 +250,24 @@ public class ActivityParser {
         return new DeleteCommand(indexArray[0], indexArray);
     }
     
-
+    
     /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
+     * Parses arguments in the context of the find person command.
+     *
+     * @param args full command args string
+     * @return the prepared command
      */
-    private Optional<Integer> parseIndex(String command) {
-        final Matcher matcher = ACTIVITY_INDEX_ARGS_FORMAT.matcher(command.trim());
+    private Command prepareFind(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return Optional.empty();
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
         }
 
-        String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
-            return Optional.empty();
-        }
-        return Optional.of(Integer.parseInt(index));
-
+        // keywords delimited by whitespace
+        final String[] keywords = matcher.group("keywords").split("\\s+");
+        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
+        return new FindCommand(keywordSet);
     }
 
 

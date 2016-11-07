@@ -35,7 +35,7 @@ public class UnCompleteCommand extends Command {
     public CommandResult execute() {
         assert model != null;
         
-        storePreviousState();
+        model.storePreviousState(new ActivityManager(model.getActivityManager()));
         
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         try {
@@ -69,7 +69,8 @@ public class UnCompleteCommand extends Command {
     }
 
     private void callUnCompleteActivity(String targetType, ReadOnlyActivity activityToUncomplete) {
-        
+    	assert model != null;
+        		
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                 model.UncompleteFloatingTask(activityToUncomplete);
@@ -80,17 +81,4 @@ public class UnCompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
     }
-    
-    //@@author A0139515A
-    /**
-     * Uncomplete command will store previous activity manager to support undo command
-     *
-     */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
-    }
-    //@@author
 }

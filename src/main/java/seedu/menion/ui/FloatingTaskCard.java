@@ -48,7 +48,6 @@ public class FloatingTaskCard extends UiPart{
         }
         id.setText(displayedIndex + ". ");    
     }
-    //@@author
 
     public HBox getLayout() {
         return floatingTaskCardPane;
