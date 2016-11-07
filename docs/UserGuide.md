@@ -8,8 +8,8 @@
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Add Activity](#adding-an-activity)
-  * [Delete Activities](#deleting-an-activity)
-  * [List Activities](#listing-all-activities)
+  * [Delete Activities](#deleting-activities)
+  * [List Activities](#list-activities)
   * [Clear Activities](#clearing-all-entries)
   * [Edit Activities](#editing-an-activity)
   * [Complete Activities](#complete-an-activity)
@@ -19,6 +19,7 @@
   * [Modify Storage Path](#modifying-the-storage-path)
   * [Help](#viewing-help)
   * [Exit](#exiting-the-program)
+* [Saving Data](#saving-the-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -42,6 +43,7 @@ Let's get started!
 4. Double-click the file to start the app. The GUI should appear in a few seconds. <br><br>
 <img src="images/MainPageLayout.png" width="600"><br>
 >Figure 1 : The user interface presented after start up
+
 5. Type the command in the command box as shown in Figure 1 and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window. 
 6. Some example commands you can try:
@@ -54,7 +56,7 @@ Let's get started!
 
 [//]: # (@@author)
 
-##Features
+## Features
 
 > **Command Format**<br>
 > Words in `UPPER_CASE` are the parameters.<br>
@@ -70,7 +72,7 @@ Let's get started!
 
 [//]: # (@@author A0139277U)
 
-#### Adding an activity `add`
+#### Adding an activity 
 Adds an activity to Menion.<br>
 
 Formats : <br>
@@ -95,7 +97,7 @@ Examples: <br>
 
 [//]: # (@@author A0146752B)
 
-#### Deleting activities `delete`
+#### Deleting activities
 Deletes 1 or more activities from Menion at the specified `INDEX`/`INDICES`.<br>
 Format: 
 `delete ACTIVITY_TYPE INDEX...`
@@ -115,7 +117,7 @@ Examples:<br>
 
 [//]: # (@@author A0139277U)
 
-#### List Activities `list`
+#### List Activities
 Shows a list of activities in Menion for specified parameters such as date, month, completion status and keywords.
 
 Formats: <br>
@@ -136,7 +138,7 @@ Examples:<br>
 
 [//]: # (@@author A0146752B)
 
-#### Find Activities `find`
+#### Find Activities
 Shows a list of activities in Menion for specified keywords in their activity name and notes.
 
 Format: <br>
@@ -150,13 +152,13 @@ Examples:<br>
 
 [//]: # (@@author A0139164A)
 
-#### Clearing all entries `clear`
+#### Clearing all entries
 Clear all entries from Menion.<br>
 
 Format : `clear`
 
 
-#### Editing an activity `edit`
+#### Editing an activity
 Edits an activity from Menion at the specified `INDEX`.
 
 Format : `edit ACTIVITY_TYPE INDEX PARAMETERS`
@@ -180,7 +182,7 @@ Examples :
 <img src="images/editexample.png" width="500"><br>
 
 
-#### Complete an activity `complete`
+#### Complete an activity
 Marks an activity as completed.
 
 Format : `complete ACTIVITY_TYPE ACTIVITY_INDEX`
@@ -191,7 +193,7 @@ Examples :
 `complete task 3`
 
 
-#### Uncomplete an activity `uncomplete`
+#### Uncomplete an activity
 Marks an activity as uncompleted.
 
 Format : `uncomplete ACTIVITY_TYPE ACTIVITY_INDEX`
@@ -201,7 +203,7 @@ Examples :
 `uncomplete event 3`<br>
 `uncomplete task 3`
 
-#### Set reminder for tasks `remind`
+#### Set reminder for tasks
 Enables menion to send notifications to the specified `EMAIL_ADDRESS` to remind users of uncompleted overdue tasks.
 
 Format : `remind EMAIL_ADDRESS`
@@ -209,7 +211,7 @@ Format : `remind EMAIL_ADDRESS`
 Example :
 `remind jondoe@gmail.com`
 
-#### Unset reminder for tasks `unremind`
+#### Unset reminder for tasks
 Disables menion from sending notifications to previously specified `EMAIL_ADDRESS` to remind users of uncompleted overdue tasks.
 
 Format : `unremind`
@@ -217,7 +219,7 @@ Format : `unremind`
 
 [//]: # (@@author A0139515A)
 
-#### Undo `undo`
+#### Undo
 Undo the most recent command.<br>
 >Only applicable for add, delete, edit, complete, uncomplete and clear commands
 
@@ -227,7 +229,7 @@ Undo modify storage path command.<br>
 
 Format : `undo modify`
 
-#### Redo `redo`
+#### Redo
 Redo the most recent command.
 >Only applicable for add, delete, edit, complete, uncomplete and clear commands
 
@@ -238,7 +240,7 @@ Redo modify storage path command.<br>
 Format : `redo modify`
 
 
-#### Modifying the storage path `modify`
+#### Modifying the storage path
 Modifies the storage path that stores all the data.<br>
 
 Format : `modify STORAGE_LOCATION`
@@ -250,13 +252,13 @@ Example :
 
 [//]: # (@@author A0146752B)
 
-#### Viewing help `help`
+#### Viewing help
 Shows a list of available commands and how to use them.<br>
 
 Format : `help`
 
 
-#### Exiting the program `exit`
+#### Exiting the program
 Exits the program.<br>
 
 Format : `exit`
@@ -287,7 +289,7 @@ Edit | `edit ACTIVITY_TYPE ACTIVITY_INDEX PARAMETER_TO_CHANGE PARAMETER_CHANGES`
 Exit | `exit`
 Find | `find KEYWORD`
 Help | `help`
-List | `list` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
+List | `list all` <br> `list DATE` <br> `list MONTH` <br> `list KEYWORDS`
 Modify Storage Path | `modify STORAGE_LOCATION` <br> `modify default`
 Set Reminder | `remind EMAIL_ADDRESS`
 Redo | `redo` <br> `redo modify`
