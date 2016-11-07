@@ -18,6 +18,8 @@ public class ActivityManagerChangedEventNoUI extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of activities " + data.getTaskList().size();
+        return "number of activities " + data.getTaskList().size()
+                + data.getFloatingTaskList().size()
+                + data.getEventList().size();
     }
 }

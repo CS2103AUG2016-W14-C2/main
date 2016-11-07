@@ -5,7 +5,8 @@ import com.google.common.eventbus.Subscribe;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import seedu.menion.background.BackgroundDateCheck;
+import seedu.menion.background.BackgroundCheck;
+import seedu.menion.background.BackgroundCheckManager;
 import seedu.menion.commons.core.Config;
 import seedu.menion.commons.core.EventsCenter;
 import seedu.menion.commons.core.LogsCenter;
@@ -17,6 +18,7 @@ import seedu.menion.commons.util.StringUtil;
 import seedu.menion.logic.Logic;
 import seedu.menion.logic.LogicManager;
 import seedu.menion.model.*;
+import seedu.menion.model.activity.Completed;
 import seedu.menion.storage.Storage;
 import seedu.menion.storage.StorageManager;
 import seedu.menion.ui.Ui;
@@ -24,8 +26,10 @@ import seedu.menion.ui.UiManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
@@ -65,20 +69,36 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic, config, userPrefs);
-
+        
         initEventsCenter();
-    
+        
+        // Shows only uncompleted activities at start
+        showUncompletedOnly(model);
+        
         // Does background check
         new Timer().schedule(
         	    new TimerTask() {
         	    		
         	        @Override
         	        public void run() {
-        	        	BackgroundDateCheck backgroundChecker = new BackgroundDateCheck();
+        	        	BackgroundCheck backgroundChecker = new BackgroundCheckManager();
         	        	backgroundChecker.checkActivities(model);
         	        }
         	        
         	    }, 0, BACKGROUND_REFRESH_RATE);
+    }
+    
+    /**
+     * This method takes in the current model and lists only uncompleted activities
+     * @param model
+     */
+    private void showUncompletedOnly(Model model) {
+        Set<String> isCompleted = new HashSet<String>();
+        isCompleted.add(Completed.UNCOMPLETED_ACTIVITY);
+        
+        model.updateFilteredTaskList(isCompleted, ModelManager.listCompleted);
+        model.updateFilteredEventList(isCompleted, ModelManager.listCompleted);
+        model.updateFilteredFloatingTaskList(isCompleted, ModelManager.listCompleted);
     }
 
     private String getApplicationParameter(String parameterName){
@@ -124,7 +144,7 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
+            initializedConfig = configOptional.orElse(Config.getInstance());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. " +
                     "Using default config properties");

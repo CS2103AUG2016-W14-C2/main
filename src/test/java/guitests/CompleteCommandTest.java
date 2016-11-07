@@ -20,6 +20,7 @@ public class CompleteCommandTest extends ActivityManagerGuiTest {
         TestActivity activityToComplete;
         // Runs complete command on a task.
         activityToComplete = td.task;
+        commandBox.runCommand("list all");
         commandBox.runCommand("clear");
         commandBox.runCommand(activityToComplete.getAddCommand());
         assertCompleteSuccess(activityToComplete, 1);
@@ -46,6 +47,9 @@ public class CompleteCommandTest extends ActivityManagerGuiTest {
 
     /**
      * checks whether a complete command correctly updates the UI
+     * 
+     * @param activityToComplete
+     * @param index
      */
     private void assertCompleteSuccess(TestActivity activityToComplete, int index) {
         

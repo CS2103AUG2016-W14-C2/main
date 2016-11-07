@@ -30,6 +30,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Activity> filteredEvents;
     private Stack<ReadOnlyActivityManager> activityManagerUndoStack;
     private Stack<ReadOnlyActivityManager> activityManagerRedoStack;
+    private Stack<String> storagePathUndoStack;
+    private Stack<String> storagePathRedoStack;
     private ReadOnlyActivity mostRecentUpdatedActivity;
     
     public final static String listDate = "date";
@@ -55,6 +57,8 @@ public class ModelManager extends ComponentManager implements Model {
         filteredEvents = new FilteredList<>(activityManager.getEvents());
         activityManagerUndoStack = new Stack<ReadOnlyActivityManager>();
         activityManagerRedoStack = new Stack<ReadOnlyActivityManager>();
+        storagePathUndoStack = new Stack<String>();
+        storagePathRedoStack = new Stack<String>();
     }
 
     public ModelManager() {
@@ -68,6 +72,8 @@ public class ModelManager extends ComponentManager implements Model {
         filteredEvents = new FilteredList<>(activityManager.getEvents());
         activityManagerUndoStack = new Stack<ReadOnlyActivityManager>();
         activityManagerRedoStack = new Stack<ReadOnlyActivityManager>();
+        storagePathUndoStack = new Stack<String>();
+        storagePathRedoStack = new Stack<String>();
     }
 
     @Override
@@ -106,6 +112,26 @@ public class ModelManager extends ComponentManager implements Model {
     	return this.activityManagerUndoStack.isEmpty();
     }
     
+    @Override 
+    public void addStoragePathToUndoStack(String filePath) {
+    	storagePathUndoStack.push(filePath);
+    }
+    
+    @Override 
+    public String retrievePreviouStoragePathFromUndoStack() {
+    	return storagePathUndoStack.pop();
+    }
+    
+    @Override 
+    public boolean checkStoragePathInUndoStack() {
+    	return this.storagePathUndoStack.isEmpty();
+    }
+   
+    @Override
+    public void storePreviousState(ReadOnlyActivityManager activityManager) {
+    	addStateToUndoStack(activityManager);
+    }
+    
     /**
      * Methods for redo
      * 
@@ -123,6 +149,21 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public boolean checkStatesInRedoStack() {
     	return this.activityManagerRedoStack.isEmpty();
+    }
+    
+    @Override 
+    public void addStoragePathToRedoStack(String filePath) {
+    	storagePathRedoStack.push(filePath);
+    }
+    
+    @Override 
+    public String retrievePreviouStoragePathFromRedoStack() {
+    	return storagePathRedoStack.pop();
+    }
+    
+    @Override 
+    public boolean checkStoragePathInRedoStack() {
+    	return this.storagePathRedoStack.isEmpty();
     }
     
     /**

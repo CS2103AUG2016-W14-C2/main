@@ -52,9 +52,11 @@ public class EditCommand extends Command {
     public CommandResult execute() {
         
     	assert model != null;
+    	
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
-    	storePreviousState(); // For undo
-        
+    	
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                 lastShownList = model.getFilteredFloatingTaskList();
@@ -86,7 +88,8 @@ public class EditCommand extends Command {
     
 
     private void floatingTaskEdit(ReadOnlyActivity floatingTaskToEdit, int paramToChange) throws IllegalValueException, ActivityNotFoundException{
-
+    	assert model != null;
+    	
         switch (paramToChange) {
 
         case 0:
@@ -104,12 +107,12 @@ public class EditCommand extends Command {
     }
 
     private void taskEdit(ReadOnlyActivity taskToEdit, int paramToChange) throws IllegalValueException, ActivityNotFoundException {
-        
+    	assert model != null;
+    	
         switch (paramToChange) {
 
         case 0:
             String newName = this.changes;
-            System.out.println("This is the newName: " + newName);
             model.editTaskName(taskToEdit, newName);
             break;
         case 1:
@@ -129,7 +132,8 @@ public class EditCommand extends Command {
     }
     
     private void eventEdit(ReadOnlyActivity eventToEdit, int paramToChange) throws IllegalValueException , ActivityNotFoundException{
-
+    	assert model != null;
+    	
         switch (paramToChange) {
 
         case 0:
@@ -147,18 +151,5 @@ public class EditCommand extends Command {
             model.editEventEndDateTime(eventToEdit, this.newDate, this.newTime);
             break;
         }
-    }
-
-    
-    //@@author A0139515A
-    /**
-     * Edit command will store previous activity manager to support undo command
-     * 
-     */
-    public void storePreviousState() {
-        
-        assert model != null;
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-    	model.addStateToUndoStack(beforeState);
     }
 }

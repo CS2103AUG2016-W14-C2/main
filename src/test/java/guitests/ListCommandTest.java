@@ -27,17 +27,12 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 	@Test
 	public void list() {
 
-
 		commandBox.runCommand("clear");
 		ActivityManager testListActivities = new ActivityManager();
 		generateActivitiesForList(testListActivities);
 		
 		// To test for list all
-		assertListSuccess();
-		
-		
-		
-		
+		assertListSuccess();	
 	}
 
 	private void assertListSuccess(){
@@ -90,21 +85,7 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 		
 		// Test wrong command
 		commandBox.runCommand("list oktober");
-		assertResultMessage(ListCommand.MESSAGE_SUCCESS_LIST_KEYWORDS + "oktober");
-		assertTrue(activityListPanel.isTaskListMatching());
-		assertTrue(activityListPanel.isEventListMatching());
-		assertTrue(activityListPanel.isFloatingTaskListMatching());
-		
-		TestActivity[] expectedKeywordTaskList1 = new TestActivity[1];
-		expectedKeywordTaskList1[0] = testTask1;
-		TestActivity[] expectedKeywordFloatingList1 = new TestActivity[1];
-		expectedKeywordFloatingList1[0] = testFloating1;
-		
-		commandBox.runCommand("list cs2103t");
-		assertResultMessage(ListCommand.MESSAGE_SUCCESS_LIST_KEYWORDS + "cs2103t");
-		assertTrue(activityListPanel.isTaskListMatching(expectedKeywordTaskList1));
-		assertTrue(activityListPanel.isEventListMatching());
-		assertTrue(activityListPanel.isFloatingTaskListMatching(testFloating1));
+		assertResultMessage(ListCommand.WRONG_ARGUMENT);
 		
 		commandBox.runCommand("list all");
 		commandBox.runCommand("complete task 1");
@@ -148,9 +129,7 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 			commandBox.runCommand(testEvent1.getAddCommand());
 			commandBox.runCommand(testEvent2.getAddCommand());
 			commandBox.runCommand(testFloating1.getAddCommand());
-			commandBox.runCommand(testFloating2.getAddCommand());
-
-			
+			commandBox.runCommand(testFloating2.getAddCommand());			
 			
 		} catch (IllegalValueException e) {
 			System.out.println("Not possible");

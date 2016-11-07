@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.menion.background.BackgroundDateCheck;
+import seedu.menion.background.BackgroundCheckManager;
 import seedu.menion.commons.exceptions.IllegalValueException;
 import seedu.menion.model.ActivityManager;
 import seedu.menion.model.Model;
@@ -33,7 +33,7 @@ public class BackgroundTest {
 	public void test() {
 		
 		initialiseModel();
-		BackgroundDateCheck backgroundDateChecker = new BackgroundDateCheck();
+		BackgroundCheckManager backgroundDateChecker = new BackgroundCheckManager();
 		backgroundDateChecker.checkActivities(model);
 		assertBackgroundCheckSuccess();
 		
@@ -78,7 +78,6 @@ public class BackgroundTest {
 		testManager = typicalTestActivities.getTypicalActivityManager();
 		
 		try {
-			
 			Activity testOldActivity = new Activity(Activity.TASK_TYPE, new ActivityName("Test Past Task"),
 					new Note("Hope it works"), new ActivityDate("09-09-1999"), new ActivityTime("0001"),
 					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
@@ -113,12 +112,7 @@ public class BackgroundTest {
 			model.addEvent(testOldEventNoTime);
 			
 		} catch (IllegalValueException e) {
-			
-			System.out.println(e);
-			
+			System.out.println(e);	
 		}
-		
 	}
-	
-	
 }

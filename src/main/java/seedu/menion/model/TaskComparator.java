@@ -1,4 +1,3 @@
-//@@author A0146752B
 package seedu.menion.model;
 
 import java.util.Comparator;
@@ -6,8 +5,8 @@ import javafx.collections.ObservableList;
 import seedu.menion.model.activity.Activity;
 import seedu.menion.model.activity.UniqueActivityList;
 
+//@@author A0146752B
 /**
- * Author (A0146752B)
  * 
  * This class sorts a task list based on completion status,
  * then after sorting it based on date and time.
@@ -23,6 +22,47 @@ public class TaskComparator implements Comparator<Activity> {
     public int compare(Activity activityA, Activity activityB) {
         
         //sort by completion status 
+        if (compareCompletedStatus(activityA, activityB) != 0){
+            return completeSortInt;
+        }
+        //if both tasks have same completion status we sort by start date
+        else {
+            
+            
+            if (compareActivityStartDate(activityA, activityB) != 0){
+                return dateSortInt;
+            }
+            //if both tasks have same state date, we sort by start time
+            else {
+                compareActivityStartTime(activityA, activityB);
+                
+                return timeSortInt;
+            }
+        }
+    }
+
+    private void compareActivityStartTime(Activity activityA, Activity activityB) {
+        time1 = activityA.getActivityStartTime().toString();
+        time2 = activityB.getActivityStartTime().toString();
+                   
+        timeSortInt = time1.compareTo(time2);
+    }
+
+    private int compareActivityStartDate(Activity activityA, Activity activityB) {
+        date1 = activityA.getActivityStartDate().toString();
+        date2 = activityB.getActivityStartDate().toString();
+        
+        String[] valueOfDate1 = date1.split("-");
+        String[] valueOfDate2 = date2.split("-");
+        
+        date1 = valueOfDate1[2] + valueOfDate1[1] + valueOfDate1[0];
+        date2 = valueOfDate2[2] + valueOfDate2[1] + valueOfDate2[0];
+        
+        dateSortInt = date1.compareTo(date2);
+        return dateSortInt;
+    }
+
+    private int compareCompletedStatus(Activity activityA, Activity activityB) {
         if (activityA.getActivityStatus().toString().equals(activityB.getActivityStatus().toString())) {
             completeSortInt = 0;
         }
@@ -33,36 +73,6 @@ public class TaskComparator implements Comparator<Activity> {
         else {
             completeSortInt = -1;
         }
-        
-        
-        if (completeSortInt != 0){
-            return completeSortInt;
-        }
-        //if both tasks have same completion status we sort by start date
-        else {
-            date1 = activityA.getActivityStartDate().toString();
-            date2 = activityB.getActivityStartDate().toString();
-            
-            String[] valueOfDate1 = date1.split("-");
-            String[] valueOfDate2 = date2.split("-");
-            
-            date1 = valueOfDate1[2] + valueOfDate1[1] + valueOfDate1[0];
-            date2 = valueOfDate2[2] + valueOfDate2[1] + valueOfDate2[0];
-            
-            dateSortInt = date1.compareTo(date2);
-            
-            if (dateSortInt != 0){
-                return dateSortInt;
-            }
-            //if both tasks have same state date, we sort by start time
-            else {
-                time1 = activityA.getActivityStartTime().toString();
-                time2 = activityB.getActivityStartTime().toString();
-                           
-                timeSortInt = time1.compareTo(time2);
-                
-                return timeSortInt;
-            }
-        }
+        return completeSortInt;
     }
 }

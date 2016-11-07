@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<activitymanager>
+    <tasks>
+        <activityType>task</activityType>
+        <name>cs2101 reflection</name>
+        <startDate>03-11-2016</startDate>
+        <startTime>1800</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <emailSent>true</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>cs2101 user guide</name>
+        <note>finalise</note>
+        <startDate>04-11-2016</startDate>
+        <startTime>2000</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>cs2101 developer guide</name>
+        <note>finalise</note>
+        <startDate>05-11-2016</startDate>
+        <startTime>2000</startTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <emailSent>false</emailSent>
+    </tasks>
+    <tasks>
+        <activityType>task</activityType>
+        <name>helloworld</name>
+        <startDate>02-11-2016</startDate>
+        <startTime>1000</startTime>
+        <status>Completed</status>
+        <activityTimePassed>true</activityTimePassed>
+        <emailSent>true</emailSent>
+    </tasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>send laptop to service</name>
+        <note>remember to back up </note>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>watch dr strange</name>
+        <status>Uncompleted</status>
+    </floatingTasks>
+    <floatingTasks>
+        <activityType>floating</activityType>
+        <name>restock protein shake</name>
+        <status>Completed</status>
+    </floatingTasks>
+    <events>
+        <activityType>event</activityType>
+        <name>cs2101 team meeting</name>
+        <startDate>04-11-2016</startDate>
+        <startTime>1200</startTime>
+        <endDate>04-11-2016</endDate>
+        <endTime>1500</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>true</activityTimePassed>
+        <eventOngoing>true</eventOngoing>
+    </events>
+    <events>
+        <activityType>event</activityType>
+        <name>dinner with family</name>
+        <note>dress formal</note>
+        <startDate>05-11-2016</startDate>
+        <startTime>1800</startTime>
+        <endDate>05-11-2016</endDate>
+        <endTime>2200</endTime>
+        <status>Uncompleted</status>
+        <activityTimePassed>false</activityTimePassed>
+        <eventOngoing>false</eventOngoing>
+    </events>
+</activitymanager>

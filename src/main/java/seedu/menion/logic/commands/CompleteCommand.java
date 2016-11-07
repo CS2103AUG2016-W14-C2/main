@@ -37,9 +37,10 @@ public class CompleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        
+
     	assert model != null;
-    	storePreviousState();
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
@@ -71,6 +72,7 @@ public class CompleteCommand extends Command {
     }
 
     private void callCompleteActivity(String targetType, ReadOnlyActivity activityToComplete) {
+        assert model != null;
         
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
@@ -84,18 +86,5 @@ public class CompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
         
-    }
-    
-    // @@author A0139515A
-    /**
-     * Complete command will store previous activity manager to support undo
-     * command
-     * 
-     */
-    public void storePreviousState() {
-        
-        assert model != null;
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-        model.addStateToUndoStack(beforeState);
     }
 }

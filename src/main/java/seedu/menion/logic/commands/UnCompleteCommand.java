@@ -38,7 +38,7 @@ public class UnCompleteCommand extends Command {
     public CommandResult execute() {
         
         assert model != null;
-        storePreviousState();
+        model.storePreviousState(new ActivityManager(model.getActivityManager()));
         
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         try {
@@ -64,7 +64,6 @@ public class UnCompleteCommand extends Command {
         }
         
         callUnCompleteActivity(targetType, activityToUncomplete); // Calls the correct method depending on type of activity.
-        activityToUncomplete = lastShownList.get(targetIndex);
         
         model.updateRecentChangedActivity(activityToUncomplete);
         
@@ -72,7 +71,8 @@ public class UnCompleteCommand extends Command {
     }
 
     private void callUnCompleteActivity(String targetType, ReadOnlyActivity activityToUncomplete) {
-        
+    	assert model != null;
+        		
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
                 model.UncompleteFloatingTask(activityToUncomplete);
@@ -83,6 +83,7 @@ public class UnCompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
     }
+<<<<<<< HEAD
     
     //@@author A0139515A
     /**
@@ -96,4 +97,6 @@ public class UnCompleteCommand extends Command {
     	model.addStateToUndoStack(beforeState);
     }
     //@@author
+=======
+>>>>>>> ce67655fce0673595e08af8f6b6f7c20d6b0f2d4
 }
