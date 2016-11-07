@@ -24,7 +24,6 @@ public class ListCommand extends Command {
     public static final String LIST_UNCOMPLETED = "uncompleted";
     public static final String LIST_MONTH = "month";
     public static final String LIST_DATE = "date";
-    public static final String LIST_KEYWORDS = "keywords";
     private static final Pattern VALID_DATE = Pattern
 			.compile("(0?[0-1][0-9]-[0-3][0-9]-[0-2][0-9][0-9][0-9])");
     
@@ -84,11 +83,9 @@ public class ListCommand extends Command {
     		this.argumentsToList.add(Completed.UNCOMPLETED_ACTIVITY);
     		return LIST_UNCOMPLETED;
     	}
-    		// Find by keywords
+    		// Invalid list parameter
     	else {
-    		this.argumentsToList.add(args);
-    		this.keywordToList = args;
-    		return LIST_KEYWORDS;
+    		return WRONG_ARGUMENT;
     	}	
     }
     
@@ -170,13 +167,6 @@ public class ListCommand extends Command {
 			model.updateFilteredEventList(this.argumentsToList, ModelManager.listMonth);
 			model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listMonth);
 			return new CommandResult(MESSAGE_SUCCESS_DATE_MONTH + this.monthToList);
-
-		case LIST_KEYWORDS:
-			
-			model.updateFilteredTaskList(this.argumentsToList, ModelManager.listKeyword);
-			model.updateFilteredEventList(this.argumentsToList, ModelManager.listKeyword);
-			model.updateFilteredFloatingTaskList(this.argumentsToList, ModelManager.listKeyword);
-			return new CommandResult(MESSAGE_SUCCESS_LIST_KEYWORDS + this.keywordToList); 
 			
 		case LIST_COMPLETED:
 			

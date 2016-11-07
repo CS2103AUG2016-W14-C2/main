@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import seedu.menion.model.activity.ReadOnlyActivity;
 
 /**
- * Provides a handle to a activity card in the activity list panel.
+ * Provides a handle to a event card in the activity list panel.
  */
 public class EventCardHandle extends GuiHandle {
     

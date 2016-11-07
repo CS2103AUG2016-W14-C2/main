@@ -39,6 +39,7 @@ public class DateChecker {
             throw new IllegalValueException(ActivityDate.MESSAGE_ACTIVITYDATE_INVALID);
         }
     }
+    
     /**
      * Checks if EndDate is after StartDate & EndTime is after startTime when creating event
      */

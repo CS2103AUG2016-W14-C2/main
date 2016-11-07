@@ -1,12 +1,10 @@
 package seedu.menion.testutil;
 
-import com.fasterxml.jackson.core.sym.Name;
-
 import seedu.menion.commons.exceptions.IllegalValueException;
 import seedu.menion.model.activity.*;
 
 /**
- *
+ * Builds a test activity
  */
 public class Activitybuilder {
 

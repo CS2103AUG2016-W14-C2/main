@@ -1,17 +1,15 @@
 package seedu.menion.ui;
 
-import java.util.Calendar;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.menion.commons.util.FxViewUtil;
 
+//@@author A0139515A
 /**
  * A ui for the status bar that is displayed at the header of the application.
  */

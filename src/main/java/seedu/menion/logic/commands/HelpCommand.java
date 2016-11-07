@@ -20,6 +20,8 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute() {
+    	assert model != null;
+    	
     	model.updateRecentChangedActivity(null);
         EventsCenter.getInstance().post(new ShowHelpRequestEvent());
         return new CommandResult(SHOWING_HELP_MESSAGE);
