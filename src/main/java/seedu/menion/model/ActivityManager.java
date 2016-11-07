@@ -320,7 +320,7 @@ public class ActivityManager implements ReadOnlyActivityManager {
             throw new UniqueActivityList.ActivityNotFoundException();
         }
     }
-    
+    //@@author
 
 //// util methods
 
