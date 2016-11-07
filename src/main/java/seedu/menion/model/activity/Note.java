@@ -15,6 +15,8 @@ public class Note {
      * Constructor for a note, takes in new String as note.
      */
     public Note(String note) throws IllegalValueException {
+        
+        assert note != null;
         this.value = note;
     }
     

@@ -1,4 +1,4 @@
-//@@author A0139164A
+
 package seedu.menion.logic.commands;
 
 import seedu.menion.commons.core.Messages;
@@ -12,6 +12,7 @@ import seedu.menion.model.activity.UniqueActivityList.ActivityNotFoundException;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
+//@@author A0139164A
 public class UnCompleteCommand extends Command {
 
     public static final String COMMAND_WORD = "uncomplete";
@@ -27,14 +28,16 @@ public class UnCompleteCommand extends Command {
     ReadOnlyActivity activityToUncomplete;
     
     public UnCompleteCommand(String[] splited) {
+        
+        assert splited != null;
         this.targetType = splited[1];
         this.targetIndex = Integer.valueOf(splited[2]) - 1;
     }
 
     @Override
     public CommandResult execute() {
-        assert model != null;
         
+        assert model != null;
         storePreviousState();
         
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
@@ -87,8 +90,8 @@ public class UnCompleteCommand extends Command {
      *
      */
     public void storePreviousState() {
+        
         assert model != null;
-
         ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
     	model.addStateToUndoStack(beforeState);
     }
