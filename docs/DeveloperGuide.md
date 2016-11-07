@@ -5,7 +5,7 @@
 
 [//]: # (@@author A0146752B)
 
-Menion is a simple activity manager for students to track their activities so they can better manage their schedule. It is a command line interface that minimizes mouse usage and focuses on keyboard commands.
+Menion is a simple activity manager for users to track their activities so they can better manage their schedule. It is a command line interface that minimizes mouse usage and focuses on keyboard commands.
 
 This guide will bring you through the design and implementation of Menion. It's purpose is to help you understand how Menion works and how you can further contribute to its development. The content of this guide is structured from a top-down manner to best help you understand how our application works before going into the minute details. Let's begin!
 
@@ -81,14 +81,9 @@ Two of those classes play important roles at the architecture level:
 
 The rest of the App consists five components.
 
-<<<<<<< HEAD
 * [*`UI`*](#ui-component) : The UI of the App.
 * [*`Logic`*](#logic-component) : The command executor.
-=======
-* [*`UI`*](#ui-component) : Provides the interface for the user to interact with the App.
-* [*`Logic`*](#logic-component) : Executes commands given by the UI.
-* [*`BackgroundLogic`*]() : Tracks any changes in data when application is running.   
->>>>>>> 7a98379da61bc034071d7173598fd7c222db1b15
+* [*`BackgroundCheck`*]() : Tracks any changes in data when application is running.   
 * [*`Model`*](#model-component) : Holds the data of the App in-memory.
 * [*`Storage`*](#storage-component) : Reads data from, and writes data to, the hard disk.
 
@@ -331,12 +326,12 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | find an activity by name | locate details of activities without having to go through the entire list
 `* * *` | user | have a one-shot approach to add activities | minimize clicking and save time
 `* * *` | user | indicate a completion of an activity | keep track of activities which I have completed
-`* * *` | user | set recurring activities| add repeated activities just once
 `* * *` | user | track completed/uncompleted activities | better manage my schedule
 `* * *` | user | modify storage path | store data in my desired location
 `* * *` | user | search for my activities using keywords | locate activities quickly
 `* *` | user | upload my schedule online and sync them across devices | view my schedules when I am using different devices
-`* *` | user with many activities in the activity manager | sort activities by different datelines | have a clearer view of what needs to be completed first
+`* *` | user | set recurring activities| add repeated activities just once
+`* *` | user | sort activities by different datelines | have a clearer view of what needs to be completed first
 
 {More to be added}
 
@@ -372,19 +367,19 @@ Use case ends.
 
 **MSS**
 
-1. User enters command followed by the index of the Activity to be deleted.
-2. Menion does a search through the database and deletes the Activity.
+1. User enters command followed by the activity type and the indices of the Activities to be deleted.
+2. Menion does a search through the database and deletes the Activities.
 3. Menion displays the list of Activity left in the database.
 
 Use case ends.
 
 **Extensions**
 
-1a. The index input by the user is not in the range of indices available.
+1a. The indices input by the user is not in the range of indices available.
 
-> 1a1. Menion prompts user to re-input the index of the Activity.<br>
-> 1a2. User reinputs the name of the Activity.<br>
-> Repeat 1a1 - 1ab until user inputs valid index of the Activity.<br>
+> 1a1. Menion prompts user to re-input the indices of the Activities.<br>
+> 1a2. User reinputs the indices of the Activities.<br>
+> Repeat 1a1 - 1ab until user inputs valid indices of the Activities.<br>
 > Use case resumes at step 2.
 
 #### Use Case : Undo
@@ -463,14 +458,14 @@ Use case ends.
 
 1. User enters find command followed by the keywords of the search.
 2. Menion performs the find command.
-3. Menion displays the details of the Activity.
+3. Menion displays the details of the Activities with names/notes containing the keywords.
 
 Use case ends.
 
 **Extensions**
 
-3a. There is no Activity with the keyword stated.
-> 3a1. Menion displays 'No particular Activity' message.<br>
+2a. There is no Activity with the keyword stated.
+> 2a1. Menion displays '0 activities listed!' message.<br>
 > Use case ends.
 
 
@@ -501,6 +496,7 @@ Use case ends.
 4. Should favor DOS style commands over Unix-style commands.
 5. Should be able to save activities offline, so that the user can use the application when the user does not have internet access.
 6. Should be able to use the application without constantly refering to instructions.
+7. Should take less than 1 second for each command.
 
 ## Appendix D : Glossary
 
@@ -550,8 +546,9 @@ _Cons_
 
 _Pros_
 > * Has a very simple user interface.<br>
-> * Able to sync across platforms when online.<br>
-> * Has list view, time view, or combined view.
+> * Has list view, time view, or combined view.<br>
+> * Able to sync across platforms when online.
+
 
 _Cons_
 > * No one shot approach of typing details of activity into a command line.
