@@ -6,7 +6,6 @@ import guitests.guihandles.TaskCardHandle;
 import org.junit.Test;
 
 import seedu.menion.commons.core.Messages;
-import seedu.menion.logic.commands.AddCommand;
 import seedu.menion.model.activity.Activity;
 import seedu.menion.testutil.TestActivity;
 import seedu.menion.testutil.TestUtil;

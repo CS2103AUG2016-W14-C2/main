@@ -144,7 +144,23 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
         TestActivity[] expectedList = TestUtil.addActivitiesToList(currentList, activityToAdd);
         assertTrue(activityListPanel.isTaskListMatching(expectedList));
     }
-    
+	
+	private Config readFromCurrentConfig() {
+		Config testConfig;
+		try {
+            Optional<Config> configOptional = ConfigUtil.readConfig(Config.DEFAULT_CONFIG_FILE);
+            testConfig = configOptional.orElse(Config.getInstance());
+        } catch (DataConversionException e) {
+        	testConfig = Config.getInstance();
+        }
+		return testConfig;
+	}
+	
+	/**
+	 * Methods below are only used when user do testing to save and restore
+	 * current storage
+	 */
+	
 	private void restoreOriginalConfig() throws IOException, FileNotFoundException, JAXBException {
 		FileUtil.createIfMissing(originalFile);
         XmlUtil.saveDataToFile(originalFile, originalData);
@@ -160,16 +176,5 @@ public class UndoRedoCommandTest extends ActivityManagerGuiTest {
     	originalFile = new File(originalConfig.getActivityManagerFilePath());
     	FileUtil.createIfMissing(originalFile);
     	originalData = XmlFileStorage.loadDataFromSaveFile(originalFile);
-	}
-	
-	private Config readFromCurrentConfig() {
-		Config testConfig;
-		try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(Config.DEFAULT_CONFIG_FILE);
-            testConfig = configOptional.orElse(Config.getInstance());
-        } catch (DataConversionException e) {
-        	testConfig = Config.getInstance();
-        }
-		return testConfig;
 	}
 }
