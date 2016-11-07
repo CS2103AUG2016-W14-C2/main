@@ -15,184 +15,181 @@ import seedu.menion.logic.Logic;
 import seedu.menion.model.UserPrefs;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar
+ * and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart {
 
-    private static final String ICON = "/images/Menion.png";
-    private static final String FXML = "MainWindow.fxml";
-    public static final int MIN_HEIGHT = 700;
-    public static final int MIN_WIDTH = 1200;
+	private static final String ICON = "/images/Menion.png";
+	private static final String FXML = "MainWindow.fxml";
+	public static final int MIN_HEIGHT = 700;
+	public static final int MIN_WIDTH = 1200;
 
-    private Logic logic;
+	private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
-    private ActivityListPanel activityListPanel;
-    private ResultDisplay resultDisplay;
-    private StatusBarFooter statusBarFooter;
-    private CommandBox commandBox;
-    private Config config;
-    private UserPrefs userPrefs;
-    private DatetimeDisplay datetimeDisplay;
+	// Independent Ui parts residing in this Ui container
+	private ActivityListPanel activityListPanel;
+	private ResultDisplay resultDisplay;
+	private StatusBarFooter statusBarFooter;
+	private CommandBox commandBox;
+	private Config config;
+	private UserPrefs userPrefs;
+	private DatetimeDisplay datetimeDisplay;
 
-    // Handles to elements of this Ui container
-    private VBox rootLayout;
-    private Scene scene;
+	// Handles to elements of this Ui container
+	private VBox rootLayout;
+	private Scene scene;
 
-    private String activityManagerName;
+	private String activityManagerName;
 
-    @FXML
-    private AnchorPane browserPlaceholder;
+	@FXML
+	private AnchorPane commandBoxPlaceholder;
 
-    @FXML
-    private AnchorPane commandBoxPlaceholder;
+	@FXML
+	private MenuItem helpMenuItem;
 
-    @FXML
-    private MenuItem helpMenuItem;
+	@FXML
+	private AnchorPane activityListPanelPlaceholder;
 
-    @FXML
-    private AnchorPane activityListPanelPlaceholder;
-    
-    @FXML
-    private AnchorPane eventListPanelPlaceholder;
+	@FXML
+	private AnchorPane eventListPanelPlaceholder;
 
-    @FXML
-    private AnchorPane resultDisplayPlaceholder;
+	@FXML
+	private AnchorPane resultDisplayPlaceholder;
 
-    @FXML
-    private AnchorPane statusbarPlaceholder;
-    
-    @FXML
-    private AnchorPane datetimeDisplayPlaceholder;
+	@FXML
+	private AnchorPane statusbarPlaceholder;
 
+	@FXML
+	private AnchorPane datetimeDisplayPlaceholder;
 
-    public MainWindow() {
-        super();
-    }
+	public MainWindow() {
+		super();
+	}
 
-    @Override
-    public void setNode(Node node) {
-        rootLayout = (VBox) node;
-    }
+	@Override
+	public void setNode(Node node) {
+		rootLayout = (VBox) node;
+	}
 
-    @Override
-    public String getFxmlPath() {
-        return FXML;
-    }
+	@Override
+	public String getFxmlPath() {
+		return FXML;
+	}
 
-    public static MainWindow load(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+	public static MainWindow load(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
 
-        MainWindow mainWindow = UiPartLoader.loadUiPart(primaryStage, new MainWindow());
-        mainWindow.configure(config.getAppTitle(), config.getActivityManagerName(), config, prefs, logic);
-        return mainWindow;
-    }
+		MainWindow mainWindow = UiPartLoader.loadUiPart(primaryStage, new MainWindow());
+		mainWindow.configure(config.getAppTitle(), config.getActivityManagerName(), config, prefs, logic);
+		return mainWindow;
+	}
 
-    private void configure(String appTitle, String activityManagerName, Config config, UserPrefs prefs,
-                           Logic logic) {
+	private void configure(String appTitle, String activityManagerName, Config config, UserPrefs prefs, Logic logic) {
 
-        //Set dependencies
-        this.logic = logic;
-        this.activityManagerName = activityManagerName;
-        this.config = config;
-        this.userPrefs = prefs;
+		// Set dependencies
+		this.logic = logic;
+		this.activityManagerName = activityManagerName;
+		this.config = config;
+		this.userPrefs = prefs;
 
-        //Configure the UI
-        setTitle(appTitle);
-        setIcon(ICON);
-        setWindowMinSize();
-        setWindowDefaultSize(prefs);
-        scene = new Scene(rootLayout);
-        primaryStage.setScene(scene);
+		// Configure the UI
+		setTitle(appTitle);
+		setIcon(ICON);
+		setWindowMinSize();
+		setWindowDefaultSize(prefs);
+		scene = new Scene(rootLayout);
+		primaryStage.setScene(scene);
 
-        setAccelerators();
-    }
+		setAccelerators();
+	}
 
-    private void setAccelerators() {
-        helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
-    }
+	private void setAccelerators() {
+		helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
+	}
 
-    void fillInnerParts() {
-        activityListPanel = ActivityListPanel.load(primaryStage, getActivityListPlaceholder(), 
-        		logic.getFilteredFloatingTaskList(), logic.getFilteredTaskList(), logic.getFilteredEventList());
-        resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
-        statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(), config.getActivityManagerFilePath());
-        commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic, activityListPanel);
-        datetimeDisplay = DatetimeDisplay.load(primaryStage, getDatetimeDisplayPlaceholder(), logic.getCurrentDateTime());
-    }
-    
-    private AnchorPane getCommandBoxPlaceholder() {
-        return commandBoxPlaceholder;
-    }
+	void fillInnerParts() {
+		activityListPanel = ActivityListPanel.load(primaryStage, getActivityListPlaceholder(),
+		        logic.getFilteredFloatingTaskList(), logic.getFilteredTaskList(), logic.getFilteredEventList());
+		resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
+		statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(),
+		        config.getActivityManagerFilePath());
+		commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic, activityListPanel);
+		datetimeDisplay = DatetimeDisplay.load(primaryStage, getDatetimeDisplayPlaceholder(),
+		        logic.getCurrentDateTime());
+	}
 
-    private AnchorPane getStatusbarPlaceholder() {
-        return statusbarPlaceholder;
-    }
+	private AnchorPane getCommandBoxPlaceholder() {
+		return commandBoxPlaceholder;
+	}
 
-    private AnchorPane getResultDisplayPlaceholder() {
-        return resultDisplayPlaceholder;
-    }
+	private AnchorPane getStatusbarPlaceholder() {
+		return statusbarPlaceholder;
+	}
 
-    public AnchorPane getActivityListPlaceholder() {
-        return activityListPanelPlaceholder;
-    }
-    
-    public AnchorPane getDatetimeDisplayPlaceholder() {
-        return datetimeDisplayPlaceholder;
-    }
+	private AnchorPane getResultDisplayPlaceholder() {
+		return resultDisplayPlaceholder;
+	}
 
-    public void hide() {
-        primaryStage.hide();
-    }
+	public AnchorPane getActivityListPlaceholder() {
+		return activityListPanelPlaceholder;
+	}
 
-    private void setTitle(String appTitle) {
-        primaryStage.setTitle(appTitle);
-    }
+	public AnchorPane getDatetimeDisplayPlaceholder() {
+		return datetimeDisplayPlaceholder;
+	}
 
-    /**
-     * Sets the default size based on user preferences.
-     */
-    protected void setWindowDefaultSize(UserPrefs prefs) {
-        primaryStage.setHeight(prefs.getGuiSettings().getWindowHeight());
-        primaryStage.setWidth(prefs.getGuiSettings().getWindowWidth());
-        if (prefs.getGuiSettings().getWindowCoordinates() != null) {
-            primaryStage.setX(prefs.getGuiSettings().getWindowCoordinates().getX());
-            primaryStage.setY(prefs.getGuiSettings().getWindowCoordinates().getY());
-        }
-    }
+	public void hide() {
+		primaryStage.hide();
+	}
 
-    private void setWindowMinSize() {
-        primaryStage.setMinHeight(MIN_HEIGHT);
-        primaryStage.setMinWidth(MIN_WIDTH);
-    }
+	private void setTitle(String appTitle) {
+		primaryStage.setTitle(appTitle);
+	}
 
-    /**
-     * Returns the current size and the position of the main Window.
-     */
-    public GuiSettings getCurrentGuiSetting() {
-        return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-    }
+	/**
+	 * Sets the default size based on user preferences.
+	 */
+	protected void setWindowDefaultSize(UserPrefs prefs) {
+		primaryStage.setHeight(prefs.getGuiSettings().getWindowHeight());
+		primaryStage.setWidth(prefs.getGuiSettings().getWindowWidth());
+		if (prefs.getGuiSettings().getWindowCoordinates() != null) {
+			primaryStage.setX(prefs.getGuiSettings().getWindowCoordinates().getX());
+			primaryStage.setY(prefs.getGuiSettings().getWindowCoordinates().getY());
+		}
+	}
 
-    @FXML
-    public void handleHelp() {
-        HelpWindow helpWindow = HelpWindow.load(primaryStage);
-        helpWindow.show();
-    }
+	private void setWindowMinSize() {
+		primaryStage.setMinHeight(MIN_HEIGHT);
+		primaryStage.setMinWidth(MIN_WIDTH);
+	}
 
-    public void show() {
-        primaryStage.show();
-    }
+	/**
+	 * Returns the current size and the position of the main Window.
+	 */
+	public GuiSettings getCurrentGuiSetting() {
+		return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(), (int) primaryStage.getX(),
+		        (int) primaryStage.getY());
+	}
 
-    /**
-     * Closes the application.
-     */
-    @FXML
-    private void handleExit() {
-        raise(new ExitAppRequestEvent());
-    }
+	@FXML
+	public void handleHelp() {
+		HelpWindow helpWindow = HelpWindow.load(primaryStage);
+		helpWindow.show();
+	}
 
-    public ActivityListPanel getActivityListPanel() {
-        return this.activityListPanel;
-    }
+	public void show() {
+		primaryStage.show();
+	}
+
+	/**
+	 * Closes the application.
+	 */
+	@FXML
+	private void handleExit() {
+		raise(new ExitAppRequestEvent());
+	}
+
+	public ActivityListPanel getActivityListPanel() {
+		return this.activityListPanel;
+	}
 }

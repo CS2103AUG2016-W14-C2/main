@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import seedu.menion.commons.core.LogsCenter;
 import seedu.menion.commons.util.AppUtil;
