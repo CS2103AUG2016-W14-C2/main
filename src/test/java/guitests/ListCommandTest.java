@@ -27,17 +27,12 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 	@Test
 	public void list() {
 
-
 		commandBox.runCommand("clear");
 		ActivityManager testListActivities = new ActivityManager();
 		generateActivitiesForList(testListActivities);
 		
 		// To test for list all
-		assertListSuccess();
-		
-		
-		
-		
+		assertListSuccess();	
 	}
 
 	private void assertListSuccess(){
@@ -134,9 +129,7 @@ public class ListCommandTest extends ActivityManagerGuiTest {
 			commandBox.runCommand(testEvent1.getAddCommand());
 			commandBox.runCommand(testEvent2.getAddCommand());
 			commandBox.runCommand(testFloating1.getAddCommand());
-			commandBox.runCommand(testFloating2.getAddCommand());
-
-			
+			commandBox.runCommand(testFloating2.getAddCommand());			
 			
 		} catch (IllegalValueException e) {
 			System.out.println("Not possible");

@@ -59,4 +59,33 @@ public class ConfigUtil {
         FileUtil.serializeObjectToJsonFile(new File(configFilePath), config);
     }
 
+    //@@author A01391515A
+	/**
+	 * Initialize Config based on the current config file
+	 */
+	public static Config initializeConfig() {
+		Config initializedConfig;
+		try {
+		    Optional<Config> configOptional = ConfigUtil.readConfig(Config.DEFAULT_CONFIG_FILE);
+		    initializedConfig = configOptional.orElse(Config.getInstance());
+		} catch (DataConversionException e) {
+		    initializedConfig = Config.getInstance();
+		}
+		return initializedConfig;
+	}
+	
+	/**
+     * Save the new configuration of activity manager file path.
+     * @param newPath
+     * @return true if able to save, else return false.
+     */
+	public static boolean savingNewConfiguration(Config config, String newPath) {
+		config.setActivityManagerFilePath(newPath);
+		try {
+			ConfigUtil.saveConfig(config, config.DEFAULT_CONFIG_FILE);
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
+	}
 }

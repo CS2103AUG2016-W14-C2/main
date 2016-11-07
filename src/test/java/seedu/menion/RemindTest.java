@@ -23,8 +23,11 @@ public class RemindTest {
 
     @Test
     public void remind() {
-        // For the purpose of testing we will store the existing data of email.txt file (If any)
-        // If there is no email.txt, we will create a new one. And delete it after.
+        // For the purpose of testing we will store the existing data of email.txt file (If any) 
+        // Into String userEmail, and String remind.
+        // We will then copy over these 2 lines into the editted email.txt file, reverting it back to original.
+        // If there is no email.txt, we will create a new file. And delete it after.
+        // Since running remind, will create a email.txt file.
         
         String testEmail = "ThisIsATestEmail@gmail.com";
         String testRemindOn = RemindCommand.REMINDER_ON;
@@ -35,6 +38,7 @@ public class RemindTest {
         boolean needRefresh = false;
         Scanner fromFile;
         try {
+            // Stores Existing email.txt data in the 2 strings.
             fromFile = new Scanner(new File(Messages.MESSAGE_FILE));
             remind = fromFile.next();
             fromFile.nextLine(); // Skips a line.
@@ -48,19 +52,20 @@ public class RemindTest {
         assertRemindSuccess(testEmail, testRemindOn);
         assertUnremindSuccess(testEmail, testRemindOff);
 
-        // Testing done, reverting back to previous state
+        // Testing done, email.txt is editted and has to be reverted.
+        // reverting back to previous state
         if (needRefresh) {
             resetData(userEmail, remind);
         } else {
-            // delete file
+            // delete file, as it did not exist in the first place.
             File file = new File(Messages.MESSAGE_FILE);
             file.delete();
         }
     }
 
     private void assertRemindSuccess(String testEmail, String testRemindOn) {
-        Command remindCommand = new RemindCommand(testEmail); // Calls the
-                                                              // remind command.
+        
+        Command remindCommand = new RemindCommand(testEmail); // Calls the remind command.
         remindCommand.execute();
         Scanner fromTestFile;
         try {
@@ -77,10 +82,10 @@ public class RemindTest {
             // Should not get here.
             e.printStackTrace();
         }
-
     }
 
     private void assertUnremindSuccess(String testEmail, String testRemindOff) {
+        
         Command unremindCommand = new UnremindCommand();
         unremindCommand.execute();
         Scanner fromTestFile;
@@ -98,17 +103,16 @@ public class RemindTest {
             // Should not get here.
             e.printStackTrace();
         }
-
     }
 
     private void resetData(String email, String remind) {
+        
         // Writes userEmail to a file.
         // Saves file
         PrintStream out;
         StringBuilder build = new StringBuilder();
         build.append(remind);
         build.append("\n");
-      
         try {
             out = new PrintStream(new FileOutputStream(Messages.MESSAGE_FILE));
             build.append(email);

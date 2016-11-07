@@ -11,10 +11,9 @@ import seedu.menion.model.activity.UniqueActivityList.ActivityNotFoundException;
 import seedu.menion.model.activity.UniqueActivityList.DuplicateTaskException;
 
 /**
- * 
- * @author Marx A0139164A Completes an activity given the index and it's
- *         activtyType
+ * Completes an activity given the index and it's activtyType
  */
+//@@author A0139164A
 public class CompleteCommand extends Command {
 
     public static final String COMMAND_WORD = "complete";
@@ -36,8 +35,10 @@ public class CompleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
+    	assert model != null;
     	
-    	storePreviousState();
+    	model.storePreviousState(new ActivityManager(model.getActivityManager()));
+    	
         UnmodifiableObservableList<ReadOnlyActivity> lastShownList;
         
         try {
@@ -64,15 +65,13 @@ public class CompleteCommand extends Command {
             return new CommandResult(MESSAGE_ALREADY_COMPLETED);
         }
         
-        callCompleteActivity(targetType, activityToComplete); // Calls the correct method depending
-                                          // on type of activity.
-        
+        callCompleteActivity(targetType, activityToComplete); // Calls the correct method depending on type of activity.
         model.updateRecentChangedActivity(activityToComplete);
-
         return new CommandResult(String.format(MESSAGE_COMPLETED_ACTIVITY_SUCCESS, activityToComplete));
     }
 
     private void callCompleteActivity(String targetType, ReadOnlyActivity activityToComplete) {
+        assert model != null;
         
         try {
             if (targetType.equals(Activity.FLOATING_TASK_TYPE)) {
@@ -86,18 +85,5 @@ public class CompleteCommand extends Command {
             assert false : "The target activity cannot be missing";
         }
         
-    }
-    
-    // @@author A0139515A
-    /**
-     * Complete command will store previous activity manager to support undo
-     * command
-     * 
-     */
-    public void storePreviousState() {
-        assert model != null;
-
-        ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
-        model.addStateToUndoStack(beforeState);
     }
 }

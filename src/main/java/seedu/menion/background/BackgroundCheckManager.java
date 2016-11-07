@@ -30,6 +30,7 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * This method does a check on all the activities in Menion
 	 */
 	public void checkActivities(Model model){
+		assert(model != null);
 		Calendar currentTime = Calendar.getInstance();
 		checkTasks(model, currentTime);
 		checkEvents(model, currentTime);
@@ -41,7 +42,7 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * @param currentTime
 	 */
 	private void checkTasks(Model model, Calendar currentTime){	
-		assert(model != null);
+		assert(model != null && currentTime != null);
 		
 		ReadOnlyActivityManager activityManager = model.getActivityManager();
 
@@ -49,9 +50,11 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 		
 		for (int i = 0 ; i < taskList.size(); i++){	 
 			ReadOnlyActivity taskToCheck = taskList.get(i);
-
+			
+			String taskCompletionStatus = taskToCheck.getActivityStatus().toString();
 			// Yet to send email due to no internet connection. But task deadline has passed
-			if (!taskToCheck.isEmailSent() && taskToCheck.isTimePassed() && taskToCheck.getActivityStatus().toString().equals(Completed.UNCOMPLETED_ACTIVITY)){
+			if (!taskToCheck.isEmailSent() && taskToCheck.isTimePassed() && 
+					taskCompletionStatus.equals(Completed.UNCOMPLETED_ACTIVITY)){
 			    SendEmail sender = new SendEmail();
 				try {
                     sender.send(taskToCheck);
@@ -63,9 +66,9 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
                     
                 }	
 			}
-			
 			// Check if there a task is overdue.
-			if (!taskToCheck.isTimePassed() && taskToCheck.getActivityStatus().toString().equals(Completed.UNCOMPLETED_ACTIVITY)){
+			if (!taskToCheck.isTimePassed() &&
+					taskCompletionStatus.equals(Completed.UNCOMPLETED_ACTIVITY)){
 				if (isActivityOver(currentTime, taskToCheck)){		
 					taskToCheck.setTimePassed(true);
 
@@ -91,29 +94,34 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * @param currentTime
 	 */
 	private void checkEvents(Model model, Calendar currentTime){
-		assert(model != null);
+		assert(model != null && currentTime != null);
 		
 		ReadOnlyActivityManager activityManager = model.getActivityManager();
 		List<ReadOnlyActivity> eventList = activityManager.getEventList();
 		
 		for (int i = 0 ; i < eventList.size(); i++){
 			ReadOnlyActivity eventToCheck = eventList.get(i);
-			
+
 			if (!eventToCheck.isTimePassed()){
-				
-				// Event is over.
-				if(isActivityOver(currentTime, eventToCheck)){
-					eventToCheck.setTimePassed(true);
-					raise(new ActivityManagerChangedEventNoUI(activityManager));
-				}
-				
-				// Event is ongoing.
-				else if (isEventStarted(currentTime, eventToCheck)){
-					eventToCheck.setEventOngoing(true);
-					raise(new ActivityManagerChangedEventNoUI(activityManager));
-				}
+				checkEventStatus(currentTime, eventToCheck, activityManager);
 			}
 		}
+	}
+	
+	private void checkEventStatus(Calendar currentTime, ReadOnlyActivity eventToCheck,
+										ReadOnlyActivityManager activityManager){
+		// Event is over.
+		if(isActivityOver(currentTime, eventToCheck)){
+			eventToCheck.setTimePassed(true);
+			raise(new ActivityManagerChangedEventNoUI(activityManager));
+		}
+		
+		// Event is ongoing.
+		else if (isEventStarted(currentTime, eventToCheck)){
+			eventToCheck.setEventOngoing(true);
+			raise(new ActivityManagerChangedEventNoUI(activityManager));
+		}
+		
 	}
 	
 	/**

@@ -1,4 +1,3 @@
-//@@author A0139164A
 package seedu.menion.model.activity;
 
 
@@ -8,7 +7,9 @@ import seedu.menion.commons.exceptions.IllegalValueException;
  * Represents an activity's completion status in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
  */
+//@@author A0139164A
 public class Completed {
+    
     public static final String COMPLETED_ACTIVITY = "Completed";
     public static final String UNCOMPLETED_ACTIVITY = "Uncompleted";
     public boolean status;
@@ -22,8 +23,8 @@ public class Completed {
     
     // Constructor for Completed, using String
     public Completed(String status) {
-        assert(status != null);
         
+        assert(status != null);
         if (status.equals(COMPLETED_ACTIVITY)) {
             this.status = true;
         }
@@ -34,6 +35,7 @@ public class Completed {
     
     @Override
     public String toString() {
+        
         if (status) {
             return COMPLETED_ACTIVITY;
         }

@@ -77,7 +77,7 @@ public abstract class ActivityManagerGuiTest {
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
      */
     protected ActivityManager getInitialData() {
-        ActivityManager ab = TestUtil.generateEmptyAddressBook();
+        ActivityManager ab = TestUtil.generateEmptyActivityManager();
 
         TypicalTestActivities.loadActivityManagerWithSampleData(ab);
 

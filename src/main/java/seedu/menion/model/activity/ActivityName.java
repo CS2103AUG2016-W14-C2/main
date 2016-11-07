@@ -6,11 +6,10 @@ import seedu.menion.commons.exceptions.IllegalValueException;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
+//@@author A0139164A
 public class ActivityName {
 
     public static final String MESSAGE_NAME_CONSTRAINTS = "Please limit the name of your activity to 40 characters.";
-
-
     public final String fullName;
 
     /**
@@ -19,6 +18,7 @@ public class ActivityName {
      * @throws IllegalValueException if given name string is invalid.
      */
     public ActivityName(String name) throws IllegalValueException {
+        
         assert name != null;
         name = name.trim();
         if (!isValidName(name)) {
@@ -31,6 +31,7 @@ public class ActivityName {
      * Returns true if the input name is less than 140 characters.
      */
     public static boolean isValidName(String test) {
+        
     	if (test.length() > 40){
     		return false;
     	}
@@ -46,6 +47,7 @@ public class ActivityName {
 
     @Override
     public boolean equals(Object other) {
+        
         return other == this // short circuit if same object
                 || (other instanceof ActivityName // instanceof handles nulls
                 && this.fullName.equals(((ActivityName) other).fullName)); // state check

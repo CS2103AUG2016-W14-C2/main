@@ -78,7 +78,6 @@ public class BackgroundTest {
 		testManager = typicalTestActivities.getTypicalActivityManager();
 		
 		try {
-			
 			Activity testOldActivity = new Activity(Activity.TASK_TYPE, new ActivityName("Test Past Task"),
 					new Note("Hope it works"), new ActivityDate("09-09-1999"), new ActivityTime("0001"),
 					new Completed(Completed.UNCOMPLETED_ACTIVITY), null, null);
@@ -113,12 +112,7 @@ public class BackgroundTest {
 			model.addEvent(testOldEventNoTime);
 			
 		} catch (IllegalValueException e) {
-			
-			System.out.println(e);
-			
+			System.out.println(e);	
 		}
-		
 	}
-	
-	
 }

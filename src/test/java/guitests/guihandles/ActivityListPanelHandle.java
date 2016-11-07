@@ -44,16 +44,10 @@ public class ActivityListPanelHandle extends GuiHandle {
         return (ListView<ReadOnlyActivity>) getNode(TASK_LIST_VIEW_ID);
     }
     
-    /**
-     * @@author A0146752B
-     */
     public ListView<ReadOnlyActivity> getFloatingTaskListView() {
         return (ListView<ReadOnlyActivity>) getNode(FLOATING_LIST_VIEW_ID);
     }
 
-    /**
-     * @@author A0146752B
-     */
     public ListView<ReadOnlyActivity> getEventListView() {
         return (ListView<ReadOnlyActivity>) getNode(EVENT_LIST_VIEW_ID);
     }
@@ -178,7 +172,7 @@ public class ActivityListPanelHandle extends GuiHandle {
         return true;
     }
     
-    //@@author: A0139164A
+    //@@author A0139164A
     public TestActivity returnsUpdatedEvent(String name) {
         guiRobot.sleep(500); //Allow a bit of time for the list to be updated
         final Optional<ReadOnlyActivity> activity = getEventListView().getItems().stream().filter(p -> p.getActivityName().fullName.equals(name)).findAny();
@@ -207,7 +201,7 @@ public class ActivityListPanelHandle extends GuiHandle {
         TestActivity dub = new TestActivity(activity.get());
         return dub;
     }
-
+    //@@author
     
     /**
      * Returns true if the list is showing the floating task details correctly and in correct order.
@@ -298,7 +292,7 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
 
     /**
-     * @author BrehmerChan (A0146752B)
+     * 
      * Navigates the listview to display and select the floating task.
      */
     public FloatingTaskCardHandle navigateToFloatingTask(ReadOnlyActivity floatingTask) {
@@ -313,7 +307,7 @@ public class ActivityListPanelHandle extends GuiHandle {
     }
     
     /**
-     * @author BrehmerChan (A0146752B)
+     * 
      * Navigates the listview to display and select the event.
      */
     public EventCardHandle navigateToEvent(ReadOnlyActivity event) {
