@@ -41,6 +41,8 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * @param currentTime
 	 */
 	private void checkTasks(Model model, Calendar currentTime){	
+		assert(model != null);
+		
 		ReadOnlyActivityManager activityManager = model.getActivityManager();
 
 		List<ReadOnlyActivity> taskList = activityManager.getTaskList();
@@ -57,7 +59,6 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
                     raise(new ActivityManagerChangedEventNoUI(activityManager));
                 } catch (FileNotFoundException e) {
 
-                    
                 } catch (MessagingException e) {
                     
                 }	
@@ -90,6 +91,8 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 	 * @param currentTime
 	 */
 	private void checkEvents(Model model, Calendar currentTime){
+		assert(model != null);
+		
 		ReadOnlyActivityManager activityManager = model.getActivityManager();
 		List<ReadOnlyActivity> eventList = activityManager.getEventList();
 		
@@ -193,7 +196,6 @@ public class BackgroundCheckManager extends ComponentManager implements Backgrou
 			return false;
 		}
 	}
-	
 	
 	/**
 	 * This method extracts the time values from a time string.
