@@ -1,15 +1,12 @@
 package seedu.menion.logic.commands;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Optional;
 
 import seedu.menion.commons.core.Config;
 import seedu.menion.commons.core.EventsCenter;
 import seedu.menion.commons.events.storage.StoragePathChangedEvent;
 import seedu.menion.commons.events.ui.ModifyStorageEvent;
-import seedu.menion.commons.exceptions.DataConversionException;
 import seedu.menion.commons.util.ConfigUtil;
+import seedu.menion.commons.util.XmlUtil;
 import seedu.menion.model.ActivityManager;
 import seedu.menion.storage.XmlActivityManagerStorage;
 
@@ -27,7 +24,8 @@ public class UndoCommand extends Command {
 											"For normal undo: undo\n" +
 											"For undo of modify storage path: undo modify\n";
     public final String argument;
-
+    private Config initializedConfig;
+    
     public UndoCommand(String argument) {
     	this.argument = argument.trim();
     }
@@ -82,28 +80,18 @@ public class UndoCommand extends Command {
 		}
 		
 		// Initialising Config file
-        Config initializedConfig;
-    	try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(Config.DEFAULT_CONFIG_FILE);
-            initializedConfig = configOptional.orElse(Config.getInstance());
-        } catch (DataConversionException e) {
-            initializedConfig = Config.getInstance();
-        }
+        initializedConfig = ConfigUtil.initializeConfig();
     	
 		model.addStoragePathToRedoStack(initializedConfig.getActivityManagerFilePath());
 		
 		String storagePathToUndo = model.retrievePreviouStoragePathFromUndoStack();
     	
 		// Deleting old files
-		File oldStorage =  new File(initializedConfig.getActivityManagerFilePath());
-		oldStorage.delete();
+		XmlUtil.deleteOldStorageFile(initializedConfig.getActivityManagerFilePath());
 		
 		// Saving configuration
-		initializedConfig.setActivityManagerFilePath(storagePathToUndo);
-		try {
-			ConfigUtil.saveConfig(initializedConfig, initializedConfig.DEFAULT_CONFIG_FILE);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (!ConfigUtil.savingNewConfiguration(initializedConfig, storagePathToUndo)) {
+			return false;
 		}
 
     	// Setting up new storage location
