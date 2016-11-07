@@ -17,7 +17,6 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-
     public static final String MESSAGE_USAGE = "add: adds an activity to Menion! Make sure the date is a valid date. If not Menion will set the date to today. \n"
             + "Examples to add different Activities: \n"
             + "Adding a Floating Task: "+ COMMAND_WORD + " buy lunch n: hawker food\n"

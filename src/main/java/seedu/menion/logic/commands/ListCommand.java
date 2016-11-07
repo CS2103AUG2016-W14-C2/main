@@ -109,7 +109,7 @@ public class ListCommand extends Command {
 
     /**
      * This method checks if the arguments is a month
-     * @param args
+     * @param args of command
      * @return true if the arguments fit the format of a Month.
      */
     private Boolean isMonth (String args){
