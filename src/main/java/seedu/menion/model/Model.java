@@ -33,35 +33,30 @@ public interface Model {
     void UncompleteTask(ReadOnlyActivity activityToUncomplete) throws ActivityNotFoundException;
  
     /** 
-     * Edits the name of the given Activity, given it's index. 
-     * @throws IllegalValueException 
+     * Edits the name of the given Activity, given it's index. @throws IllegalValueException 
      */
     void editFloatingTaskName(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     void editTaskName(ReadOnlyActivity taskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     void editEventName(ReadOnlyActivity eventToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     
     /**
-     * Edits the note of the given Activity, given it's index. 
-     * @throws IllegalValueException 
+     * Edits the note of the given Activity, given it's index @throws IllegalValueException 
      */
     void editFloatingTaskNote(ReadOnlyActivity floatingTaskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     void editTaskNote(ReadOnlyActivity taskToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     void editEventNote(ReadOnlyActivity eventToEdit, String changes) throws IllegalValueException, ActivityNotFoundException;
     
     /**
-     * Edits the Start Date & Time of the given Task/Event, given it's index. 
-     * @throws IllegalValueException 
+     * Edits the Start Date & Time of the given Task/Event, given it's index @throws IllegalValueException 
      */
     void editTaskToFloating(ReadOnlyActivity taskToEdit) throws IllegalValueException, ActivityNotFoundException;
     void editTaskDateTime(ReadOnlyActivity taskToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException;
     void editEventEndDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException;
     void editEventStartDateTime(ReadOnlyActivity eventToEdit, String newDate, String newTime) throws IllegalValueException, ActivityNotFoundException;
     
-    
     //@@author A0139515A
     /**
      * Methods for undo 
-     * 
      */
     
     /** add an activity manager state into undo state stack */

@@ -67,14 +67,10 @@ public class Activity implements ReadOnlyActivity {
 
     /**
      * For Task Every field must be present and not null.
-     * 
-     * @param activityTimePassed
-     *            TODO
-     * @param emailSent
-     *            TODO
      */
     public Activity(String type, ActivityName name, Note note, ActivityDate startDate, ActivityTime startTime,
             Completed status, Boolean activityTimePassed, Boolean emailSent) {
+        
         this.activityType = type;
         this.name = name;
         this.note = note;
@@ -97,11 +93,6 @@ public class Activity implements ReadOnlyActivity {
 
     /**
      * For Event Every field must be present and not null.
-     * 
-     * @param activityTimePassed
-     *            TODO
-     * @param eventOngoing
-     *            TODO
      */
     public Activity(String type, ActivityName name, Note note, ActivityDate startDate, ActivityTime startTime,
             ActivityDate endDate, ActivityTime endTime, Completed status, Boolean activityTimePassed,
@@ -131,7 +122,6 @@ public class Activity implements ReadOnlyActivity {
 
     /**
      * Copy constructor.
-     * 
      */
     public Activity(ReadOnlyActivity source) {
 
@@ -171,6 +161,7 @@ public class Activity implements ReadOnlyActivity {
     // Creates a unique ArrayList of details for each activity.
     @Override
     public void setActivityDetails() {
+        
         if (activityType.equals(FLOATING_TASK_TYPE)) {
             activityDetails = new ArrayList<String>(FLOATING_TASK_LENGTH);
             activityDetails.add(activityType);
@@ -200,13 +191,13 @@ public class Activity implements ReadOnlyActivity {
 
     /**
      * @throws IllegalValueException
-     *             List of methods to set Activity's param : Type, Name, Note,
-     *             startDate, startTime, completion status, emailSent status,
-     *             timePassed status.
+     * List of methods to set Activity's param : Type, Name, Note,
+     * startDate, startTime, completion status, emailSent status,
+     * timePassed status.
      */
-
     @Override
     public void setActivityType(String newType) throws IllegalValueException {
+        
         if (!newType.equals(FLOATING_TASK_TYPE) && !newType.equals(TASK_TYPE) && !newType.equals(EVENT_TYPE)) {
             throw new IllegalValueException(Messages.MESSAGE_INVALID_TYPE);
         } else {
@@ -216,15 +207,16 @@ public class Activity implements ReadOnlyActivity {
 
     @Override
     public void setActivityName(String newName) throws IllegalValueException {
+        
         assert (newName != null);
         this.name = new ActivityName(newName);
     }
 
     @Override
     public void setActivityNote(String newNote) throws IllegalValueException {
+        
         assert (newNote != null);
         this.note = new Note(newNote);
-
     }
 
     // Only can be called by Task & Events
@@ -232,7 +224,6 @@ public class Activity implements ReadOnlyActivity {
     public void setActivityStartDateTime(String newDate, String newTime) throws IllegalValueException {
 
         boolean isEvent = this.activityType.equals(Activity.EVENT_TYPE);
-
         ActivityDate newDateObject = new ActivityDate(newDate);
         ActivityTime newTimeObject = new ActivityTime(newTime);
         if (isEvent) {
@@ -246,6 +237,7 @@ public class Activity implements ReadOnlyActivity {
 
     @Override
     public void setActivityEndDateTime(String newDate, String newTime) throws IllegalValueException {
+        
         boolean isEvent = this.activityType.equals(Activity.EVENT_TYPE);
         DateChecker check = new DateChecker();
         assert (isEvent);
@@ -348,6 +340,7 @@ public class Activity implements ReadOnlyActivity {
 
     @Override
     public String toString() {
+        
         switch (this.activityType) {
         case FLOATING_TASK_TYPE:
             return getFloatingTaskAsText();
@@ -390,7 +383,7 @@ public class Activity implements ReadOnlyActivity {
     }
 
     private String checkActivityType(ReadOnlyActivity activityToCheck) {
-
+        
         return activityToCheck.getActivityType();
 
     }

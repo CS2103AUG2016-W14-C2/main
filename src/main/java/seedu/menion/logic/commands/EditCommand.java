@@ -79,7 +79,6 @@ public class EditCommand extends Command {
             indicateAttemptToExecuteIncorrectCommand();
             return new CommandResult(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
         }
-
         model.updateRecentChangedActivity(activityToEdit);
         return new CommandResult(String.format(MESSAGE_EDITED_ACTIVITY_SUCCESS, activityToEdit));
     }
@@ -101,7 +100,6 @@ public class EditCommand extends Command {
             model.editTaskDateTime(floatingTaskToEdit, this.newDate, this.newTime);
             break;
         }
-
     }
 
     private void taskEdit(ReadOnlyActivity taskToEdit, int paramToChange) throws IllegalValueException, ActivityNotFoundException {

@@ -64,8 +64,8 @@ public class RemindTest {
     }
 
     private void assertRemindSuccess(String testEmail, String testRemindOn) {
-        Command remindCommand = new RemindCommand(testEmail); // Calls the
-                                                              // remind command.
+        
+        Command remindCommand = new RemindCommand(testEmail); // Calls the remind command.
         remindCommand.execute();
         Scanner fromTestFile;
         try {
@@ -82,10 +82,10 @@ public class RemindTest {
             // Should not get here.
             e.printStackTrace();
         }
-
     }
 
     private void assertUnremindSuccess(String testEmail, String testRemindOff) {
+        
         Command unremindCommand = new UnremindCommand();
         unremindCommand.execute();
         Scanner fromTestFile;
@@ -103,17 +103,16 @@ public class RemindTest {
             // Should not get here.
             e.printStackTrace();
         }
-
     }
 
     private void resetData(String email, String remind) {
+        
         // Writes userEmail to a file.
         // Saves file
         PrintStream out;
         StringBuilder build = new StringBuilder();
         build.append(remind);
         build.append("\n");
-      
         try {
             out = new PrintStream(new FileOutputStream(Messages.MESSAGE_FILE));
             build.append(email);

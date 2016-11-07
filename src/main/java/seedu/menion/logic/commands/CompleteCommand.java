@@ -11,10 +11,9 @@ import seedu.menion.model.activity.UniqueActivityList.ActivityNotFoundException;
 import seedu.menion.model.activity.UniqueActivityList.DuplicateTaskException;
 
 /**
- * 
- * @author Marx A0139164A Completes an activity given the index and it's
- *         activtyType
+ * Completes an activity given the index and it's activtyType
  */
+//@@author A0139164A
 public class CompleteCommand extends Command {
 
     public static final String COMMAND_WORD = "complete";
@@ -64,11 +63,8 @@ public class CompleteCommand extends Command {
             return new CommandResult(MESSAGE_ALREADY_COMPLETED);
         }
         
-        callCompleteActivity(targetType, activityToComplete); // Calls the correct method depending
-                                          // on type of activity.
-        
+        callCompleteActivity(targetType, activityToComplete); // Calls the correct method depending on type of activity.
         model.updateRecentChangedActivity(activityToComplete);
-
         return new CommandResult(String.format(MESSAGE_COMPLETED_ACTIVITY_SUCCESS, activityToComplete));
     }
 
@@ -95,8 +91,8 @@ public class CompleteCommand extends Command {
      * 
      */
     public void storePreviousState() {
+        
         assert model != null;
-
         ReadOnlyActivityManager beforeState = new ActivityManager(model.getActivityManager());
         model.addStateToUndoStack(beforeState);
     }

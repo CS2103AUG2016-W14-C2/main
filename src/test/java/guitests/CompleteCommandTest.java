@@ -80,11 +80,13 @@ public class CompleteCommandTest extends ActivityManagerGuiTest {
     }
     
     private void assertInvalidIndex(TestActivity activityToComplete, int index) {
+        
         commandBox.runCommand(activityToComplete.getCompleteCommand(index));
         assertResultMessage(Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
     }
     
     private void assertMissingIndex() {
+        
         commandBox.runCommand("complete task");
         assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompleteCommand.MESSAGE_USAGE));
     }

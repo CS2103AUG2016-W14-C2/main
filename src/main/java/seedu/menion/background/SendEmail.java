@@ -18,20 +18,19 @@ import seedu.menion.model.activity.ReadOnlyActivity;
 public class SendEmail {
 
     public static final String MESSAGE_BODY = "Hey you missed a task deadline! Here is the info: ";
-
+    public static final String EMAIL_SUBJECT = "Menion! You missed a deadline!";
+    
     final String senderEmailID = "menioncena@gmail.com";
     final String senderPassword = "johncena2103";
     final String emailSMTPserver = "smtp.gmail.com";
     final String emailServerPort = "465";
-
+    
     /**
      * Variables that will be set in send method.
      */
     String userEmail = null;
     String emailBody = null;
     String motivationalQuote = null;
-
-    String emailSubject = "Menion! You missed a deadline!";
     String remind = UnremindCommand.REMINDER_OFF;
 
     // public void send(ReadOnlyActivity dub) {
@@ -67,7 +66,7 @@ public class SendEmail {
             MimeMessage msg = new MimeMessage(session);
             emailBody = getMessageBody(outdated);
             msg.setText(emailBody);
-            msg.setSubject(emailSubject);
+            msg.setSubject(EMAIL_SUBJECT);
             msg.setFrom(new InternetAddress(senderEmailID));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
             Transport.send(msg);
