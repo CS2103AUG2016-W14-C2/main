@@ -16,7 +16,6 @@ public class Note {
      */
     public Note(String note) throws IllegalValueException {
         
-        assert note != null;
         this.value = note;
     }
     
