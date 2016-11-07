@@ -168,6 +168,11 @@ public class AddParser {
 		}
 	}
 
+	/**
+	 * This method checks if the input arguments satisfy the requirements to be a Floating Task
+	 * @param args
+	 * @return true : the input arguments satisfy a floating task
+	 */
 	public static Boolean isFloatingTask(String args){
 		matcher = FLOATING_TASK_REGEX_WITHOUT_NOTES.matcher(args);
 		
@@ -186,8 +191,7 @@ public class AddParser {
 	/**
 	 * This method checks if the input arguments satisfy the requirements to be
 	 * a Task.
-	 * 
-	 * @return
+	 * @return true: the input arguments satisfy a task
 	 */
 	public static Boolean isTask(String args) {
 		matcher = REGULAR_TASK_REGEX_WITHOUT_NOTES.matcher(args);
@@ -207,8 +211,7 @@ public class AddParser {
 	/**
 	 * This method checks if the input arguments satisfy the requirements to be
 	 * a Event.
-	 * 
-	 * @return
+	 * @return true: the input arguments satisfy an event
 	 */
 	public static Boolean isEvents(String args) {
 		matcher = EVENTS_FROM_TO_REGEX_WITHOUT_NOTES.matcher(args);
