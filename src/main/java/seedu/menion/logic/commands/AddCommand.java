@@ -25,7 +25,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "Oh no! This activity already exists in the Menion";
-
+//@@author
+    
     private final Activity toAdd;
 
     private ActivityName name;

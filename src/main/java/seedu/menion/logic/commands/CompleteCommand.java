@@ -85,6 +85,5 @@ public class CompleteCommand extends Command {
         }catch (ActivityNotFoundException pnfe) {
             assert false : "The target activity cannot be missing";
         }
-        
     }
 }
